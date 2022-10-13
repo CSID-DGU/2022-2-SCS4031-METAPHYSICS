@@ -32,8 +32,8 @@ public class PlayerController : MonoBehaviour
 					transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 					break;
 				case MoveDir.Left:
-					_animator.Play("WALK_RIGHT");
-					transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+					_animator.Play("WALK_LEFT");
+					transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 					break;
 				case MoveDir.Right:
 					_animator.Play("WALK_RIGHT");
@@ -52,8 +52,8 @@ public class PlayerController : MonoBehaviour
 					}
 					else if (_dir == MoveDir.Left)
 					{
-						_animator.Play("IDLE_RIGHT");
-						transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+						_animator.Play("IDLE_LEFT");
+						transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 					}
 					else
 					{
