@@ -12,5 +12,10 @@
 ![Sign-up](https://user-images.githubusercontent.com/101785677/195842348-e108cab0-fba6-496a-921f-c6b494654e24.png)
 
 ### * Guest_Login Page
-  
-![Guest_Login](https://user-images.githubusercontent.com/101785677/195842360-17b1fa05-d8f9-4b7f-bc74-c5552b1e1772.png)
+
+![Asset 31](https://user-images.githubusercontent.com/101785677/195906962-0b17430a-d6f5-4894-a528-4897d8409af1.png)
+
+### *Menu bar proto
+
+![1안](https://user-images.githubusercontent.com/101785677/195906467-c3fd5d67-6b57-4f22-a397-2a7c273e6277.png)
+![2안](https://user-images.githubusercontent.com/101785677/195906471-fa07efa4-980a-47a4-be28-72cee1ce3d45.png)
