@@ -15,7 +15,10 @@
 
 ![Asset 31](https://user-images.githubusercontent.com/101785677/195906962-0b17430a-d6f5-4894-a528-4897d8409af1.png)
 
-### *Menu bar proto
+### * Customize
+![Asset 44](https://user-images.githubusercontent.com/101785677/195986670-90bcbfff-a668-41f4-a2dd-af3df9f9752b.png)
+
+### * Menu bar proto
 
 ![1안](https://user-images.githubusercontent.com/101785677/195906467-c3fd5d67-6b57-4f22-a397-2a7c273e6277.png)
 ![2안](https://user-images.githubusercontent.com/101785677/195906471-fa07efa4-980a-47a4-be28-72cee1ce3d45.png)
