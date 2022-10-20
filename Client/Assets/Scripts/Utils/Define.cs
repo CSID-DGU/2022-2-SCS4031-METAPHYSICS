@@ -17,6 +17,13 @@ public class Define
         DownLeft
 	}
 
+    public enum UserPrivileges
+    {
+        None,
+        Student,
+        Guest
+    }
+
     public enum Scene
     {
         Unknown,

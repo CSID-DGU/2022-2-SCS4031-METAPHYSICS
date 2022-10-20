@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static Define;
 
 public class UserMoveScript : MonoBehaviour
@@ -28,6 +29,9 @@ public class UserMoveScript : MonoBehaviour
 		m_MoveSpeed = 4.0f;
 		m_vMoveDir = new Vector2(0.0f, 0.0f);
 		transform.position = new Vector3Int(0, 0, 0);
+
+		Text UserText = gameObject.GetComponentInChildren<Text>();
+		UserText.text = Managers.Data.GetCurrentUser();
 	}
 
 	void Update()
