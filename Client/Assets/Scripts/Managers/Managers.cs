@@ -36,7 +36,7 @@ public class Managers : MonoBehaviour
 
     void Update()
     {
-
+        Scene.SceneUpdate();
     }
 
     static void Init()
