@@ -193,6 +193,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6512704958315656018, guid: b0ec2c195bfff914985ef7ca1ef86736,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512704958315656018, guid: b0ec2c195bfff914985ef7ca1ef86736,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1080.0005
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512704958315656018, guid: b0ec2c195bfff914985ef7ca1ef86736,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512704958315656018, guid: b0ec2c195bfff914985ef7ca1ef86736,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.00023651
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512704958765535893, guid: b0ec2c195bfff914985ef7ca1ef86736,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512704958765535893, guid: b0ec2c195bfff914985ef7ca1ef86736,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512704958765535893, guid: b0ec2c195bfff914985ef7ca1ef86736,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512704958765535893, guid: b0ec2c195bfff914985ef7ca1ef86736,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -350
+      objectReference: {fileID: 0}
     - target: {fileID: 6512704958765535978, guid: b0ec2c195bfff914985ef7ca1ef86736,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -232,6 +272,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512704958799463037, guid: b0ec2c195bfff914985ef7ca1ef86736,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512704958799463037, guid: b0ec2c195bfff914985ef7ca1ef86736,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512704958799463037, guid: b0ec2c195bfff914985ef7ca1ef86736,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512704958799463037, guid: b0ec2c195bfff914985ef7ca1ef86736,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -350
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0ec2c195bfff914985ef7ca1ef86736, type: 3}
