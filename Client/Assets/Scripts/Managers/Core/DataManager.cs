@@ -16,6 +16,7 @@ public class DataManager
 
     private UserPrivileges  m_UserPrivilege = UserPrivileges.None;
     private string          m_CurrentUserName = null;
+    private UserCustomize m_CurrentUserColor = UserCustomize.End;
     //임시
     private Dictionary<String, UserData> m_UserDataDict = new Dictionary<String, UserData>();
 
@@ -26,6 +27,8 @@ public class DataManager
         UD.UserNum = "2017110413";
         UD.Password = "794613";
         UD.UserName = "유재헌";
+        UD.UserColor = UserCustomize.Red;
+
         m_UserDataDict.Add("2017110413", UD);
         // StatDict = LoadJson<Data.StatData, int, Data.Stat>("StatData").MakeDict();
     }
@@ -78,5 +81,22 @@ public class DataManager
     public UserPrivileges GetCurrentPrivilege()
     {
         return m_UserPrivilege;
+    }
+
+    public void SetCurrentUserColor(UserCustomize UserColor)
+    {
+        m_CurrentUserColor = UserColor;
+    }
+    public void SetCurrentUserColor(int UserColor)
+    {
+        if (UserColor >= (int)UserCustomize.End || UserColor < (int)UserCustomize.Red)
+            return;
+
+        SetCurrentUserColor((UserCustomize)UserColor);
+    }
+
+    public UserCustomize GetCurrentUserColor()
+    {
+        return m_CurrentUserColor;
     }
 }

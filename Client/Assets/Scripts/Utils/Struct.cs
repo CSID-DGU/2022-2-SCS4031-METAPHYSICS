@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 public static class Struct
 {
@@ -9,5 +10,6 @@ public static class Struct
         public string UserNum;
         public string Password;
         public string UserName;
+        public UserCustomize UserColor;
     }
 }
