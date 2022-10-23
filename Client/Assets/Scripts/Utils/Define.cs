@@ -24,6 +24,19 @@ public class Define
         Guest
     }
 
+    public enum UserCustomize
+    {
+        Red,
+        Orange,
+        Yellow,
+        Green,
+        Pink,
+        SkyBlue,
+        Navy,
+        Black,
+        End
+    }
+
     public enum Scene
     {
         Unknown,

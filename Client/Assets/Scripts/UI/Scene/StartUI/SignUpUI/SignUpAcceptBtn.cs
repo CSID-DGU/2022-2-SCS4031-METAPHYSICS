@@ -47,6 +47,7 @@ public class SignUpAcceptBtn : MonoBehaviour
                 UD.UserNum = UserNum;
                 UD.Password = Password;
                 UD.UserName = UserName;
+                UD.UserColor = Define.UserCustomize.End;
 
                 Managers.Data.AddUserData(UD);
 

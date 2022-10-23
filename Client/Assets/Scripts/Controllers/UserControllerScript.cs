@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Define;
 
-public class UserMoveScript : MonoBehaviour
+public class UserControllerScript : MonoBehaviour
 {
 	// Start is called before the first frame update
 	Animator m_Animator;
@@ -24,7 +24,42 @@ public class UserMoveScript : MonoBehaviour
 
 	void Start()
 	{
-		m_Animator = GetComponent<Animator>();
+		UserCustomize UserColor = Managers.Data.GetCurrentUserColor();
+
+		string AnimationPath = "Animations\\ACO\\";
+
+		switch (UserColor)
+        {
+            case UserCustomize.Red:
+				AnimationPath += "Red";
+				break;
+            case UserCustomize.Orange:
+				AnimationPath += "Orange";
+				break;
+            case UserCustomize.Yellow:
+				AnimationPath += "Yellow";
+				break;
+            case UserCustomize.Green:
+				AnimationPath += "Green";
+				break;
+            case UserCustomize.Pink:
+				AnimationPath += "Pink";
+				break;
+            case UserCustomize.SkyBlue:
+				AnimationPath += "SkyBlue";
+				break;
+            case UserCustomize.Navy:
+				AnimationPath += "Navy";
+				break;
+            case UserCustomize.Black:
+				AnimationPath += "Black";
+				break;
+            case UserCustomize.End:
+				AnimationPath += "Default";
+				break;
+        }
+
+        m_Animator = GetComponent<Animator>();
 		m_Rigid = GetComponent<Rigidbody2D>();
 		m_MoveSpeed = 4.0f;
 		m_vMoveDir = new Vector2(0.0f, 0.0f);
@@ -32,6 +67,8 @@ public class UserMoveScript : MonoBehaviour
 
 		Text UserText = gameObject.GetComponentInChildren<Text>();
 		UserText.text = Managers.Data.GetCurrentUser();
+
+        //AnimationClip[] arrayAnim = Resources.LoadAll<AnimationClip>(AnimationPath);
 	}
 
 	void Update()
