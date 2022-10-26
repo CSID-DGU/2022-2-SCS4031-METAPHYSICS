@@ -22,6 +22,10 @@ public class UserControllerScript : MonoBehaviour
 	[SerializeField]
 	private MoveDir m_MoveDir = MoveDir.None;
 
+	[SerializeField]
+	private GameObject m_FriendListPrefab = null;
+	bool m_FriendListON = false;
+
 	void Start()
 	{
 		UserCustomize UserColor = Managers.Data.GetCurrentUserColor();
@@ -31,35 +35,38 @@ public class UserControllerScript : MonoBehaviour
 		switch (UserColor)
         {
             case UserCustomize.Red:
-				AnimationPath += "Red";
+				AnimationPath += "Red\\";
 				break;
             case UserCustomize.Orange:
-				AnimationPath += "Orange";
+				AnimationPath += "Orange\\";
 				break;
             case UserCustomize.Yellow:
-				AnimationPath += "Yellow";
+				AnimationPath += "Yellow\\";
 				break;
             case UserCustomize.Green:
-				AnimationPath += "Green";
+				AnimationPath += "Green\\";
 				break;
             case UserCustomize.Pink:
-				AnimationPath += "Pink";
+				AnimationPath += "Pink\\";
 				break;
             case UserCustomize.SkyBlue:
-				AnimationPath += "SkyBlue";
+				AnimationPath += "SkyBlue\\";
 				break;
             case UserCustomize.Navy:
-				AnimationPath += "Navy";
+				AnimationPath += "Navy\\";
 				break;
             case UserCustomize.Black:
-				AnimationPath += "Black";
+				AnimationPath += "Black\\";
 				break;
             case UserCustomize.End:
-				AnimationPath += "Default";
+				AnimationPath += "Default\\";
 				break;
         }
+		
+		AnimationPath += "ACOAnimController";
 
-        m_Animator = GetComponent<Animator>();
+
+		m_Animator = GetComponent<Animator>();
 		m_Rigid = GetComponent<Rigidbody2D>();
 		m_MoveSpeed = 4.0f;
 		m_vMoveDir = new Vector2(0.0f, 0.0f);
@@ -68,7 +75,11 @@ public class UserControllerScript : MonoBehaviour
 		Text UserText = gameObject.GetComponentInChildren<Text>();
 		UserText.text = Managers.Data.GetCurrentUser();
 
-        //AnimationClip[] arrayAnim = Resources.LoadAll<AnimationClip>(AnimationPath);
+		RuntimeAnimatorController Cont = Resources.Load<RuntimeAnimatorController>(AnimationPath);
+
+		m_Animator.runtimeAnimatorController 
+			= RuntimeAnimatorController.Instantiate(Resources.Load<RuntimeAnimatorController>(AnimationPath));
+
 	}
 
 	void Update()
@@ -120,6 +131,15 @@ public class UserControllerScript : MonoBehaviour
 			m_Rigid.velocity = new Vector2(0.0f, m_Rigid.velocity.y);
 		}
 
+
+		if (Input.GetKey(KeyCode.F))
+		{
+			if(!m_FriendListON)
+            {
+				m_FriendListON = true;
+				Instantiate(m_FriendListPrefab);
+            }				
+		}
 	}
 
     void UpdatePosition()
@@ -227,7 +247,17 @@ public class UserControllerScript : MonoBehaviour
 			}
 		}
 
-    }
+
+		//if(m_IsMoving)
+  //      {
+		//	m_Rigid.constraints = RigidbodyConstraints2D.FreezePosition;
+  //      }
+
+		//else
+		//	m_Rigid.constraints = RigidbodyConstraints2D.None;
+
+
+	}
 
 	void UpdateAnimation()
 	{

@@ -12,4 +12,10 @@ public static class Struct
         public string UserName;
         public UserCustomize UserColor;
     }
+
+    public struct GlobalChatData
+    {
+        public string UserName;
+        public string ChattingText;
+    }
 }
