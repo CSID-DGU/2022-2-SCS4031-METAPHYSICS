@@ -139,8 +139,6 @@ public class UserControllerScript : MonoBehaviour
 				m_FriendListON = true;
 				Instantiate(m_FriendListPrefab);
             }				
-          
-			
 		}
 	}
 

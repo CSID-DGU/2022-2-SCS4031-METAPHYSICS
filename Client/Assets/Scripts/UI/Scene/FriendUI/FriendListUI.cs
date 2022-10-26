@@ -45,8 +45,6 @@ public class FriendListUI : MonoBehaviour
 
         Bar.SetFriendName("Test3");
 
-        //LayoutRebuilder.ForceRebuildLayoutImmediate(m_ScrollRectTransform);
-
     }
 
     // Update is called once per frame

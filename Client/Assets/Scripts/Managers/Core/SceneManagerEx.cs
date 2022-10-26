@@ -11,6 +11,7 @@ public class SceneManagerEx
     private bool    m_bChangeScene = false;
     private float m_FadeRatio = 0.0f;
     private string  m_NextSceneName = null;
+    private bool m_IsInGame = false;
 
     public void SceneUpdate()
     {
@@ -70,6 +71,18 @@ public class SceneManagerEx
     string GetSceneName(Define.Scene type)
     {
         string name = System.Enum.GetName(typeof(Define.Scene), type);
+
+        if (name == "Game")
+            m_IsInGame = true;
+
+        else
+            m_IsInGame = false;
+
+        m_IsInGame = (name == "Game") ? true : false;
+
+        if (m_IsInGame)
+            return name;
+
         return name;
     }
 

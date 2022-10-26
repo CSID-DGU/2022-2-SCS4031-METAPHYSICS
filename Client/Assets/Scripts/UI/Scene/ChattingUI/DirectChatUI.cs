@@ -114,7 +114,7 @@ public class DirectChatUI : MonoBehaviour, IPointerClickHandler, IDragHandler
     {
 
     }
-    void SendDirectMessage()
+    public void SendDirectMessage()
     {
         string Message = m_MessageInput.text;
         m_MessageInput.text = null;

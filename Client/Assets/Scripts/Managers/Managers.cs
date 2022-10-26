@@ -9,12 +9,14 @@ public class Managers : MonoBehaviour
 
     #region Contents
     MapManager _map = new MapManager();
+    ChatManager _chat = new ChatManager();
 
     public static MapManager Map {  get { return Instance._map; } }
-	#endregion
+    public static ChatManager Chat { get { return Instance._chat; } }
+    #endregion
 
-	#region Core
-	DataManager _data = new DataManager();
+    #region Core
+    DataManager _data = new DataManager();
     PoolManager _pool = new PoolManager();
     ResourceManager _resource = new ResourceManager();
     SceneManagerEx _scene = new SceneManagerEx();
@@ -36,6 +38,9 @@ public class Managers : MonoBehaviour
 
     void Update()
     {
+        Chat.update();
+
+        Data.update();
         Scene.SceneUpdate();
     }
 
@@ -56,6 +61,7 @@ public class Managers : MonoBehaviour
             s_instance._data.Init();
             s_instance._pool.Init();
             s_instance._sound.Init();
+            s_instance._chat.Init();
         }		
 	}
 

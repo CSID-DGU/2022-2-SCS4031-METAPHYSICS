@@ -32,8 +32,14 @@ public class DataManager
 
         AddUserData(UD);
         // StatDict = LoadJson<Data.StatData, int, Data.Stat>("StatData").MakeDict();
+
+        
     }
 
+    public void update()
+    {
+
+    }
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
     {
         TextAsset textAsset = Managers.Resource.Load<TextAsset>($"Data/{path}");
