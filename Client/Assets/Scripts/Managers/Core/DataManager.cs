@@ -19,6 +19,7 @@ public class DataManager
     private UserCustomize m_CurrentUserColor = UserCustomize.End;
     //임시
     private Dictionary<String, UserData> m_UserDataDict = new Dictionary<String, UserData>();
+    private List<UserData> m_ArrayUserData = new List<UserData>();
 
     public void Init()
     {
@@ -27,9 +28,9 @@ public class DataManager
         UD.UserNum = "2017110413";
         UD.Password = "794613";
         UD.UserName = "유재헌";
-        UD.UserColor = UserCustomize.Red;
+        UD.UserColor = UserCustomize.Black;
 
-        m_UserDataDict.Add("2017110413", UD);
+        AddUserData(UD);
         // StatDict = LoadJson<Data.StatData, int, Data.Stat>("StatData").MakeDict();
     }
 
@@ -48,6 +49,19 @@ public class DataManager
         return UD;
     }
 
+    public bool ContainsUserName(String UserName)
+    {
+        UserData UD = new UserData();
+
+        for(int i = 0;i<m_ArrayUserData.Count;++i)
+        {
+            if (m_ArrayUserData[i].UserName == UserName)
+                return true;
+        }
+
+        return false;
+    }
+
     public bool IsOverlappedUser(String UserNumber)
     {
         return m_UserDataDict.ContainsKey(UserNumber);
@@ -59,6 +73,7 @@ public class DataManager
             return false;
 
         m_UserDataDict.Add(Data.UserNum, Data);
+        m_ArrayUserData.Add(Data);
 
         return true;
     }
