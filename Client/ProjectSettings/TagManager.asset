@@ -39,6 +39,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: TileCollider
+    uniqueID: 1191666305
+    locked: 0
   - name: BackGroundTile
     uniqueID: 1585371283
     locked: 0
