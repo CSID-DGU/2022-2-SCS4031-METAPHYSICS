@@ -39,6 +39,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackGroundTile
+    uniqueID: 1585371283
+    locked: 0
+  - name: BackObject
+    uniqueID: 2075289721
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: ForeObject
+    uniqueID: 1141561303
     locked: 0
