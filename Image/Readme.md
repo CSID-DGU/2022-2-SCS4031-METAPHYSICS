@@ -18,10 +18,9 @@
 ### * Customize
 ![Asset 44](https://user-images.githubusercontent.com/101785677/195986670-90bcbfff-a668-41f4-a2dd-af3df9f9752b.png)
 
-### * Menu bar proto
+### * Menu bar
+![결과물](https://user-images.githubusercontent.com/101785677/198830459-b683ad61-2ab5-4695-9f5c-f4901f93eb1d.png)
 
-![1안](https://user-images.githubusercontent.com/101785677/195906467-c3fd5d67-6b57-4f22-a397-2a7c273e6277.png)
-![2안](https://user-images.githubusercontent.com/101785677/195906471-fa07efa4-980a-47a4-be28-72cee1ce3d45.png)
 
 ### * Messenger proto
 ![메신저 결과](https://user-images.githubusercontent.com/101785677/197339553-3609c7ba-08dc-4e69-bd20-76ade772920a.png)
