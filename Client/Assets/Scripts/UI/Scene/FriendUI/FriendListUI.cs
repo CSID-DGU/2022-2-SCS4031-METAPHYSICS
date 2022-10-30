@@ -7,13 +7,10 @@ using static Struct;
 using UnityEngine.EventSystems;
 using UnityEditor;
 
-public class FriendListUI : MonoBehaviour
+public class FriendListUI : UI_Drag
 {
     [SerializeField]
     private GameObject m_FriendListBarPrefab = null;
-
-    [SerializeField]
-    private Image m_ImagePanel = null;
 
     private InputField m_MessageInput = null;
 
