@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEditor;
 
-public class DirectChatUI : MonoBehaviour, IPointerClickHandler, IDragHandler
+public class DirectChatUI : UI_Drag
 {
     [SerializeField]
     private GameObject m_MyChatBoxPrefab = null;
@@ -13,8 +13,8 @@ public class DirectChatUI : MonoBehaviour, IPointerClickHandler, IDragHandler
     [SerializeField]
     private GameObject m_FriendChatBoxPrefab = null;
 
-    [SerializeField]
-    private Image m_ImagePanel = null;
+    //[SerializeField]
+    //private Image m_ImagePanel = null;
 
     [SerializeField]
     private UI_EventHandler m_EventHandle = null;
@@ -29,11 +29,6 @@ public class DirectChatUI : MonoBehaviour, IPointerClickHandler, IDragHandler
     private ScrollRect m_ScrollView = null;
 
     private ListBar m_OwnerListBar = null;
-
-    [SerializeField]
-    bool m_bMouseClick = false;
-
-    Vector2 m_WidgeMouseClickOffset = new Vector2(0.0f, 0.0f);
 
     int m_MessageCnt = 0;
 
@@ -155,41 +150,5 @@ public class DirectChatUI : MonoBehaviour, IPointerClickHandler, IDragHandler
         m_ScrollView.verticalScrollbar.value = 0.0f;
     }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        //Vector2 WidgetPos = m_ImagePanel.rectTransform.anchoredPosition;
-        //Vector2 WidgetSize = m_ImagePanel.rectTransform.sizeDelta;
-        //Vector2 WidgetLB = WidgetPos - WidgetSize / 2.0f;
-
-        //Vector2 MouseScreenPos = eventData.position;
-
-        //float MouseWidgetX = MouseScreenPos.x - Screen.width / 2.0f;
-        //float MouseWidgetY = MouseScreenPos.y - Screen.height / 2.0f;
-
-        //Vector2 MouseWidgetPos = new Vector2(MouseWidgetX, MouseWidgetY);
-
-        //m_WidgeMouseClickOffset = (WidgetLB - MouseWidgetPos);
-
-        //m_ImagePanel.rectTransform.anchoredPosition = MouseWidgetPos - m_WidgeMouseClickOffset;
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        //Vector2 WidgetPos = m_ImagePanel.rectTransform.anchoredPosition;
-        //Vector2 WidgetSize = m_ImagePanel.rectTransform.sizeDelta;
-        //Vector2 WidgetLB = WidgetPos - WidgetSize / 2.0f;
-
-        //Vector2 MouseScreenPos = eventData.position;
-
-        //float MouseWidgetX = MouseScreenPos.x  - Screen.width /2.0f;
-        //float MouseWidgetY = MouseScreenPos.y  - Screen.height /2.0f;
-
-        //Vector2 MouseWidgetPos = new Vector2(MouseWidgetX, MouseWidgetY);
-        //MouseWidgetPos *= 2.0f;
-
-        //m_WidgeMouseClickOffset = (MouseWidgetPos - WidgetLB) / WidgetSize;
-
-        //m_ImagePanel.rectTransform.anchoredPosition = MouseWidgetPos + m_WidgeMouseClickOffset;
-
-    }
+    
 }
