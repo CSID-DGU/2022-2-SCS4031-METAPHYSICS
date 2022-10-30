@@ -59,7 +59,7 @@ public class UserControllerScript : MonoBehaviour
 				AnimationPath += "Black\\";
 				break;
             case UserCustomize.End:
-				AnimationPath += "Default\\";
+				AnimationPath += "Black\\";
 				break;
         }
 		
