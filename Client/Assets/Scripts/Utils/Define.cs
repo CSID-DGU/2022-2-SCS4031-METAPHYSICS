@@ -45,6 +45,13 @@ public class Define
         Game,
     }
 
+    public enum GameScene
+    {
+        None,
+        EightPathScene,
+        MyeonJinIndoorScene,
+    }
+
     public enum Sound
     {
         Bgm,
