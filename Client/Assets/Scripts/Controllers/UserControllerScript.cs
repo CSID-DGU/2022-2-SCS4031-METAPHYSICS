@@ -6,6 +6,8 @@ using static Define;
 
 public class UserControllerScript : MonoBehaviour
 {
+	public Vector3Int CellPos { get; set; } = Vector3Int.zero;
+	public int Id { get; set; }
 	// Start is called before the first frame update
 	Animator m_Animator;
 	Rigidbody2D m_Rigid;
@@ -26,7 +28,7 @@ public class UserControllerScript : MonoBehaviour
 	private GameObject m_FriendListPrefab = null;
 	bool m_FriendListON = false;
 
-	void Start()
+	protected virtual void Start()
 	{
 		UserCustomize UserColor = Managers.Data.GetCurrentUserColor();
 
@@ -82,65 +84,65 @@ public class UserControllerScript : MonoBehaviour
 
 	}
 
-	void Update()
+	protected virtual void Update()
 	{
-        GetInput();
+        //GetInput();
         UpdatePosition();
         UpdateIsMoving();
 	}
 
-	void LateUpdate()
+	protected virtual void LateUpdate()
 	{
 		UpdateAnimation();
 
-		Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+		//Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
 	}
 
-	void GetInput()
+    protected virtual void GetInput()
     {
-		//추후에 길찾기 구현 후 마우스 이동으로 수정 예정
-		if (Input.GetKey(KeyCode.W))
-		{
-			m_vMoveDir.y = 1.0f;
-		}
-
-        else if(Input.GetKey(KeyCode.S))
+        //추후에 길찾기 구현 후 마우스 이동으로 수정 예정
+        if (Input.GetKey(KeyCode.W))
         {
-			m_vMoveDir.y = -1.0f;
-		}
-		
-		else
-		{
-			m_vMoveDir.y = 0.0f;
-			m_Rigid.velocity = new Vector2(m_Rigid.velocity.x, 0.0f);
-		}
+            m_vMoveDir.y = 1.0f;
+        }
 
-		if (Input.GetKey(KeyCode.A))
-		{
-			m_vMoveDir.x = -1.0f;
-		}
+        else if (Input.GetKey(KeyCode.S))
+        {
+            m_vMoveDir.y = -1.0f;
+        }
 
-		else if (Input.GetKey(KeyCode.D))
-		{
-			m_vMoveDir.x = 1.0f;
-		}
+        else
+        {
+            m_vMoveDir.y = 0.0f;
+            m_Rigid.velocity = new Vector2(m_Rigid.velocity.x, 0.0f);
+        }
 
-		else
-		{
-			m_vMoveDir.x = 0.0f;
-			m_Rigid.velocity = new Vector2(0.0f, m_Rigid.velocity.y);
-		}
+        if (Input.GetKey(KeyCode.A))
+        {
+            m_vMoveDir.x = -1.0f;
+        }
+
+        else if (Input.GetKey(KeyCode.D))
+        {
+            m_vMoveDir.x = 1.0f;
+        }
+
+        else
+        {
+            m_vMoveDir.x = 0.0f;
+            m_Rigid.velocity = new Vector2(0.0f, m_Rigid.velocity.y);
+        }
 
 
-		if (Input.GetKey(KeyCode.F))
-		{
-			if(!m_FriendListON)
+        if (Input.GetKey(KeyCode.F))
+        {
+            if (!m_FriendListON)
             {
-				m_FriendListON = true;
-				Instantiate(m_FriendListPrefab);
-            }				
-		}
-	}
+                m_FriendListON = true;
+                Instantiate(m_FriendListPrefab);
+            }
+        }
+    }
 
     void UpdatePosition()
     {
@@ -293,5 +295,28 @@ public class UserControllerScript : MonoBehaviour
         }
 
     }
+
+	public Vector3Int GetFrontCellPos()
+	{
+		Vector3Int cellPos = CellPos;
+
+		switch (m_MoveDir)
+		{
+			case MoveDir.Up:
+				cellPos += Vector3Int.up;
+				break;
+			case MoveDir.Down:
+				cellPos += Vector3Int.down;
+				break;
+			case MoveDir.Left:
+				cellPos += Vector3Int.left;
+				break;
+			case MoveDir.Right:
+				cellPos += Vector3Int.right;
+				break;
+		}
+
+		return cellPos;
+	}
 
 }

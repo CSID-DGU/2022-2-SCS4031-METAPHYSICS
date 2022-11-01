@@ -11,10 +11,12 @@ public class Managers : MonoBehaviour
     MapManager _map = new MapManager();
     ChatManager _chat = new ChatManager();
     NetworkManager _network = new NetworkManager();
+    ObjectManager _obj = new ObjectManager();
 
     public static MapManager Map {  get { return Instance._map; } }
     public static ChatManager Chat { get { return Instance._chat; } }
 
+    public static ObjectManager Object { get { return Instance._obj; } }
     public static NetworkManager Network { get { return Instance._network; } }
     #endregion
 

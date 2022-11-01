@@ -66,27 +66,27 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	void Start()
+	protected virtual void Start()
     {
 		_animator = GetComponent<Animator>();
 		Vector3 pos = Managers.Map.CurrentGrid.CellToWorld(_cellPos) + new Vector3(0.5f, 0.5f);
 		transform.position = pos;
 	}
 
-    void Update()
+	protected virtual void Update()
     {
-		GetDirInput();
+		//GetDirInput();
 		UpdatePosition();
 		UpdateIsMoving();		
 	}
 
-	void LateUpdate()
-	{
-		Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
-	}
+	//void LateUpdate()
+	//{
+	//	Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+	//}
 
 	// 키보드 입력
-	void GetDirInput()
+	/*void GetDirInput()
 	{
 		if (Input.GetKey(KeyCode.W))
 		{
@@ -108,10 +108,10 @@ public class PlayerController : MonoBehaviour
 		{
 			Dir = MoveDir.None;
 		}
-	}
+	}*/
 
 	// 스르륵 이동하는 것을 처리
-	void UpdatePosition()
+	protected virtual void UpdatePosition()
 	{
 		if (_isMoving == false)
 			return;
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
 	}
 
 	// 이동 가능한 상태일 때, 실제 좌표를 이동한다
-	void UpdateIsMoving()
+	protected virtual void UpdateIsMoving()
 	{
 		if (_isMoving == false && _dir != MoveDir.None)
 		{
