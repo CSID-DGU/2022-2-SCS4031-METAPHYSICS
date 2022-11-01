@@ -12,6 +12,9 @@ public class GuestLoginButton : MonoBehaviour
 
     public void LoginClick()
     {
+        if (GameObject.Find("AlertPopUp(Clone)") != null || GameObject.Find("AlertPopUp"))
+            return;
+
         GameObject UserNameObj = GameObject.Find("UserNameField");
 
         InputField UserNameField = UserNameObj.GetComponent<InputField>();

@@ -9,5 +9,6 @@ public class SignUpButton : MonoBehaviour
     public void SignUpCallback()
     {
         GameObject popup = GameObject.Instantiate<GameObject>(m_SignUpPrefab);
+
     }
 }
