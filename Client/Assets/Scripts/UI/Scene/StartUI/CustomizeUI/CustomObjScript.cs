@@ -71,6 +71,9 @@ public class CustomObjScript : MonoBehaviour
 
     public void CutomizeAcceptButtonCallback()
     {
+        if (GameObject.Find("LoginAcceptPopUp(Clone)") != null || GameObject.Find("LoginAcceptPopUp"))
+            return;
+
         GameObject AcceptObj = GameObject.Instantiate(m_LoginAcceptPrefab);
         Managers.Data.SetCurrentUserColor(m_ColorIndex);
 

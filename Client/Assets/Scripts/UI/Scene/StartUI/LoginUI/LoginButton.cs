@@ -13,7 +13,8 @@ public class LoginButton : MonoBehaviour
     public GameObject m_CustomizeUIPrefab = null;
     public void LoginClick()
     {
-        if (GameObject.Find("AlertPopUp(Clone)") != null || GameObject.Find("AlertPopUp"))
+        if (GameObject.Find("AlertPopUp(Clone)") != null || GameObject.Find("AlertPopUp")
+            || GameObject.Find("LoginAcceptPopUp(Clone)") != null || GameObject.Find("LoginAcceptPopUp"))
             return;
 
         GameObject UserNumObj = GameObject.Find("UserNumberField");
@@ -50,7 +51,7 @@ public class LoginButton : MonoBehaviour
             {
                 if (Data.Password.Equals(Password))
                 {
-                    Destroy(WarnText.gameObject);
+                    Destroy(RejectPrefab);
 
                     Managers.Data.SetCurrentUser(Data.UserName);
                     Managers.Data.SetCurrentPrivilege(UserPrivileges.Student);
