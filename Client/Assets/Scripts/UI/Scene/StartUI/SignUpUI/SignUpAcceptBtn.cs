@@ -10,6 +10,9 @@ public class SignUpAcceptBtn : MonoBehaviour
     private    GameObject m_PopUpPrefab = null;
     public void SignUpButtonCallback()
     {
+        if (GameObject.Find("AlertPopUp(Clone)") != null || GameObject.Find("AlertPopUp"))
+            return;
+
         GameObject UserNumObj = GameObject.Find("UserNumberField_SU");
         GameObject PasswordObj = GameObject.Find("PasswordField_SU");
         GameObject UserNameObj = GameObject.Find("UserNameField_SU");
@@ -52,6 +55,7 @@ public class SignUpAcceptBtn : MonoBehaviour
                 Managers.Data.AddUserData(UD);
 
                 AlertText.text = UserName + "님 환영합니다.";
+                UIPrefab.GetComponent<AllertPopUpBtn>().SetRemoveUIEnable(true, "SignUpUI");
             }
         }
 

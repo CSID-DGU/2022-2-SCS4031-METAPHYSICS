@@ -13,6 +13,9 @@ public class LoginButton : MonoBehaviour
     public GameObject m_CustomizeUIPrefab = null;
     public void LoginClick()
     {
+        if (GameObject.Find("AlertPopUp(Clone)") != null || GameObject.Find("AlertPopUp"))
+            return;
+
         GameObject UserNumObj = GameObject.Find("UserNumberField");
         GameObject PasswordObj = GameObject.Find("PasswordField");
 
@@ -23,6 +26,7 @@ public class LoginButton : MonoBehaviour
         string Password = PasswordField.text;
         
         GameObject RejectPrefab = GameObject.Instantiate(m_RejectUIPrefab);
+        
         Text WarnText = RejectPrefab.GetComponentInChildren<Text>();
 
         if (UserNum.Length == 0)
