@@ -46,7 +46,18 @@ class PacketHandler
 		S_Move movePacket = packet as S_Move;
 		ServerSession serverSession = session as ServerSession;
 
-		Debug.Log("S_MoveHandler");
+		//있는지 없는지 찾아줌
+		GameObject go = Managers.Object.FindById(movePacket.PlayerId);
+		if (go == null)
+			return;
+
+		UserControllerScript cc = go.GetComponent<UserControllerScript>();
+		if (cc == null)
+			return;
+
+		//꼭 필요한거 아님
+		//서버거를 클라에 붙여줌
+		cc.PosInfo = movePacket.PosInfo;
 	}
 }
 

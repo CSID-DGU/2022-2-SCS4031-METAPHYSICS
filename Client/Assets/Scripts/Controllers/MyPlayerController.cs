@@ -1,3 +1,4 @@
+using Google.Protobuf.Protocol;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,8 +16,8 @@ public class MyPlayerController : UserControllerScript
 	protected override void Update()
 	{
 		GetInput();
-
-		base.Update();
+		UpdatePosition();
+		UpdateIsMoving();
 	}
 
 	protected override void LateUpdate()
@@ -30,5 +31,25 @@ public class MyPlayerController : UserControllerScript
 	protected override void GetInput()
 	{
 		base.GetInput();
+	}
+
+	protected override void UpdatePosition()
+	{
+		Vector2 prevCellPos = CellPos;
+
+		base.UpdatePosition();
+
+		if (CellPos != prevCellPos)
+		{
+			C_Move movePacket = new C_Move();
+			movePacket.PosInfo = PosInfo;
+			//움직임을 서버에 보냄
+			Managers.Network.Send(movePacket);
+		}
+	}
+
+	protected override void UpdateIsMoving()
+	{
+		base.UpdateIsMoving();
 	}
 }

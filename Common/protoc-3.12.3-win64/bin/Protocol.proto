@@ -44,8 +44,8 @@ message PlayerInfo {
 }
 
 message PositionInfo {
-  int32 posX = 1;
-  int32 posY = 2;
+  float posX = 1;
+  float posY = 2;
   float movedirX = 3;
   float movedirY = 4;
 }
