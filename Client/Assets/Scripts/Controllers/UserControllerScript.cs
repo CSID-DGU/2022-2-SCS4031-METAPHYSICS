@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Google.Protobuf.Protocol;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,14 +7,54 @@ using static Define;
 
 public class UserControllerScript : MonoBehaviour
 {
-	public Vector3Int CellPos { get; set; } = Vector3Int.zero;
 	public int Id { get; set; }
 	// Start is called before the first frame update
 	Animator m_Animator;
 	Rigidbody2D m_Rigid;
 
+	PositionInfo _positionInfo = new PositionInfo();
+	public PositionInfo PosInfo
+	{
+		get { return _positionInfo; }
+		set
+		{
+			if (_positionInfo.Equals(value))
+				return;
+
+			_positionInfo = value;
+			UpdatePosition();
+			UpdateAnimation();
+		}
+	}
 	[SerializeField]
-	private Vector2	m_vMoveDir;
+	public Vector2 CellPos //이거 서버 전달
+	{
+		get
+		{
+			return new Vector2(PosInfo.PosX, PosInfo.PosY);
+		}
+
+		set
+		{
+			PosInfo.PosX = value.x;
+			PosInfo.PosY = value.y;
+		}
+	}
+
+	[SerializeField]
+	public Vector2	m_vMoveDir //이거 서버 전달
+	{
+		get
+		{
+			return new Vector2(PosInfo.MovedirX, PosInfo.MovedirY);
+		}
+
+		set
+		{
+			PosInfo.MovedirX = value.x;
+			PosInfo.MovedirY = value.y;
+		}
+	}
 
 	[SerializeField]
 	private float	m_MoveSpeed;
@@ -100,41 +141,43 @@ public class UserControllerScript : MonoBehaviour
 
     protected virtual void GetInput()
     {
-        //추후에 길찾기 구현 후 마우스 이동으로 수정 예정
-        if (Input.GetKey(KeyCode.W))
+		Vector2 MoveDir = m_vMoveDir;
+		//추후에 길찾기 구현 후 마우스 이동으로 수정 예정
+		if (Input.GetKey(KeyCode.W))
         {
-            m_vMoveDir.y = 1.0f;
+			MoveDir.y = 1.0f;
         }
 
         else if (Input.GetKey(KeyCode.S))
         {
-            m_vMoveDir.y = -1.0f;
+			MoveDir.y = -1.0f;
         }
 
         else
         {
-            m_vMoveDir.y = 0.0f;
+			MoveDir.y = 0.0f;
             m_Rigid.velocity = new Vector2(m_Rigid.velocity.x, 0.0f);
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            m_vMoveDir.x = -1.0f;
+			MoveDir.x = -1.0f;
         }
 
         else if (Input.GetKey(KeyCode.D))
         {
-            m_vMoveDir.x = 1.0f;
+			MoveDir.x = 1.0f;
         }
 
         else
         {
-            m_vMoveDir.x = 0.0f;
+			MoveDir.x = 0.0f;
             m_Rigid.velocity = new Vector2(0.0f, m_Rigid.velocity.y);
         }
 
+		m_vMoveDir = MoveDir;
 
-        if (Input.GetKey(KeyCode.F))
+		if (Input.GetKey(KeyCode.F))
         {
             if (!m_FriendListON)
             {
@@ -144,7 +187,7 @@ public class UserControllerScript : MonoBehaviour
         }
     }
 
-    void UpdatePosition()
+	protected virtual void UpdatePosition()
     {
 		//m_Rigid.AddForce(m_MoveSpeed * m_vMoveDir);
 
@@ -184,9 +227,13 @@ public class UserControllerScript : MonoBehaviour
 			VelocityY = 0.0f;
 
 		m_Rigid.velocity = new Vector2(VelocityX, VelocityY);
+		Vector2 destPos = CellPos;
+		destPos.x = m_Rigid.transform.position.x;
+		destPos.y = m_Rigid.transform.position.y;
+		CellPos = destPos;
 	}
 
-	void UpdateIsMoving()
+	protected virtual void UpdateIsMoving()
     {
 		if (m_Rigid.velocity == Vector2.zero)
 		{
@@ -295,28 +342,5 @@ public class UserControllerScript : MonoBehaviour
         }
 
     }
-
-	public Vector3Int GetFrontCellPos()
-	{
-		Vector3Int cellPos = CellPos;
-
-		switch (m_MoveDir)
-		{
-			case MoveDir.Up:
-				cellPos += Vector3Int.up;
-				break;
-			case MoveDir.Down:
-				cellPos += Vector3Int.down;
-				break;
-			case MoveDir.Left:
-				cellPos += Vector3Int.left;
-				break;
-			case MoveDir.Right:
-				cellPos += Vector3Int.right;
-				break;
-		}
-
-		return cellPos;
-	}
 
 }

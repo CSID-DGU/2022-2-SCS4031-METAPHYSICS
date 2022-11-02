@@ -36,8 +36,10 @@ namespace Server
 			MyPlayer = PlayerManager.Instance.Add();
 			{
 				MyPlayer.Info.Name = $"Player_{MyPlayer.Info.PlayerId}";
-				MyPlayer.Info.PosX = 0;
-				MyPlayer.Info.PosY = 0;
+				MyPlayer.Info.PosInfo.PosX = 0;
+				MyPlayer.Info.PosInfo.PosY = 0;
+				MyPlayer.Info.PosInfo.MovedirX = 0.0f;
+				MyPlayer.Info.PosInfo.MovedirY = 0.0f;
 				MyPlayer.Session = this;
 			}
 

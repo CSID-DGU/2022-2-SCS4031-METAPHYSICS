@@ -29,19 +29,23 @@ message S_Despawn {
 }
 
 message C_Move {
-  int32 posX = 1;
-  int32 posY = 2;
+  PositionInfo posInfo = 1;
 }
 
 message S_Move {
   int32 playerId =1;
-  int32 posX = 2;
-  int32 posY = 3;
+  PositionInfo posInfo = 2;
 }
 
 message PlayerInfo {
-  int32 playerId = 1;
-  string name = 2;
-  int32 posX = 3;
-  int32 posY = 4;
+  int32 playerId = 1; //학번
+  string name = 2; //닉네임
+  PositionInfo posInfo = 3;
+}
+
+message PositionInfo {
+  float posX = 1;
+  float posY = 2;
+  float movedirX = 3;
+  float movedirY = 4;
 }
