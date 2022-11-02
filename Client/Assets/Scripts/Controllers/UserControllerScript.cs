@@ -6,14 +6,16 @@ using static Define;
 
 public class UserControllerScript : MonoBehaviour
 {
-	public Vector3Int CellPos { get; set; } = Vector3Int.zero;
 	public int Id { get; set; }
 	// Start is called before the first frame update
 	Animator m_Animator;
 	Rigidbody2D m_Rigid;
 
 	[SerializeField]
-	private Vector2	m_vMoveDir;
+	public Vector2 m_pos { get; set; } = Vector2.zero; //이거 서버 전달
+
+	[SerializeField]
+	private Vector2	m_vMoveDir; //이거 서버 전달
 
 	[SerializeField]
 	private float	m_MoveSpeed;
@@ -184,6 +186,8 @@ public class UserControllerScript : MonoBehaviour
 			VelocityY = 0.0f;
 
 		m_Rigid.velocity = new Vector2(VelocityX, VelocityY);
+		m_pos.x = m_Rigid.transform.position.x;
+		m_pos.y = m_Rigid.transform.position.y;
 	}
 
 	void UpdateIsMoving()
