@@ -176,15 +176,6 @@ public class UserControllerScript : MonoBehaviour
         }
 
 		m_vMoveDir = MoveDir;
-
-		if (Input.GetKey(KeyCode.F))
-        {
-            if (!m_FriendListON)
-            {
-                m_FriendListON = true;
-                Instantiate(m_FriendListPrefab);
-            }
-        }
     }
 
 	protected virtual void UpdatePosition()

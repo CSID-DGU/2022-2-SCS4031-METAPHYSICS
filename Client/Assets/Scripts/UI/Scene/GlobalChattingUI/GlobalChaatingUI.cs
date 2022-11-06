@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Tilemaps;
 using UnityEngine.EventSystems;
 using UnityEditor;
 using static Define;
@@ -33,9 +34,10 @@ public class GlobalChaatingUI : MonoBehaviour
         GlobalChatData data;
         data.ChattingText = "이게뭐지";
         data.UserName = "유재헌";
-        Managers.Chat.SetGlobalChattingUI(gameObject);
+        Managers.Chat.SetGlobalChattingUI(this);
 
         ReceiveMessage(data);
+
     }
 
     // Update is called once per frame
@@ -52,14 +54,15 @@ public class GlobalChaatingUI : MonoBehaviour
                 Data.UserName = Managers.Data.GetCurrentUser();
                 Data.ChattingText = m_MessageInput.text;
 
-                ReceiveMessage(Data);
+                Managers.Chat.SendGlobalChat(Data);
 
                 m_MessageInput.text = null;
             }
         }
+
     }
 
-    void ReceiveMessage(GlobalChatData Data)
+    public void ReceiveMessage(GlobalChatData Data)
     {
         GameObject ChattingObj = Instantiate(m_ChattingAreaPrefab, m_ScrollRectTransform);
 

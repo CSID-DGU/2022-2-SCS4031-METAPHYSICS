@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class EightPathScene : BaseScene
 {    protected override void Init()
@@ -11,7 +12,7 @@ public class EightPathScene : BaseScene
 
         Managers.Map.LoadMap(2);
 
-        Screen.SetResolution(640, 380, false);
+        Screen.SetResolution(1920, 1080, false);
     }
 
     public override void Clear()
