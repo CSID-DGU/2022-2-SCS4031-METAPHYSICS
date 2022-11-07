@@ -12,6 +12,8 @@ public class UserControllerScript : MonoBehaviour
 	Animator m_Animator;
 	Rigidbody2D m_Rigid;
 
+	protected bool _updated = false; //패킷 업데이트
+
 	PositionInfo _positionInfo = new PositionInfo();
 	public PositionInfo PosInfo
 	{
@@ -38,6 +40,7 @@ public class UserControllerScript : MonoBehaviour
 		{
 			PosInfo.PosX = value.x;
 			PosInfo.PosY = value.y;
+			_updated = true;
 		}
 	}
 
@@ -53,6 +56,7 @@ public class UserControllerScript : MonoBehaviour
 		{
 			PosInfo.MovedirX = value.x;
 			PosInfo.MovedirY = value.y;
+			_updated = true;
 		}
 	}
 
@@ -128,7 +132,7 @@ public class UserControllerScript : MonoBehaviour
 	protected virtual void Update()
 	{
         //GetInput();
-        UpdatePosition();
+        //UpdatePosition();
         UpdateIsMoving();
 	}
 
