@@ -12,6 +12,8 @@ public class UserControllerScript : MonoBehaviour
 	Animator m_Animator;
 	Rigidbody2D m_Rigid;
 
+	protected bool _updated = false; //패킷 업데이트
+
 	PositionInfo _positionInfo = new PositionInfo();
 	public PositionInfo PosInfo
 	{
@@ -22,8 +24,8 @@ public class UserControllerScript : MonoBehaviour
 				return;
 
 			_positionInfo = value;
-			UpdatePosition();
-			UpdateAnimation();
+			CellPos = new Vector2(value.PosX, value.PosY);
+			m_vMoveDir = new Vector2(value.MovedirX, value.MovedirY);
 		}
 	}
 	[SerializeField]
@@ -38,6 +40,7 @@ public class UserControllerScript : MonoBehaviour
 		{
 			PosInfo.PosX = value.x;
 			PosInfo.PosY = value.y;
+			_updated = true;
 		}
 	}
 
@@ -53,14 +56,15 @@ public class UserControllerScript : MonoBehaviour
 		{
 			PosInfo.MovedirX = value.x;
 			PosInfo.MovedirY = value.y;
+			_updated = true;
 		}
 	}
 
 	[SerializeField]
 	private float	m_MoveSpeed;
 
-	[SerializeField]
-	private bool	m_IsMoving = false;
+	//[SerializeField]
+	//private bool	m_IsMoving = false;
 
 	[SerializeField]
 	private MoveDir m_MoveDir = MoveDir.None;
@@ -127,9 +131,9 @@ public class UserControllerScript : MonoBehaviour
 
 	protected virtual void Update()
 	{
-        //GetInput();
-        UpdatePosition();
-        UpdateIsMoving();
+		//GetInput();
+		OtherUpdatePosition();
+		UpdateIsMoving();
 	}
 
 	protected virtual void LateUpdate()
@@ -180,21 +184,6 @@ public class UserControllerScript : MonoBehaviour
 
 	protected virtual void UpdatePosition()
     {
-		//m_Rigid.AddForce(m_MoveSpeed * m_vMoveDir);
-
-		//속력 제한
-		//if (m_Rigid.velocity.x > 4.0f)
-		//    m_Rigid.velocity = new Vector2(4.0f, m_Rigid.velocity.y);
-
-		//else if (m_Rigid.velocity.x < -4.0f)
-		//    m_Rigid.velocity = new Vector2(-4.0f, m_Rigid.velocity.y);
-
-		//if (m_Rigid.velocity.y > 4.0f)
-		//    m_Rigid.velocity = new Vector2(m_Rigid.velocity.x, 4.0f);
-
-		//else if (m_Rigid.velocity.y < -4.0f)
-		//    m_Rigid.velocity = new Vector2(m_Rigid.velocity.x, -4.0f);
-
 		float VelocityX = 0.0f;
 		float VelocityY = 0.0f;
 
@@ -224,17 +213,48 @@ public class UserControllerScript : MonoBehaviour
 		CellPos = destPos;
 	}
 
+	protected virtual void OtherUpdatePosition()
+	{
+		float VelocityX = 0.0f;
+		float VelocityY = 0.0f;
+
+		if (m_vMoveDir.x == 1.0f)
+			VelocityX = m_MoveSpeed;
+
+		else if (m_vMoveDir.x == -1.0f)
+			VelocityX = -m_MoveSpeed;
+
+		else
+			VelocityX = 0.0f;
+
+
+		if (m_vMoveDir.y == 1.0f)
+			VelocityY = m_MoveSpeed;
+
+		else if (m_vMoveDir.y == -1.0f)
+			VelocityY = -m_MoveSpeed;
+
+		else
+			VelocityY = 0.0f;
+
+		m_Rigid.velocity = new Vector2(VelocityX, VelocityY);
+		//Vector2 destPos = CellPos;
+		//destPos.x = m_Rigid.transform.position.x;
+		//destPos.y = m_Rigid.transform.position.y;
+		//CellPos = destPos;
+	}
+
 	protected virtual void UpdateIsMoving()
     {
 		if (m_Rigid.velocity == Vector2.zero)
 		{
-			m_IsMoving = false;
+			//m_IsMoving = false;
 			m_MoveDir = MoveDir.None;
 		}
 
 		else
         {
-			m_IsMoving = true;
+			//m_IsMoving = true;
 
 			if(m_vMoveDir.x == 1.0f)
             {
@@ -286,15 +306,6 @@ public class UserControllerScript : MonoBehaviour
 
 			}
 		}
-
-
-		//if(m_IsMoving)
-  //      {
-		//	m_Rigid.constraints = RigidbodyConstraints2D.FreezePosition;
-  //      }
-
-		//else
-		//	m_Rigid.constraints = RigidbodyConstraints2D.None;
 
 
 	}

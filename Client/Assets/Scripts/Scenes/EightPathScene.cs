@@ -12,7 +12,8 @@ public class EightPathScene : BaseScene
 
         Managers.Map.LoadMap(2);
 
-        Screen.SetResolution(1920, 1080, false);
+        //Screen.SetResolution(1920, 1080, false);
+        Screen.SetResolution(640, 480, false);
     }
 
     public override void Clear()

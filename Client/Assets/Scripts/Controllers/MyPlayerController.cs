@@ -35,21 +35,25 @@ public class MyPlayerController : UserControllerScript
 
 	protected override void UpdatePosition()
 	{
-		Vector2 prevCellPos = CellPos;
-
 		base.UpdatePosition();
 
-		if (CellPos != prevCellPos)
-		{
-			C_Move movePacket = new C_Move();
-			movePacket.PosInfo = PosInfo;
-			//움직임을 서버에 보냄
-			Managers.Network.Send(movePacket);
-		}
+		CheckUpdatedFlag();
 	}
 
 	protected override void UpdateIsMoving()
 	{
 		base.UpdateIsMoving();
+		CheckUpdatedFlag();
+	}
+
+	void CheckUpdatedFlag()
+	{
+		if (_updated)
+		{
+			C_Move movePacket = new C_Move();
+			movePacket.PosInfo = PosInfo;
+			Managers.Network.Send(movePacket);
+			_updated = false;
+		}
 	}
 }
