@@ -18,4 +18,10 @@ public static class Struct
         public string UserName;
         public string ChattingText;
     }
+
+    public struct NavData
+    {
+        GameObject MoveObj;
+        List<Vector3Int> PathList;
+    }
 }

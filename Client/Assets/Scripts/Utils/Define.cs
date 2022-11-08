@@ -5,7 +5,7 @@ using UnityEngine;
 public class Define
 {
     public enum MoveDir
-	{
+    {
         None,
         Up,
         Down,
@@ -15,7 +15,7 @@ public class Define
         UpLeft,
         DownRight,
         DownLeft
-	}
+    }
 
     public enum UserPrivileges
     {
@@ -64,4 +64,25 @@ public class Define
         Click,
         Drag,
     }
+
+    public enum Neighbor_Dir
+    {
+        ND_Top,
+        ND_RightTop,
+        ND_Right,
+        ND_RightBottom,
+        ND_Bottom,
+        ND_LeftBottom,
+        ND_Left,
+        ND_LeftTop,
+        ND_End
+    };
+
+    public enum NavInsert_Type
+    {
+        None,
+        Open,
+        Used
+    }
+
 }
