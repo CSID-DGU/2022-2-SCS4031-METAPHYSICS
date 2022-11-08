@@ -12,12 +12,14 @@ public class Managers : MonoBehaviour
     ChatManager _chat = new ChatManager();
     NetworkManager _network = new NetworkManager();
     ObjectManager _obj = new ObjectManager();
+    NavigationManager _Nav = new NavigationManager();
 
     public static MapManager Map {  get { return Instance._map; } }
     public static ChatManager Chat { get { return Instance._chat; } }
 
     public static ObjectManager Object { get { return Instance._obj; } }
     public static NetworkManager Network { get { return Instance._network; } }
+    public static NavigationManager Navigation { get { return Instance._Nav; } }
     #endregion
 
     #region Core
@@ -47,7 +49,9 @@ public class Managers : MonoBehaviour
         Chat.update();
 
         Data.update();
+        Navigation.update();
         Scene.SceneUpdate();
+
     }
 
     static void Init()
