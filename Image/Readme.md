@@ -19,7 +19,7 @@
 ![Asset 44](https://user-images.githubusercontent.com/101785677/195986670-90bcbfff-a668-41f4-a2dd-af3df9f9752b.png)
 
 ### * Menu bar
-![결과물](https://user-images.githubusercontent.com/101785677/198830459-b683ad61-2ab5-4695-9f5c-f4901f93eb1d.png)
+![image](https://user-images.githubusercontent.com/101785677/200489999-0e196ace-c2c3-4c3b-a504-6494c799daff.png)
 
 
 ### * Messenger proto
