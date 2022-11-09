@@ -7,6 +7,7 @@ using static Define;
 
 public class MyPlayerController : UserControllerScript
 {
+	bool m_IsDebugNav = false;
 	Navigation m_Nav = new Navigation();
 	List<Vector3> m_PathList;
 	Stack<Vector3> m_PathStack;
@@ -21,22 +22,51 @@ public class MyPlayerController : UserControllerScript
 		UpdatePosition();
 		UpdateIsMoving();
 
-		if (Input.GetKeyDown(KeyCode.Mouse0))
+		if(Input.GetKeyDown(KeyCode.A))
+        {
+			m_IsDebugNav = m_IsDebugNav ? false : true;
+        }
+
+		if (m_IsDebugNav)
 		{
-			Camera cam = FindObjectOfType<Camera>();
-			Vector2 MousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-			Vector2 PlayerPos = transform.position;
 
-			m_PathList = new List<Vector3>();
-			
-			m_Nav.FindPath(PlayerPos, MousePos, ref m_PathList);
-
-			m_PathStack = new Stack<Vector3>();
-
-			for (int i = 0; i < m_PathList.Count; ++i)
+			if (Input.GetKeyDown(KeyCode.Mouse0))
 			{
-				m_PathStack.Push(m_PathList[i]);
+				Camera cam = FindObjectOfType<Camera>();
+				Vector2 MousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+				Vector2 PlayerPos = transform.position;
+
+				m_PathList = new List<Vector3>();
+
+				m_Nav.FindPath(PlayerPos, MousePos, ref m_PathList);
+
+				m_PathStack = new Stack<Vector3>();
+
+				for (int i = 0; i < m_PathList.Count; ++i)
+				{
+					m_PathStack.Push(m_PathList[i]);
+				}
 			}
+
+			if (Input.GetKeyDown(KeyCode.Mouse1))
+			{
+				Camera cam = FindObjectOfType<Camera>();
+				Vector2 MousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+				Vector2 PlayerPos = transform.position;
+				MousePos = new Vector2(0.0f, 30.0f);
+
+				m_PathList = new List<Vector3>();
+
+				m_Nav.FindPath(PlayerPos, MousePos, ref m_PathList);
+
+				m_PathStack = new Stack<Vector3>();
+
+				for (int i = 0; i < m_PathList.Count; ++i)
+				{
+					m_PathStack.Push(m_PathList[i]);
+				}
+			}
+
 		}
 
 		if (m_PathStack != null)

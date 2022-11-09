@@ -8,6 +8,7 @@ using static Define;
 public class ListBar : MonoBehaviour
 {
     public GameObject m_ChattingWidgetPrefab;
+    public GameObject m_VideoChatPrefab;
 
     public string m_FriendName = null;
     public UserData m_FriendData;
@@ -61,6 +62,11 @@ public class ListBar : MonoBehaviour
 
     public void VideoChatButtonCallback()
     {
+        GameObject VideoObj = Instantiate(m_VideoChatPrefab);
+
+        VideoChatUI VChatUI = VideoObj.GetComponent<VideoChatUI>();
+
+        VChatUI.SetOpponentName(m_FriendName);
 
     }
 
