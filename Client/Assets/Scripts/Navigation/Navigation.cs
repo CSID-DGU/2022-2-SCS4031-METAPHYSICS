@@ -7,7 +7,9 @@ using static Struct;
 
 public class Navigation : MonoBehaviour
 {
+    GameObject m_CurretnTile;
     GameObject m_CurrentTileCollider;
+    Tilemap m_BackGroundTile;
     Tilemap m_NavData;
     static float m_DiagonalDist = Mathf.Sqrt(2);
 
@@ -25,29 +27,24 @@ public class Navigation : MonoBehaviour
 
     public bool FindPath(Vector3 Start, Vector3 Goal, ref List<Vector3> PathList)
 	{
-
+        m_CurretnTile = GameObject.Find("BackGround");
         m_CurrentTileCollider = GameObject.Find("TilemapCollider");
         Grid grid = GameObject.Find("Map").GetComponent<Grid>();
+        m_BackGroundTile = m_CurretnTile.GetComponent<Tilemap>();
         m_NavData = m_CurrentTileCollider.GetComponent<Tilemap>();
-
-        //if (!m_NavData)
-        //{
-        //    PathList = null;
-        //    return false;
-        //}
-
-
-        if(Start== Goal)
-        {
-            PathList.Add(Goal);
-            return true;
-        }
 
         NavInfo StartInfo = new NavInfo();
         StartInfo.TilePos = grid.WorldToCell(Start);
 
         NavInfo GoalInfo = new NavInfo();
         GoalInfo.TilePos = grid.WorldToCell(Goal);
+
+
+        if (StartInfo.TilePos == GoalInfo.TilePos)
+        {
+            PathList.Add(Goal);
+            return true;
+        }
 
         //이동 불가능한 위치를 이동하는 경우 길찾기 취소
         if (m_NavData.HasTile(GoalInfo.TilePos))
@@ -96,14 +93,15 @@ public class Navigation : MonoBehaviour
 
         while (NavInfoMan.OpenCount > 0)
         {
-            if(NavInfoMan.OpenCount > 10000)
-            {
-                Debug.LogError("InfiniteLoop A*");
-                break;
-            }    
+            //if (NavInfoMan.OpenCount > 10000)
+            //{
+            //    Debug.LogError("InfiniteLoop A*");
+            //    break;
+            //}
 
             --NavInfoMan.OpenCount;
-            Node = (NavInfo)NavInfoMan.OpenList[NavInfoMan.OpenCount];
+            Node = NavInfoMan.OpenList[NavInfoMan.OpenCount];
+            NavInfoMan.OpenList.RemoveAt(NavInfoMan.OpenCount);
 
             Node.Type = NavInsert_Type.Used;
 
@@ -132,6 +130,7 @@ public class Navigation : MonoBehaviour
         {
             Neighbor[i] = new NavInfo();
         }
+
 
         //직사각형 타일 기준 이웃노드 세팅
         Neighbor[(int)Neighbor_Dir.ND_Top].TilePos          = new Vector3Int(Node.TilePos.x, Node.TilePos.y + 1);
@@ -179,7 +178,7 @@ public class Navigation : MonoBehaviour
 
             if(Dir1 != Neighbor_Dir.ND_End || Dir2 != Neighbor_Dir.ND_End )
             {
-                if (m_NavData.HasTile(Neighbor[(int)Dir1].TilePos) 
+                if (m_NavData.HasTile(Neighbor[(int)Dir1].TilePos)
                     && m_NavData.HasTile(Neighbor[(int)Dir2].TilePos))
                     continue;
 
@@ -213,8 +212,8 @@ public class Navigation : MonoBehaviour
 
             //현재 이웃노드로부터 도착점까지 직선거리를 구한다.
             Vector2 vDist = GoalPos - Neighbor[i].TilePos;
-            
-            float Dist = Mathf.Sqrt(vDist.x * vDist.x + vDist.y * vDist.y);
+
+            float Dist = vDist.x * vDist.x + vDist.y * vDist.y;
             float Cost = 0.0f;
 
             switch ((Neighbor_Dir)i)
@@ -229,7 +228,7 @@ public class Navigation : MonoBehaviour
                 case Neighbor_Dir.ND_RightBottom:
                 case Neighbor_Dir.ND_LeftTop:
                 case Neighbor_Dir.ND_LeftBottom:
-                    Cost = Node.Cost + m_DiagonalDist;
+                    Cost = Node.Cost + 1.4f;
                     break;
             }
 
