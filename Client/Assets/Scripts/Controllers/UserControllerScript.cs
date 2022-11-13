@@ -77,40 +77,49 @@ public class UserControllerScript : MonoBehaviour
 	{
 		UserCustomize UserColor = Managers.Data.GetCurrentUserColor();
 
-		string AnimationPath = "Animations\\ACO\\";
+		string AnimationPath = "";
 
-		switch (UserColor)
-        {
-            case UserCustomize.Red:
-				AnimationPath += "Red\\";
-				break;
-            case UserCustomize.Orange:
-				AnimationPath += "Orange\\";
-				break;
-            case UserCustomize.Yellow:
-				AnimationPath += "Yellow\\";
-				break;
-            case UserCustomize.Green:
-				AnimationPath += "Green\\";
-				break;
-            case UserCustomize.Pink:
-				AnimationPath += "Pink\\";
-				break;
-            case UserCustomize.SkyBlue:
-				AnimationPath += "SkyBlue\\";
-				break;
-            case UserCustomize.Navy:
-				AnimationPath += "Navy\\";
-				break;
-            case UserCustomize.Black:
-				AnimationPath += "Black\\";
-				break;
-            case UserCustomize.End:
-				AnimationPath += "Black\\";
-				break;
-        }
-		
-		AnimationPath += "ACOAnimController";
+		if (Managers.Data.GetCurrentPrivilege() == UserPrivileges.Guest)
+			AnimationPath = "Animations\\Guest\\GuestAnimController";
+
+		else
+		{
+			AnimationPath = "Animations\\ACO\\";
+
+			switch (UserColor)
+			{
+				case UserCustomize.Red:
+					AnimationPath += "Red\\";
+					break;
+				case UserCustomize.Orange:
+					AnimationPath += "Orange\\";
+					break;
+				case UserCustomize.Yellow:
+					AnimationPath += "Yellow\\";
+					break;
+				case UserCustomize.Green:
+					AnimationPath += "Green\\";
+					break;
+				case UserCustomize.Pink:
+					AnimationPath += "Pink\\";
+					break;
+				case UserCustomize.SkyBlue:
+					AnimationPath += "SkyBlue\\";
+					break;
+				case UserCustomize.Navy:
+					AnimationPath += "Navy\\";
+					break;
+				case UserCustomize.Black:
+					AnimationPath += "Black\\";
+					break;
+				case UserCustomize.End:
+					AnimationPath += "Black\\";
+					break;
+			}
+
+			AnimationPath += "ACOAnimController";
+
+		}
 
 
 		m_Animator = GetComponent<Animator>();
