@@ -10,7 +10,7 @@ public class MyPlayerController : UserControllerScript
 	bool m_IsDebugNav = false;
 	Navigation m_Nav = new Navigation();
 	List<Vector3> m_PathList;
-	Stack<Vector3> m_PathStack;
+	Stack<Vector3> m_PathStack = new Stack<Vector3>();
 	protected override void Start()
 	{
 		base.Start();
@@ -20,7 +20,6 @@ public class MyPlayerController : UserControllerScript
 	{
 		GetInput();
 		UpdatePosition();
-		UpdateIsMoving();
 
 		if(Input.GetKeyDown(KeyCode.A))
         {
@@ -93,7 +92,7 @@ public class MyPlayerController : UserControllerScript
 					Rigidbody2D rigid = gameObject.GetComponent<Rigidbody2D>();
 
 					rigid.velocity = Dir * 4.0f;
-					//m_vMoveDir = Dir;
+					m_vMoveDir = Dir;
 				}
 			}
 
@@ -105,6 +104,8 @@ public class MyPlayerController : UserControllerScript
 
 			}
 		}
+
+		UpdateIsMoving();
 	}
 
 	protected override void LateUpdate()
@@ -129,7 +130,63 @@ public class MyPlayerController : UserControllerScript
 
 	protected override void UpdateIsMoving()
 	{
-		base.UpdateIsMoving();
+
+		if (m_PathStack == null)
+		{
+			base.UpdateIsMoving();
+		}
+		
+		else
+        {
+			if(m_vMoveDir.x > 0.0f)
+            {
+				if (m_vMoveDir.y > 0.5f)
+					m_MoveDir = MoveDir.UpRight;
+
+				else if (m_vMoveDir.y < -0.5f)
+					m_MoveDir = MoveDir.DownRight;
+
+				else 
+					m_MoveDir = MoveDir.Right;
+            }
+
+			else if (m_vMoveDir.x < 0.0f)
+			{
+				if (m_vMoveDir.y > 0.5f)
+					m_MoveDir = MoveDir.UpLeft;
+
+				else if (m_vMoveDir.y < -0.5f)
+					m_MoveDir = MoveDir.DownLeft;
+
+				else
+					m_MoveDir = MoveDir.Left;
+			}
+
+			if (m_vMoveDir.y > 0.0f)
+			{
+				if (m_vMoveDir.x > 0.5f)
+					m_MoveDir = MoveDir.UpRight;
+
+				else if (m_vMoveDir.x < -0.5f)
+					m_MoveDir = MoveDir.UpLeft;
+
+				else 
+					m_MoveDir = MoveDir.Up;
+			}
+
+			else if (m_vMoveDir.y < 0.0f)
+			{
+				if (m_vMoveDir.x > 0.5f)
+					m_MoveDir = MoveDir.DownRight;
+
+				else if (m_vMoveDir.x < -0.5f)
+					m_MoveDir = MoveDir.DownLeft;
+
+				else 
+					m_MoveDir = MoveDir.Down;
+			}
+		}
+
 		CheckUpdatedFlag();
 	}
 

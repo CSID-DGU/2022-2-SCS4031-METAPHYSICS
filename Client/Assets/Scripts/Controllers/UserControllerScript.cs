@@ -67,7 +67,7 @@ public class UserControllerScript : MonoBehaviour
 	//private bool	m_IsMoving = false;
 
 	[SerializeField]
-	private MoveDir m_MoveDir = MoveDir.None;
+	protected MoveDir m_MoveDir = MoveDir.None;
 
 	[SerializeField]
 	private GameObject m_FriendListPrefab = null;
