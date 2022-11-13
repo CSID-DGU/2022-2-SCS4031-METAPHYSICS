@@ -76,6 +76,10 @@ public class MainHUDScript : MonoBehaviour
         }
     }
 
+    public void LogoutButtonCallback()
+    {
+    }
+
     public void MapButtonCallback()
     {
 
