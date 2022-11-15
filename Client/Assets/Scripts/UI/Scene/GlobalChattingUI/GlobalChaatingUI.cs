@@ -51,7 +51,8 @@ public class GlobalChaatingUI : MonoBehaviour
             else
             {
                 GlobalChatData Data;
-                Data.UserName = Managers.Data.GetCurrentUser();
+                Data.UserName = "박용준";
+                //Data.UserName = Managers.Data.GetCurrentUser();
                 Data.ChattingText = m_MessageInput.text;
 
                 Managers.Chat.SendGlobalChat(Data);
@@ -62,6 +63,7 @@ public class GlobalChaatingUI : MonoBehaviour
 
     }
 
+    //메세지 받아서 unity에 띄우기
     public void ReceiveMessage(GlobalChatData Data)
     {
         GameObject ChattingObj = Instantiate(m_ChattingAreaPrefab, m_ScrollRectTransform);
@@ -77,6 +79,7 @@ public class GlobalChaatingUI : MonoBehaviour
         m_ScrollView.verticalScrollbar.value = 0.0f;
 
     }
+
     void Fit(RectTransform Rect)
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate(Rect);

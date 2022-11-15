@@ -31,8 +31,10 @@ namespace Server
 			string host = Dns.GetHostName();
 			IPHostEntry ipHost = Dns.GetHostEntry(host);
 			IPAddress ipAddr = ipHost.AddressList[0];
+			//최종 아이피주소, 포트번호
 			IPEndPoint endPoint = new IPEndPoint(ipAddr, 7777);
 
+			//패킷받기
 			_listener.Init(endPoint, () => { return SessionManager.Instance.Generate(); });
 			Console.WriteLine("Listening...");
 

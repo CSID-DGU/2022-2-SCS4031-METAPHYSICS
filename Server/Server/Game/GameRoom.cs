@@ -81,6 +81,42 @@ namespace Server.Game
 			}
 		}
 
+		public void HandleMove(Player player, C_Move movePacket)
+        {
+			if (player == null)
+				return;
+
+			lock(_lock)
+            {
+				// 일단 서버에서 좌표 이동
+				PlayerInfo info = player.Info;
+				info.PosInfo = movePacket.PosInfo;
+
+				// 다른 플레이어한테도 알려준다
+				S_Move resMovePacket = new S_Move();
+				resMovePacket.PlayerId = player.Info.PlayerId;
+				resMovePacket.PosInfo = movePacket.PosInfo;
+
+				Broadcast(resMovePacket);
+			}
+		}
+
+		public void HandleChat(Player player, C_Chat chatPacket)
+		{
+			if (player == null)
+				return;
+
+			lock (_lock)
+			{
+				// 다른 플레이어한테 전해주기
+				S_Chat resChatPacket = new S_Chat();
+				resChatPacket.PlayerId = player.Info.PlayerId;
+				resChatPacket.ChatInfo = chatPacket.ChatInfo;
+
+				Broadcast(resChatPacket);
+			}
+		}
+
 		//방의 모든 플레이어들에게 send함
 		public void Broadcast(IMessage packet)
 		{

@@ -4,6 +4,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
+//다른 서버와 연결시키기 위해서 필요
+
 namespace ServerCore
 {
 	public class Connector

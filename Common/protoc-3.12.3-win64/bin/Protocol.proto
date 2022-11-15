@@ -11,6 +11,8 @@ enum MsgId {
   S_DESPAWN = 3;
   C_MOVE = 4;
   S_MOVE = 5;
+  C_CHAT = 6;
+  S_CHAT = 7;
 }
 
 message S_EnterGame {
@@ -37,8 +39,17 @@ message S_Move {
   PositionInfo posInfo = 2;
 }
 
+message C_Chat {
+  ChatInfo chatInfo = 1;
+}
+
+message S_Chat {
+  int32 playerId = 1; //식별id
+  ChatInfo chatInfo = 2;
+}
+
 message PlayerInfo {
-  int32 playerId = 1; //학번
+  int32 playerId = 1; //식별id
   string name = 2; //닉네임
   PositionInfo posInfo = 3;
 }
@@ -48,4 +59,9 @@ message PositionInfo {
   float posY = 2;
   float movedirX = 3;
   float movedirY = 4;
+}
+
+message ChatInfo {
+  string userName=1;
+  string chattingText = 2;
 }
