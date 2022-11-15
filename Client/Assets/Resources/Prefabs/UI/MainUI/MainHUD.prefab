@@ -180,6 +180,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FriendListUIPrefab: {fileID: 1563026765626957857, guid: 41252ae3ede7d82479b04904a3c73fca,
     type: 3}
+  m_MapNavUIPrefab: {fileID: 3256227257928773609, guid: 52556aecf88bce64a8519e556b408cd2,
+    type: 3}
   m_FriendListUI: {fileID: 0}
   m_FriendBtn: {fileID: 906237325497974937}
   m_FriendListON: 0

@@ -13,6 +13,15 @@ public class MainHUDScript : MonoBehaviour
     private GameObject m_FriendListObj = null;
 
     [SerializeField]
+    private GameObject m_MapNavUIPrefab = null;
+
+    [SerializeField]
+    private MapNavUI m_MapNavUI = null;
+    private GameObject m_MapNavObj = null;
+
+
+    //Button 관련 멤버
+    [SerializeField]
     private Button m_FriendBtn = null;
     public bool m_FriendListON = false;
 
@@ -53,6 +62,14 @@ public class MainHUDScript : MonoBehaviour
             }
         }
 
+        if (m_MapNavObj)
+        {
+            if (!m_MapNavObj.activeInHierarchy)
+            {
+                m_MapNavUI = null;
+                m_MapUION = false;
+            }
+        }
     }
 
     public void FriendButtonCallback()
@@ -83,6 +100,23 @@ public class MainHUDScript : MonoBehaviour
     public void MapButtonCallback()
     {
 
+        if (m_MapBtn)
+        {
+            if (!m_MapUION)
+            {
+                m_MapUION = true;
+                m_MapNavObj = Instantiate(m_MapNavUIPrefab);
+                
+                m_MapNavUI = m_MapNavObj.GetComponentInChildren<MapNavUI>();
+            }
+
+            else
+            {
+                m_MapUION = false;
+                Destroy(m_MapNavObj);
+                m_MapNavObj = null;
+            }
+        }
     }
 
     public void NoticeButtonCallback()

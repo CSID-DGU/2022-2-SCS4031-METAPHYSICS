@@ -24,4 +24,11 @@ public static class Struct
         GameObject MoveObj;
         List<Vector3Int> PathList;
     }
+
+    public struct WayPointData
+    {
+        string      WayPointName;
+        GameScene   SceneType;
+        Vector3     Pos;
+    }
 }

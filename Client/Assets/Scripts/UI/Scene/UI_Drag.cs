@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 using UnityEngine.EventSystems;
 using UnityEditor;
 
-public class UI_Drag : MonoBehaviour, IPointerClickHandler, IDragHandler
+public class UI_Drag : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
-    // Start is called before the first frame update
     //string m_UIName = null;
+
+    static UI_Drag CurrentTopUI = null;
+    static int DragUISortingOroder = 1;
 
     [SerializeField]
     protected RectTransform m_PanelRect = null;
@@ -20,6 +23,13 @@ public class UI_Drag : MonoBehaviour, IPointerClickHandler, IDragHandler
 
     void Start()
     {
+        SetSortingOrder(DragUISortingOroder);
+    }
+
+    void OnDestroy()
+    {
+        if (CurrentTopUI == this)
+            CurrentTopUI = null;
     }
 
     // Update is called once per frame
@@ -28,22 +38,15 @@ public class UI_Drag : MonoBehaviour, IPointerClickHandler, IDragHandler
 
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
-        //Vector2 WidgetPos = m_ImagePanel.rectTransform.anchoredPosition;
-        //Vector2 WidgetSize = m_ImagePanel.rectTransform.sizeDelta;
-        //Vector2 WidgetLB = WidgetPos - WidgetSize / 2.0f;
+        if (CurrentTopUI != null)
+            CurrentTopUI.SetSortingOrder(DragUISortingOroder);
 
-        //Vector2 MouseScreenPos = eventData.position;
+        //임의로 가장 큰 값을 넣어줘서 가장 앞에 올 수 있도록 출력
+        SetSortingOrder(20);
+        CurrentTopUI = this;
 
-        //float MouseWidgetX = MouseScreenPos.x - Screen.width / 2.0f;
-        //float MouseWidgetY = MouseScreenPos.y - Screen.height / 2.0f;
-
-        //Vector2 MouseWidgetPos = new Vector2(MouseWidgetX, MouseWidgetY);
-
-        //m_WidgeMouseClickOffset = (WidgetLB - MouseWidgetPos);
-
-        //m_ImagePanel.rectTransform.anchoredPosition = MouseWidgetPos - m_WidgeMouseClickOffset;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -87,5 +90,15 @@ public class UI_Drag : MonoBehaviour, IPointerClickHandler, IDragHandler
 
         m_PanelRect.anchoredPosition = WidgetPos;
 
+    }
+
+    public void SetSortingOrder(int Order)
+    {
+        Canvas CurrentCanvas = gameObject.GetComponentInChildren<Canvas>();
+
+        if (CurrentCanvas == null)
+            return;
+
+        CurrentCanvas.sortingOrder = Order;
     }
 }

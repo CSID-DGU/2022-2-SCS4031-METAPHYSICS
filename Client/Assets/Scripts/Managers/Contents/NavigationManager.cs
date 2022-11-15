@@ -10,6 +10,7 @@ public class NavigationManager
 
     Navigation m_Navigation = new Navigation();
 	Queue<NavData> m_NavMsgQueue = new Queue<NavData>();
+    Dictionary<string, WayPointData> m_WayPointDict = new Dictionary<string, WayPointData>();
 
 
     public void Init()
@@ -22,5 +23,11 @@ public class NavigationManager
         {
             //NavData
         }
+    }
+    
+    void SetWayPointData()
+    {
+        
+
     }
 }
