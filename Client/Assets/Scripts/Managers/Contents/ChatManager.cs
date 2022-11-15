@@ -155,11 +155,13 @@ public class ChatManager
         ChatData.ChattingText = Message;
 
         m_GlobalChatQueue.Enqueue(ChatData);
+
     }
 
     public void PushGlobalChat(GlobalChatData Data)
     {
         m_GlobalChatQueue.Enqueue(Data);
+
     }
 
     void CheckUpdatedFlag()

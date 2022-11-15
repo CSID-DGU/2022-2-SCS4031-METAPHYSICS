@@ -36,6 +36,8 @@ class PacketHandler
 		if (player == null)
 			return;
 
+		Console.WriteLine($"C_Chat({chatPacket.ChatInfo.ChattingText})");
+
 		GameRoom room = player.Room;
 		if (room == null)
 			return;

@@ -61,19 +61,14 @@ class PacketHandler
 
 	public static void S_ChatHandler(PacketSession session, IMessage packet)
 	{
+		//보낸 사람의 id, 채팅정보(username, chatting text)
 		S_Chat chatPacket = packet as S_Chat;
 		ServerSession serverSession = session as ServerSession;
 
-		//있는지 없는지 찾아줌
-		GameObject go = Managers.Object.FindById(chatPacket.PlayerId);
-		if (go == null)
-			return;
-
-		ChatManager cm = go.GetComponent<ChatManager>();
+		ChatManager cm = Managers.Object.MyPlayer.GetComponent<ChatManager>();
 		if (cm == null)
 			return;
 
-		//cm.Chat_Info = chatPacket.ChatInfo;
 		cm.PushGlobalChat(chatPacket.ChatInfo.UserName, chatPacket.ChatInfo.ChattingText);
 	}
 }

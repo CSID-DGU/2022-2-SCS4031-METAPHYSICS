@@ -108,13 +108,10 @@ namespace Server.Game
 
 			lock (_lock)
 			{
-				// 일단 서버에 받기
-				ChatInfo info = chatPacket.ChatInfo;
-
 				// 다른 플레이어한테 전해주기
 				S_Chat resChatPacket = new S_Chat();
-				resChatPacket.ChatInfo.UserName = info.UserName;
-				resChatPacket.ChatInfo.ChattingText = info.ChattingText;
+				resChatPacket.PlayerId = player.Info.PlayerId;
+				resChatPacket.ChatInfo = chatPacket.ChatInfo;
 
 				Broadcast(resChatPacket);
 			}
