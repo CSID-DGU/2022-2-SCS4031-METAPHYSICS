@@ -11,9 +11,12 @@ namespace ServerCore
 	{
 		public static readonly int HeaderSize = 2;
 
+		//size 확인 후 조립
 		// [size(2)][packetId(2)][ ... ][size(2)][packetId(2)][ ... ]
+		// sealed: 더 이상 override불가하게 함
 		public sealed override int OnRecv(ArraySegment<byte> buffer)
 		{
+			// 몇바이트 처리했는지
 			int processLen = 0;
 			int packetCount = 0;
 
@@ -39,6 +42,7 @@ namespace ServerCore
 			if (packetCount > 1)
 				Console.WriteLine($"패킷 모아보내기 : {packetCount}");
 
+			// 처리한 바이트 수
 			return processLen;
 		}
 
@@ -87,6 +91,7 @@ namespace ServerCore
 			if (sendBuffList.Count == 0)
 				return;
 
+			//멀티쓰레드
 			lock (_lock)
 			{
 				foreach (ArraySegment<byte> sendBuff in sendBuffList)
@@ -109,6 +114,7 @@ namespace ServerCore
 
 		public void Disconnect()
 		{
+			//멀티쓰레드 환경에서 여러명이 동시에 연결끊었을때 차례로 되도록 설정
 			if (Interlocked.Exchange(ref _disconnected, 1) == 1)
 				return;
 
@@ -130,6 +136,7 @@ namespace ServerCore
 				ArraySegment<byte> buff = _sendQueue.Dequeue();
 				_pendingList.Add(buff);
 			}
+			//버퍼 설정
 			_sendArgs.BufferList = _pendingList;
 
 			try
@@ -179,6 +186,7 @@ namespace ServerCore
 
 			_recvBuffer.Clean();
 			ArraySegment<byte> segment = _recvBuffer.WriteSegment;
+			//버퍼 설정
 			_recvArgs.SetBuffer(segment.Array, segment.Offset, segment.Count);
 
 			try
@@ -195,6 +203,7 @@ namespace ServerCore
 
 		void OnRecvCompleted(object sender, SocketAsyncEventArgs args)
 		{
+			//상대방 연결 끊으면 0으로 올수도 있어서
 			if (args.BytesTransferred > 0 && args.SocketError == SocketError.Success)
 			{
 				try
@@ -202,11 +211,12 @@ namespace ServerCore
 					// Write 커서 이동
 					if (_recvBuffer.OnWrite(args.BytesTransferred) == false)
 					{
+						//버그방지
 						Disconnect();
 						return;
 					}
 
-					// 컨텐츠 쪽으로 데이터를 넘겨주고 얼마나 처리했는지 받는다
+					// 컨텐츠 쪽으로 데이터를 넘겨주고 얼마나 처리했는지 받기
 					int processLen = OnRecv(_recvBuffer.ReadSegment);
 					if (processLen < 0 || _recvBuffer.DataSize < processLen)
 					{

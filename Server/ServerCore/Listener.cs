@@ -23,6 +23,8 @@ namespace ServerCore
 			// backlog : 최대 대기수
 			_listenSocket.Listen(backlog);
 
+			//최대대기수를 놓았기 때문에 여러명이 동시 접속해도 어마어마하게 몰리지 않는 이상 버틸수있다.
+			//이렇게 반복시킴으로써 어마어마하게 몰려도 버틸수있다.
 			for (int i = 0; i < register; i++)
 			{
 				SocketAsyncEventArgs args = new SocketAsyncEventArgs();
@@ -33,9 +35,11 @@ namespace ServerCore
 
 		void RegisterAccept(SocketAsyncEventArgs args)
 		{
+			//초기화
 			args.AcceptSocket = null;
 
 			bool pending = _listenSocket.AcceptAsync(args);
+			//성공
 			if (pending == false)
 				OnAcceptCompleted(null, args);
 		}

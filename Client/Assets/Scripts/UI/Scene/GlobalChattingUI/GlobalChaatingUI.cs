@@ -62,6 +62,7 @@ public class GlobalChaatingUI : MonoBehaviour
 
     }
 
+    //메세지 받아서 unity에 띄우기
     public void ReceiveMessage(GlobalChatData Data)
     {
         GameObject ChattingObj = Instantiate(m_ChattingAreaPrefab, m_ScrollRectTransform);
@@ -77,6 +78,7 @@ public class GlobalChaatingUI : MonoBehaviour
         m_ScrollView.verticalScrollbar.value = 0.0f;
 
     }
+
     void Fit(RectTransform Rect)
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate(Rect);

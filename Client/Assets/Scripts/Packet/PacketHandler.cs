@@ -55,9 +55,26 @@ class PacketHandler
 		if (cc == null)
 			return;
 
-		//꼭 필요한거 아님
 		//서버거를 클라에 붙여줌
 		cc.PosInfo = movePacket.PosInfo;
+	}
+
+	public static void S_ChatHandler(PacketSession session, IMessage packet)
+	{
+		S_Chat chatPacket = packet as S_Chat;
+		ServerSession serverSession = session as ServerSession;
+
+		//있는지 없는지 찾아줌
+		GameObject go = Managers.Object.FindById(chatPacket.PlayerId);
+		if (go == null)
+			return;
+
+		ChatManager cm = go.GetComponent<ChatManager>();
+		if (cm == null)
+			return;
+
+		//cm.Chat_Info = chatPacket.ChatInfo;
+		cm.PushGlobalChat(chatPacket.ChatInfo.UserName, chatPacket.ChatInfo.ChattingText);
 	}
 }
 
