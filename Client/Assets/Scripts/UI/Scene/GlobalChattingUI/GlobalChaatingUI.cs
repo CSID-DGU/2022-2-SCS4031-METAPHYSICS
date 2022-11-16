@@ -51,8 +51,8 @@ public class GlobalChaatingUI : MonoBehaviour
             else
             {
                 GlobalChatData Data;
-                Data.UserName = "박용준";
-                //Data.UserName = Managers.Data.GetCurrentUser();
+                //Data.UserName = "박용준";
+                Data.UserName = Managers.Data.GetCurrentUser();
                 Data.ChattingText = m_MessageInput.text;
 
                 Managers.Chat.SendGlobalChat(Data);

@@ -9,10 +9,14 @@ enum MsgId {
   S_LEAVE_GAME = 1;
   S_SPAWN = 2;
   S_DESPAWN = 3;
-  C_MOVE = 4;
-  S_MOVE = 5;
-  C_CHAT = 6;
-  S_CHAT = 7;
+  C_ENTER_GAME = 4;
+  C_LEAVE_GAME = 5;
+  C_SPAWN = 6;
+  C_DESPAWN = 7;
+  C_MOVE = 8;
+  S_MOVE = 9;
+  C_CHAT = 10;
+  S_CHAT = 11;
 }
 
 message S_EnterGame {
@@ -27,6 +31,22 @@ message S_Spawn {
 }
 
 message S_Despawn {
+  repeated int32 playerIds = 1;
+}
+
+message C_EnterGame {
+  int32 playerId = 1; //식별id
+  string name = 2; //닉네임
+}
+
+message C_LeaveGame {
+}
+
+message C_Spawn {
+  repeated PlayerInfo players = 1;
+}
+
+message C_Despawn {
   repeated int32 playerIds = 1;
 }
 

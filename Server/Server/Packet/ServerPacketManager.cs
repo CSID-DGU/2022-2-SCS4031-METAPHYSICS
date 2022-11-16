@@ -23,6 +23,14 @@ class PacketManager
 
 	public void Register()
 	{		
+		_onRecv.Add((ushort)MsgId.CEnterGame, MakePacket<C_EnterGame>);
+		_handler.Add((ushort)MsgId.CEnterGame, PacketHandler.C_EnterGameHandler);		
+		_onRecv.Add((ushort)MsgId.CLeaveGame, MakePacket<C_LeaveGame>);
+		_handler.Add((ushort)MsgId.CLeaveGame, PacketHandler.C_LeaveGameHandler);		
+		_onRecv.Add((ushort)MsgId.CSpawn, MakePacket<C_Spawn>);
+		_handler.Add((ushort)MsgId.CSpawn, PacketHandler.C_SpawnHandler);		
+		_onRecv.Add((ushort)MsgId.CDespawn, MakePacket<C_Despawn>);
+		_handler.Add((ushort)MsgId.CDespawn, PacketHandler.C_DespawnHandler);		
 		_onRecv.Add((ushort)MsgId.CMove, MakePacket<C_Move>);
 		_handler.Add((ushort)MsgId.CMove, PacketHandler.C_MoveHandler);		
 		_onRecv.Add((ushort)MsgId.CChat, MakePacket<C_Chat>);

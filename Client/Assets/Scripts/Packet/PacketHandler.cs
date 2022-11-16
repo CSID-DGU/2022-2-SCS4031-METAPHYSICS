@@ -12,7 +12,7 @@ class PacketHandler
 	{
 		S_EnterGame enterGamePacket = packet as S_EnterGame;
 		Managers.Object.Add(enterGamePacket.Player, myPlayer: true);
-		Debug.Log("S_EnterGameHandler");
+		//Debug.Log("S_EnterGameHandler");
 	}
 
 	public static void S_LeaveGameHandler(PacketSession session, IMessage packet)
