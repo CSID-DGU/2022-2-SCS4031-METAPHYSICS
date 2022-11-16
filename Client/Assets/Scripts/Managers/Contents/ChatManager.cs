@@ -138,16 +138,6 @@ public class ChatManager
         m_GlobalChatUI.ReceiveMessage(Data);
     }
 
-    //패킷받아서 큐에 추가해주는 기능 추가 구현 필요
-    //public void PushGlobalChat(PacketMessage Packet)
-    //{
-    //    GlobalChatData ChatData;
-    //    ChatData.UserName = UserName;
-    //    ChatData.ChattingText = Message;
-
-    //    m_GlobalChatQueue.Enqueue(ChatData);
-    //}
-
     public void PushGlobalChat(string UserName, string Message)
     {
         GlobalChatData ChatData;

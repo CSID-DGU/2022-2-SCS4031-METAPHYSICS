@@ -4,6 +4,7 @@ using ServerCore;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Struct;
 
 class PacketHandler
 {
@@ -65,11 +66,16 @@ class PacketHandler
 		S_Chat chatPacket = packet as S_Chat;
 		ServerSession serverSession = session as ServerSession;
 
-		ChatManager cm = Managers.Object.MyPlayer.GetComponent<ChatManager>();
+		//내 클라의 매니저 받아오기
+		ChatManager cm = Managers.Chat;
 		if (cm == null)
 			return;
 
-		cm.PushGlobalChat(chatPacket.ChatInfo.UserName, chatPacket.ChatInfo.ChattingText);
+		//보낸 캐릭터의 이름이 나와 다르면 패킷 받기
+		if(cm.UserName!= chatPacket.ChatInfo.UserName)
+        {
+			cm.PushGlobalChat(chatPacket.ChatInfo.UserName, chatPacket.ChatInfo.ChattingText);
+        }
 	}
 }
 
