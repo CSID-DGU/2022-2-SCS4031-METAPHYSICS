@@ -36,12 +36,46 @@ class PacketHandler
 		if (player == null)
 			return;
 
-		Console.WriteLine($"C_Chat({chatPacket.ChatInfo.ChattingText})");
+		//Console.WriteLine($"C_Chat({chatPacket.ChatInfo.ChattingText})");
 
 		GameRoom room = player.Room;
 		if (room == null)
 			return;
 
 		room.HandleChat(player, chatPacket);
+	}
+
+	public static void C_EnterGameHandler(PacketSession session, IMessage packet)
+	{
+		C_EnterGame enterPacket = packet as C_EnterGame;
+		ClientSession clientSession = session as ClientSession;
+
+		//Player MyPlayer = clientSession.MyPlayer;
+		clientSession.MyPlayer = PlayerManager.Instance.Add();
+		{
+			clientSession.MyPlayer.Info.Name = $"Player_{clientSession.MyPlayer.Info.PlayerId}";
+			clientSession.MyPlayer.Info.PosInfo.PosX = 0;
+			clientSession.MyPlayer.Info.PosInfo.PosY = 0;
+			clientSession.MyPlayer.Info.PosInfo.MovedirX = 0.0f;
+			clientSession.MyPlayer.Info.PosInfo.MovedirY = 0.0f;
+			clientSession.MyPlayer.Session = clientSession;
+		}
+
+		RoomManager.Instance.Find(1).EnterGame(clientSession.MyPlayer);
+	}
+
+	public static void C_LeaveGameHandler(PacketSession session, IMessage packet)
+	{
+
+	}
+
+	public static void C_SpawnHandler(PacketSession session, IMessage packet)
+	{
+
+	}
+
+	public static void C_DespawnHandler(PacketSession session, IMessage packet)
+	{
+
 	}
 }
