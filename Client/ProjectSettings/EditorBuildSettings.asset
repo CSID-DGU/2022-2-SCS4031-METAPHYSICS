@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MyeonJinIndoorScene.unity
     guid: e079957dcc9bbfa48b4d071b30554373
+  - enabled: 1
+    path: Assets/Scenes/BongwanIndoor.unity
+    guid: 5801920dfa7af4e5a848ba9498154aac
+  - enabled: 1
+    path: Assets/Scenes/ManhaeGwangjang.unity
+    guid: 82e5ecb5688744dc38f9ca2bcf0ca657
   m_configObjects: {}
