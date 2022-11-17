@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 using static Define;
 using static Struct;
 
-public class Navigation : MonoBehaviour
+public class Navigation
 {
     GameObject m_CurretnTile;
     GameObject m_CurrentTileCollider;
@@ -14,16 +14,6 @@ public class Navigation : MonoBehaviour
     static float m_DiagonalDist = Mathf.Sqrt(2);
 
     NavInfoManager m_NavInfoManager;
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 
     public bool FindPath(Vector3 Start, Vector3 Goal, ref List<Vector3> PathList)
 	{
@@ -189,6 +179,29 @@ public class Navigation : MonoBehaviour
                     continue;
             }
 
+            else
+            {
+                switch ((Neighbor_Dir)i)
+                {
+                    case Neighbor_Dir.ND_Bottom:
+                    case Neighbor_Dir.ND_Top:
+                        Dir1 = Neighbor_Dir.ND_Left;
+                        Dir2 = Neighbor_Dir.ND_Right;
+                        break;
+                    case Neighbor_Dir.ND_Left:
+                    case Neighbor_Dir.ND_Right:
+                        Dir1 = Neighbor_Dir.ND_Top;
+                        Dir2 = Neighbor_Dir.ND_Bottom;
+                        break;
+                }
+
+               
+
+                //if (m_NavData.HasTile(Neighbor[(int)Dir1].TilePos)
+                //   && m_NavData.HasTile(Neighbor[(int)Dir2].TilePos))
+                //    continue;
+            }
+
             if(Neighbor[i].TilePos == GoalNode.TilePos)
             {
                 //기존 경로 제거
@@ -228,7 +241,7 @@ public class Navigation : MonoBehaviour
                 case Neighbor_Dir.ND_RightBottom:
                 case Neighbor_Dir.ND_LeftTop:
                 case Neighbor_Dir.ND_LeftBottom:
-                    Cost = Node.Cost + 1.4f;
+                    Cost = Node.Cost + 2.0f;
                     break;
             }
 

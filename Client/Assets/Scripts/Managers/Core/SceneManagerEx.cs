@@ -11,7 +11,11 @@ public class SceneManagerEx
     private bool    m_bChangeScene = false;
     private float m_FadeRatio = 0.0f;
     private string  m_NextSceneName = null;
+    private string m_CurrentSceneName = null;
+    private string m_PrevSceneName = null;
     private bool m_IsInGame = false;
+
+    private Vector3 m_PlayerInitPos = new Vector3(0.0f, 0.0f, 0.0f);
 
     public void SceneUpdate()
     {
@@ -39,7 +43,14 @@ public class SceneManagerEx
             else
             {
                 this.LoadScene(m_NextSceneName);
+                m_PrevSceneName = m_CurrentSceneName;
             }
+        }
+
+        if(SceneManager.GetActiveScene().name == m_NextSceneName)
+        {
+            m_FadeRatio = 0.0f;
+            m_NextSceneName = null;
         }
     }
 
@@ -50,7 +61,6 @@ public class SceneManagerEx
         SceneManager.LoadScene(GetSceneName(type));
 
         m_bChangeScene = false;
-        m_NextSceneName = null;
     }
     public void LoadScene(string SceneName)
     {
@@ -59,13 +69,37 @@ public class SceneManagerEx
         SceneManager.LoadScene(SceneName);
 
         m_bChangeScene = false;
-        m_NextSceneName = null;
     }
 
     public void SetNextScene(string SceneName)
     {
         m_NextSceneName = SceneName;
         m_bChangeScene = true;
+    }
+
+    public void SetCurrentSceneName(string SceneName)
+    {
+        m_CurrentSceneName = SceneName;
+    }
+
+    public string GetPrevSceneName()
+    {
+        return m_PrevSceneName;
+    }
+
+    public void SetPrevSceneName(string SceneName)
+    {
+        m_PrevSceneName = SceneName;
+    }
+
+    public void SetPlayerInitPos(Vector3 InitPos)
+    {
+        m_PlayerInitPos = InitPos;
+    }
+
+    public Vector3 GetPlayerInitPos()
+    {
+        return m_PlayerInitPos;
     }
 
     string GetSceneName(Define.Scene type)

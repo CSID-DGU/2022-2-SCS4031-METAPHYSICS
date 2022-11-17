@@ -25,10 +25,9 @@ public static class Struct
         List<Vector3Int> PathList;
     }
 
-    public struct WayPointData
+    public struct PortalData
     {
-        string      WayPointName;
-        GameScene   SceneType;
-        Vector3     Pos;
+        public GameScene    CurrentScene; 
+        public GameScene    NextSceneType;
     }
 }

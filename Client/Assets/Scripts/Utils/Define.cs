@@ -47,9 +47,12 @@ public class Define
 
     public enum GameScene
     {
-        None,
         EightPathScene,
         MyeonJinIndoorScene,
+        BongwanIndoor,
+        ManhaeGwangjang,
+        WonHeungGwan,
+        End
     }
 
     public enum Sound

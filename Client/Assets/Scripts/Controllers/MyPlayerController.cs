@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static Define;
+using static Struct;
 
 public class MyPlayerController : UserControllerScript
 {
@@ -11,67 +12,95 @@ public class MyPlayerController : UserControllerScript
 	Navigation m_Nav = new Navigation();
 	List<Vector3> m_PathList;
 	Stack<Vector3> m_PathStack = new Stack<Vector3>();
+	bool m_IsAutoMoving = false;
+	GameScene m_AutoMovingDest = GameScene.End;
 	protected override void Start()
 	{
 		base.Start();
+
+		//Vector3 InitPos = Managers.Scene.GetPlayerInitPos();
+		//gameObject.transform.position = InitPos;
+
+		GameObject[] LoadColliders = GameObject.FindGameObjectsWithTag("SceneLoadCollider");
+		GameObject InitPosObj = null;
+
+		for (int i = 0; i < LoadColliders.Length; ++i)
+        {
+			LoadSceneColliderScript ColliderScript = LoadColliders[i].GetComponent<LoadSceneColliderScript>();
+
+			if(ColliderScript.GetNextScene().ToString() == Managers.Scene.GetPrevSceneName())
+            {
+				InitPosObj = LoadColliders[i];
+				break;
+			}
+        }
+
+		if (InitPosObj == null)
+			return;
+
+		Vector3 InitPos = InitPosObj.transform.position;
+		gameObject.transform.position = InitPos;
 	}
 
 	protected override void Update()
 	{
 		GetInput();
 		UpdatePosition();
+		UpdateNavigation();
+		UpdateIsMoving();
+	}
 
-		if(Input.GetKeyDown(KeyCode.A))
+	protected  void UpdateNavigation()
+    {
+		
+		NavigationManager NavManager = Managers.Navigation;
+		string CurrentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+
+		if (NavManager.IsNavEnable())
         {
-			m_IsDebugNav = m_IsDebugNav ? false : true;
-        }
+			PortalData DestPortal = NavManager.GetCurrentNavPortal();
 
-		if (m_IsDebugNav)
-		{
-
-			if (Input.GetKeyDown(KeyCode.Mouse0))
-			{
-				Camera cam = FindObjectOfType<Camera>();
-				Vector2 MousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+			if (DestPortal.CurrentScene.ToString() == CurrentSceneName)
+            {
 				Vector2 PlayerPos = transform.position;
 
-				m_PathList = new List<Vector3>();
+				GameObject[] PortalObjs = GameObject.FindGameObjectsWithTag("SceneLoadCollider");
+				GameObject DestPortalObj = null;
 
-				m_Nav.FindPath(PlayerPos, MousePos, ref m_PathList);
+				for(int i = 0;i< PortalObjs.Length;++i)
+                {
+					LoadSceneColliderScript SceneColliderComponent = PortalObjs[i].GetComponent<LoadSceneColliderScript>();
 
-				m_PathStack = new Stack<Vector3>();
+					GameScene NextScene = SceneColliderComponent.GetNextScene();
 
-				for (int i = 0; i < m_PathList.Count; ++i)
+					if (SceneColliderComponent.GetNextScene() == DestPortal.NextSceneType)
+					{
+						DestPortalObj = PortalObjs[i];
+						m_AutoMovingDest = SceneColliderComponent.GetNextScene();
+					}
+                }
+
+				if (DestPortalObj != null)
 				{
-					m_PathStack.Push(m_PathList[i]);
+					m_PathList = new List<Vector3>();
+					m_Nav.FindPath(PlayerPos, DestPortalObj.transform.position, ref m_PathList);
+					m_PathStack = new Stack<Vector3>();
+
+					for (int i = 0; i < m_PathList.Count; ++i)
+					{
+						m_PathStack.Push(m_PathList[i]);
+					}
+
+					NavManager.SetCompleteCurrentNav();
 				}
-			}
-
-			if (Input.GetKeyDown(KeyCode.Mouse1))
-			{
-				Camera cam = FindObjectOfType<Camera>();
-				Vector2 MousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-				Vector2 PlayerPos = transform.position;
-				MousePos = new Vector2(0.0f, 30.0f);
-
-				m_PathList = new List<Vector3>();
-
-				m_Nav.FindPath(PlayerPos, MousePos, ref m_PathList);
-
-				m_PathStack = new Stack<Vector3>();
-
-				for (int i = 0; i < m_PathList.Count; ++i)
-				{
-					m_PathStack.Push(m_PathList[i]);
-				}
-			}
-
+            }
 		}
 
 		if (m_PathStack != null)
 		{
 			if (m_PathStack.Count != 0)
 			{
+				m_IsAutoMoving = true;
 				Vector2 TargetPos = m_PathStack.Peek();
 
 				float Distance = Vector2.Distance(transform.position, TargetPos);
@@ -98,16 +127,14 @@ public class MyPlayerController : UserControllerScript
 
 			else
 			{
+				m_IsAutoMoving = false;
 				m_PathStack = null;
 				Rigidbody2D rigid = gameObject.GetComponent<Rigidbody2D>();
 				rigid.velocity = Vector3.zero;
 
 			}
 		}
-
-		UpdateIsMoving();
 	}
-
 	protected override void LateUpdate()
 	{
 		base.LateUpdate();
@@ -133,11 +160,13 @@ public class MyPlayerController : UserControllerScript
 
 		if (m_PathStack == null)
 		{
+			gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
 			base.UpdateIsMoving();
 		}
 		
 		else
         {
+			gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
 			if(m_vMoveDir.x > 0.0f)
             {
 				if (m_vMoveDir.y > 0.5f)
@@ -200,4 +229,14 @@ public class MyPlayerController : UserControllerScript
 			_updated = false;
 		}
 	}
+
+	public bool IsAutoMoving()
+    {
+		return m_IsAutoMoving;
+    }
+
+	public GameScene GetAutoMoveDest()
+    {
+		return m_AutoMovingDest;
+    }
 }

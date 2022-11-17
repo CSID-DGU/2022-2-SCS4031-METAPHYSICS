@@ -19,6 +19,34 @@ public class MapNavUI : UI_Drag
     {
         m_DropDown.onValueChanged.AddListener(delegate { DropDownCallback(m_DropDown.value); });
 
+        List<string> Options = new List<string>();
+
+        for (int i = 0;i<(int)GameScene.End;++i)
+        {
+            switch ((GameScene)i)
+            {
+                case GameScene.EightPathScene:
+                    Options.Add("팔정도");
+                    break;
+                case GameScene.MyeonJinIndoorScene:
+                    Options.Add("명진관");
+                    break;
+                case GameScene.BongwanIndoor:
+                    Options.Add("본관");
+                    break;
+                case GameScene.ManhaeGwangjang:
+                    Options.Add("만해광장");
+                    break;
+                case GameScene.WonHeungGwan:
+                    Options.Add("원흥관");
+                    break;
+                case GameScene.End:
+                    break;
+            }
+        }
+
+        m_DropDown.AddOptions(Options);
+
     }
 
     // Update is called once per frame
@@ -33,5 +61,19 @@ public class MapNavUI : UI_Drag
 
     public void GoButtonCallback()
     {
+        string DestName = ((GameScene)m_SelectIndex).ToString();
+        string CurrentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+
+        if (DestName == CurrentSceneName)
+        {
+            Debug.Log("현재 위치한 곳입니다.");
+            return;
+        }
+
+        else
+        {
+            Managers.Navigation.FindPath(CurrentSceneName, DestName, true);
+        }
+
     }
 }
