@@ -17,6 +17,11 @@ public class DataManager
     private UserPrivileges  m_UserPrivilege = UserPrivileges.None;
     private string          m_CurrentUserName = null;
     private UserCustomize m_CurrentUserColor = UserCustomize.End;
+    private int m_ColorIndex;
+    private float m_posX;
+    private float m_posY;
+    private float m_movedirX;
+    private float m_movedirY;
     //임시
     private Dictionary<String, UserData> m_UserDataDict = new Dictionary<String, UserData>();
     private List<UserData> m_ArrayUserData = new List<UserData>();
@@ -31,7 +36,6 @@ public class DataManager
         UD.UserColor = UserCustomize.Black;
 
         AddUserData(UD);
-        // StatDict = LoadJson<Data.StatData, int, Data.Stat>("StatData").MakeDict();
 
         
     }
@@ -113,11 +117,136 @@ public class DataManager
         if (UserColor >= (int)UserCustomize.End || UserColor < (int)UserCustomize.Red)
             return;
 
+        m_ColorIndex = UserColor;
         SetCurrentUserColor((UserCustomize)UserColor);
+    }
+
+    public int GetCurrentUserColorIndex()
+    {
+        return m_ColorIndex;
     }
 
     public UserCustomize GetCurrentUserColor()
     {
         return m_CurrentUserColor;
+    }
+
+    //장소별 설정
+    //public float GetCurrentPosX(int num)
+    //{
+    //    switch (num)
+    //    {
+    //        case 0:
+    //            m_posX = 0.0f;
+    //            break;
+
+
+    //        case 1:
+    //            m_posX = 0.0f;
+    //            break;
+
+    //        case 2:
+    //            m_posX = 0.0f;
+    //            break;
+
+    //        case 3:
+    //            m_posX = 0.0f;
+    //            break;
+    //    }
+    //    return m_posX;
+    //}
+
+    public float GetCurrentPosX(int num)
+    {
+        switch (num)
+        {
+            case 0:
+                m_posX = 0.0f;
+                break;
+               
+
+            case 1:
+                m_posX = 0.0f;
+                break;
+
+            case 2:
+                m_posX = 0.0f;
+                break;
+
+            case 3:
+                m_posX = 0.0f;
+                break;
+        }
+        return m_posX;
+    }
+
+    public float GetCurrentPosY(int num)
+    {
+        switch (num)
+        {
+            case 0:
+                m_posY = 0.0f;
+                break;
+
+
+            case 1:
+                m_posY = 0.0f;
+                break;
+
+            case 2:
+                m_posY = 0.0f;
+                break;
+
+            case 3:
+                m_posY = 0.0f;
+                break;
+        }
+        return m_posY;
+    }
+    public float GetCurrentDirX(int num)
+    {
+        switch (num)
+        {
+            case 0:
+                m_movedirX = 0.0f;
+                break;
+
+
+            case 1:
+                m_movedirX = 0.0f;
+                break;
+
+            case 2:
+                m_movedirX = 0.0f;
+                break;
+
+            case 3:
+                m_movedirX = 0.0f;
+                break;
+        }
+        return m_movedirX;
+    }
+    public float GetCurrentDirY(int num)
+    {
+        switch (num)
+        {
+            case 0:
+                m_movedirY = 0.0f;
+                break;
+
+
+            case 1:
+                m_movedirY = 0.0f;
+                break;
+
+            case 2:
+                m_movedirY = 0.0f;
+                break;
+
+            case 3:
+                m_movedirY = 0.0f;
+                break;
+        }
+        return m_movedirY;
     }
 }

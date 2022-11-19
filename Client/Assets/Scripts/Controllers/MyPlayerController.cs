@@ -134,6 +134,7 @@ public class MyPlayerController : UserControllerScript
 
 			}
 		}
+		CheckUpdatedFlag();
 	}
 	protected override void LateUpdate()
 	{
