@@ -17,7 +17,7 @@ namespace Server.Game
 		{
 			if (newPlayer == null)
 				return;
-
+			
 			lock (_lock)
 			{
 				_players.Add(newPlayer);
@@ -27,6 +27,8 @@ namespace Server.Game
 				{
 					S_EnterGame enterPacket = new S_EnterGame();
 					enterPacket.Player = newPlayer.Info;
+					Console.WriteLine($"S_EnterGame({enterPacket.Player.UserName})");
+					Console.WriteLine($"S_EnterGame({enterPacket.Player.ColorIndex})");
 					newPlayer.Session.Send(enterPacket);
 
 					S_Spawn spawnPacket = new S_Spawn();
@@ -114,6 +116,24 @@ namespace Server.Game
 				resChatPacket.ChatInfo = chatPacket.ChatInfo;
 
 				Broadcast(resChatPacket);
+			}
+		}
+
+		public void HandleEnter(C_EnterGame enterPacket)
+        {
+			lock (_lock)
+			{
+				// 다른 플레이어한테 전해주기
+				S_EnterGame resEnterPacket = new S_EnterGame();
+				//resEnterPacket.PlayerId = player.Info.PlayerId;
+				resEnterPacket.Player.UserName = enterPacket.Player.UserName;
+				resEnterPacket.Player.ColorIndex = enterPacket.Player.ColorIndex;
+				resEnterPacket.Player.PosInfo.PosX = enterPacket.Player.PosInfo.PosX;
+				resEnterPacket.Player.PosInfo.PosY = enterPacket.Player.PosInfo.PosY;
+				resEnterPacket.Player.PosInfo.MovedirX = enterPacket.Player.PosInfo.MovedirX;
+				resEnterPacket.Player.PosInfo.MovedirY = enterPacket.Player.PosInfo.MovedirY;
+
+				Broadcast(resEnterPacket);
 			}
 		}
 

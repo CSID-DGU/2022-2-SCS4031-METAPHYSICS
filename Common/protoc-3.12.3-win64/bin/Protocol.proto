@@ -35,8 +35,7 @@ message S_Despawn {
 }
 
 message C_EnterGame {
-  int32 playerId = 1; //식별id
-  string name = 2; //닉네임
+  PlayerInfo player = 1;
 }
 
 message C_LeaveGame {
@@ -70,8 +69,9 @@ message S_Chat {
 
 message PlayerInfo {
   int32 playerId = 1; //식별id
-  string name = 2; //닉네임
-  PositionInfo posInfo = 3;
+  string userName = 2; //닉네임
+  int32 colorIndex = 3;
+  PositionInfo posInfo = 4;
 }
 
 message PositionInfo {

@@ -14,7 +14,7 @@ public class ObjectManager
 		if (myPlayer)
 		{
 			GameObject go = Managers.Resource.Instantiate("User/MyPlayer");
-			go.name = info.Name;
+			//go.name = info.Name;
 			_objects.Add(info.PlayerId, go);
 
 			MyPlayer = go.GetComponent<MyPlayerController>();
@@ -24,7 +24,7 @@ public class ObjectManager
 		else
 		{
 			GameObject go = Managers.Resource.Instantiate("User/ACO");
-			go.name = info.Name;
+			//go.name = info.Name;
 			_objects.Add(info.PlayerId, go);
 
 			UserControllerScript pc = go.GetComponent<UserControllerScript>();

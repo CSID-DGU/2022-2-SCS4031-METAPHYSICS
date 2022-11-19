@@ -50,14 +50,18 @@ class PacketHandler
 		C_EnterGame enterPacket = packet as C_EnterGame;
 		ClientSession clientSession = session as ClientSession;
 
-		//Player MyPlayer = clientSession.MyPlayer;
+		Console.WriteLine($"C_EnterGame({enterPacket.Player.UserName})");
+		Console.WriteLine($"C_EnterGame({enterPacket.Player.ColorIndex})");
+
 		clientSession.MyPlayer = PlayerManager.Instance.Add();
 		{
-			clientSession.MyPlayer.Info.Name = $"Player_{clientSession.MyPlayer.Info.PlayerId}";
+			//내용 집어넣기
 			clientSession.MyPlayer.Info.PosInfo.PosX = 0;
 			clientSession.MyPlayer.Info.PosInfo.PosY = 0;
 			clientSession.MyPlayer.Info.PosInfo.MovedirX = 0.0f;
 			clientSession.MyPlayer.Info.PosInfo.MovedirY = 0.0f;
+			clientSession.MyPlayer.Info.ColorIndex = enterPacket.Player.ColorIndex;
+			clientSession.MyPlayer.Info.UserName = enterPacket.Player.UserName;
 			clientSession.MyPlayer.Session = clientSession;
 		}
 
