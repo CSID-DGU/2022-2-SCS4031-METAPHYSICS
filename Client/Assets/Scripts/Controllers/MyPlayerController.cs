@@ -171,49 +171,49 @@ public class MyPlayerController : UserControllerScript
 			if(m_vMoveDir.x > 0.0f)
             {
 				if (m_vMoveDir.y > 0.5f)
-					m_MoveDir = MoveDir.UpRight;
+					m_MoveDir = (int)MoveDir.UpRight;
 
 				else if (m_vMoveDir.y < -0.5f)
-					m_MoveDir = MoveDir.DownRight;
+					m_MoveDir = (int)MoveDir.DownRight;
 
 				else 
-					m_MoveDir = MoveDir.Right;
+					m_MoveDir = (int)MoveDir.Right;
             }
 
 			else if (m_vMoveDir.x < 0.0f)
 			{
 				if (m_vMoveDir.y > 0.5f)
-					m_MoveDir = MoveDir.UpLeft;
+					m_MoveDir = (int)MoveDir.UpLeft;
 
 				else if (m_vMoveDir.y < -0.5f)
-					m_MoveDir = MoveDir.DownLeft;
+					m_MoveDir = (int)MoveDir.DownLeft;
 
 				else
-					m_MoveDir = MoveDir.Left;
+					m_MoveDir = (int)MoveDir.Left;
 			}
 
 			if (m_vMoveDir.y > 0.0f)
 			{
 				if (m_vMoveDir.x > 0.5f)
-					m_MoveDir = MoveDir.UpRight;
+					m_MoveDir = (int)MoveDir.UpRight;
 
 				else if (m_vMoveDir.x < -0.5f)
-					m_MoveDir = MoveDir.UpLeft;
+					m_MoveDir = (int)MoveDir.UpLeft;
 
 				else 
-					m_MoveDir = MoveDir.Up;
+					m_MoveDir = (int)MoveDir.Up;
 			}
 
 			else if (m_vMoveDir.y < 0.0f)
 			{
 				if (m_vMoveDir.x > 0.5f)
-					m_MoveDir = MoveDir.DownRight;
+					m_MoveDir = (int)MoveDir.DownRight;
 
 				else if (m_vMoveDir.x < -0.5f)
-					m_MoveDir = MoveDir.DownLeft;
+					m_MoveDir = (int)MoveDir.DownLeft;
 
 				else 
-					m_MoveDir = MoveDir.Down;
+					m_MoveDir = (int)MoveDir.Down;
 			}
 		}
 

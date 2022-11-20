@@ -79,6 +79,7 @@ message PositionInfo {
   float posY = 2;
   float movedirX = 3;
   float movedirY = 4;
+  int32 movedir = 5;
 }
 
 message ChatInfo {
