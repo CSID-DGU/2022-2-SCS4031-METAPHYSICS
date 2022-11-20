@@ -32,6 +32,9 @@ public class ObjectManager
 			pc.Id = info.PlayerId;
 			pc.PosInfo = info.PosInfo;
 			pc.SyncPos();
+
+			DataManager dc = go.GetComponent<DataManager>();
+			dc.SetCurrentUser(info.UserName);
 		}
 	}
 
