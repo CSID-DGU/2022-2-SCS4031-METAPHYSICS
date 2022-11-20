@@ -11,6 +11,8 @@ public class UserControllerScript : MonoBehaviour
 	// Start is called before the first frame update
 	Animator m_Animator;
 	Rigidbody2D m_Rigid;
+	Vector2 m_SynchroPos = new Vector2(0.0f, 0.0f);
+	bool m_IsSyncPos = true;
 
 	protected bool _updated = false; //패킷 업데이트
 
@@ -24,10 +26,18 @@ public class UserControllerScript : MonoBehaviour
 				return;
 
 			_positionInfo = value;
+			m_MoveDir = value.Movedir;
 			CellPos = new Vector2(value.PosX, value.PosY);
 			m_vMoveDir = new Vector2(value.MovedirX, value.MovedirY);
 		}
 	}
+
+	public void SyncPos()
+    {
+		Vector2 destPos = CellPos;
+		transform.position = destPos;
+    }
+
 	[SerializeField]
 	public Vector2 CellPos //이거 서버 전달
 	{
@@ -61,13 +71,24 @@ public class UserControllerScript : MonoBehaviour
 	}
 
 	[SerializeField]
+	public int m_MoveDir //애니메이션, 서버 전달
+    {
+        get
+        {
+			return PosInfo.Movedir;
+		}
+        set
+        {
+			PosInfo.Movedir = value;
+			_updated = true;
+        }
+    }
+
+	[SerializeField]
 	private float	m_MoveSpeed;
 
 	//[SerializeField]
 	//private bool	m_IsMoving = false;
-
-	[SerializeField]
-	protected MoveDir m_MoveDir = MoveDir.None;
 
 	[SerializeField]
 	private GameObject m_FriendListPrefab = null;
@@ -138,11 +159,26 @@ public class UserControllerScript : MonoBehaviour
 
 	}
 
+	protected virtual void FixedUpdate()
+    {
+        if (!m_IsSyncPos)
+        {
+            Vector2 Dir = m_SynchroPos - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            Vector2 Velocity = Dir * Time.deltaTime;
+			m_Rigid.MovePosition(m_SynchroPos);
+		}
+
+        else
+            gameObject.transform.position = m_SynchroPos;
+    }
+
 	protected virtual void Update()
 	{
 		//GetInput();
 		OtherUpdatePosition();
-		UpdateIsMoving();
+		//UpdateIsMoving();
+
+		
 	}
 
 	protected virtual void LateUpdate()
@@ -246,11 +282,12 @@ public class UserControllerScript : MonoBehaviour
 		else
 			VelocityY = 0.0f;
 
-		m_Rigid.velocity = new Vector2(VelocityX, VelocityY);
-		//Vector2 destPos = CellPos;
-		//destPos.x = m_Rigid.transform.position.x;
-		//destPos.y = m_Rigid.transform.position.y;
-		//CellPos = destPos;
+		m_SynchroPos = new Vector2(PosInfo.PosX, PosInfo.PosY);
+
+		m_IsSyncPos = 0.1f > (Vector2.Distance(m_SynchroPos, gameObject.transform.position));
+
+		//gameObject.transform.position = m_SynchroPos;
+		m_MoveDir = PosInfo.Movedir;
 	}
 
 	protected virtual void UpdateIsMoving()
@@ -258,7 +295,7 @@ public class UserControllerScript : MonoBehaviour
 		if (m_Rigid.velocity == Vector2.zero)
 		{
 			//m_IsMoving = false;
-			m_MoveDir = MoveDir.None;
+			m_MoveDir = (int)MoveDir.None;
 		}
 
 		else
@@ -268,50 +305,50 @@ public class UserControllerScript : MonoBehaviour
 			if(m_vMoveDir.x == 1.0f)
             {
 				if (m_vMoveDir.y == 1.0f)
-					m_MoveDir = MoveDir.UpRight;
+					m_MoveDir = (int)MoveDir.UpRight;
 
 				else if (m_vMoveDir.y == -1.0f)
-					m_MoveDir = MoveDir.DownRight;
+					m_MoveDir = (int)MoveDir.DownRight;
 
 				else
-					m_MoveDir = MoveDir.Right;
+					m_MoveDir = (int)MoveDir.Right;
             }
 
 			else if (m_vMoveDir.x == -1.0f)
 			{
 				if (m_vMoveDir.y == 1.0f)
-					m_MoveDir = MoveDir.UpLeft;
+					m_MoveDir = (int)MoveDir.UpLeft;
 
 				else if (m_vMoveDir.y == -1.0f)
-					m_MoveDir = MoveDir.DownLeft;
+					m_MoveDir = (int)MoveDir.DownLeft;
 
 				else
-					m_MoveDir = MoveDir.Left;
+					m_MoveDir = (int)MoveDir.Left;
 
 			}
 
 			if (m_vMoveDir.y == 1.0f)
 			{
 				if (m_vMoveDir.x == 1.0f)
-					m_MoveDir = MoveDir.UpRight;
+					m_MoveDir = (int)MoveDir.UpRight;
 
 				else if (m_vMoveDir.x == -1.0f)
-					m_MoveDir = MoveDir.UpLeft;
+					m_MoveDir = (int)MoveDir.UpLeft;
 
 				else
-					m_MoveDir = MoveDir.Up;
+					m_MoveDir = (int)MoveDir.Up;
 			}
 
 			else if (m_vMoveDir.y == -1.0f)
 			{
 				if (m_vMoveDir.x == 1.0f)
-					m_MoveDir = MoveDir.DownRight;
+					m_MoveDir = (int)MoveDir.DownRight;
 
 				else if (m_vMoveDir.x == -1.0f)
-					m_MoveDir = MoveDir.DownLeft;
+					m_MoveDir = (int)MoveDir.DownLeft;
 
 				else
-					m_MoveDir = MoveDir.Down;
+					m_MoveDir = (int)MoveDir.Down;
 
 			}
 		}
@@ -323,31 +360,31 @@ public class UserControllerScript : MonoBehaviour
 	{
         switch (m_MoveDir)
         {
-            case MoveDir.None:
+            case (int)MoveDir.None:
 				m_Animator.Play("IDLE_FRONT");
 				break;
-            case MoveDir.Up:
+            case (int)MoveDir.Up:
 				m_Animator.Play("WALK_BACK");
 				break;
-            case MoveDir.Down:
+            case (int)MoveDir.Down:
 				m_Animator.Play("WALK_FRONT");
 				break;
-            case MoveDir.Left:
+            case (int)MoveDir.Left:
 				m_Animator.Play("WALK_LEFT");
 				break;
-            case MoveDir.Right:
+            case (int)MoveDir.Right:
 				m_Animator.Play("WALK_RIGHT");
 				break;
-            case MoveDir.UpRight:
+            case (int)MoveDir.UpRight:
 				m_Animator.Play("WALK_RIGHTUP");
 				break;
-            case MoveDir.UpLeft:
+            case (int)MoveDir.UpLeft:
 				m_Animator.Play("WALK_LEFTUP");
 				break;
-            case MoveDir.DownRight:
+            case (int)MoveDir.DownRight:
 				m_Animator.Play("WALK_RIGHTDOWN");
 				break;
-            case MoveDir.DownLeft:
+            case (int)MoveDir.DownLeft:
 				m_Animator.Play("WALK_LEFTDOWN");
 				break;
         }

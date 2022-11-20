@@ -42,6 +42,10 @@ public class MyPlayerController : UserControllerScript
 		gameObject.transform.position = InitPos;
 	}
 
+	void FixedUpdate()
+    {
+
+    }
 	protected override void Update()
 	{
 		GetInput();
@@ -50,9 +54,10 @@ public class MyPlayerController : UserControllerScript
 		UpdateIsMoving();
 	}
 
+	
+
 	protected  void UpdateNavigation()
     {
-		
 		NavigationManager NavManager = Managers.Navigation;
 		string CurrentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
@@ -111,6 +116,7 @@ public class MyPlayerController : UserControllerScript
 					Rigidbody2D rigid = gameObject.GetComponent<Rigidbody2D>();
 					rigid.transform.position = TargetPos;
 					rigid.velocity = Vector3.zero;
+					m_vMoveDir = Vector2.zero;
 				}
 
 				else
@@ -131,16 +137,16 @@ public class MyPlayerController : UserControllerScript
 				m_PathStack = null;
 				Rigidbody2D rigid = gameObject.GetComponent<Rigidbody2D>();
 				rigid.velocity = Vector3.zero;
-
 			}
 		}
-		CheckUpdatedFlag();
+		//CheckUpdatedFlag();
 	}
 	protected override void LateUpdate()
 	{
 		base.LateUpdate();
 
 		Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+		
 	}
 
 	// 키보드 입력
@@ -153,7 +159,7 @@ public class MyPlayerController : UserControllerScript
 	{
 		base.UpdatePosition();
 
-		CheckUpdatedFlag();
+		//CheckUpdatedFlag();
 	}
 
 	protected override void UpdateIsMoving()
@@ -171,51 +177,53 @@ public class MyPlayerController : UserControllerScript
 			if(m_vMoveDir.x > 0.0f)
             {
 				if (m_vMoveDir.y > 0.5f)
-					m_MoveDir = MoveDir.UpRight;
+					m_MoveDir = (int)MoveDir.UpRight;
 
 				else if (m_vMoveDir.y < -0.5f)
-					m_MoveDir = MoveDir.DownRight;
+					m_MoveDir = (int)MoveDir.DownRight;
 
 				else 
-					m_MoveDir = MoveDir.Right;
+					m_MoveDir = (int)MoveDir.Right;
             }
 
 			else if (m_vMoveDir.x < 0.0f)
 			{
 				if (m_vMoveDir.y > 0.5f)
-					m_MoveDir = MoveDir.UpLeft;
+					m_MoveDir = (int)MoveDir.UpLeft;
 
 				else if (m_vMoveDir.y < -0.5f)
-					m_MoveDir = MoveDir.DownLeft;
+					m_MoveDir = (int)MoveDir.DownLeft;
 
 				else
-					m_MoveDir = MoveDir.Left;
+					m_MoveDir = (int)MoveDir.Left;
 			}
 
 			if (m_vMoveDir.y > 0.0f)
 			{
 				if (m_vMoveDir.x > 0.5f)
-					m_MoveDir = MoveDir.UpRight;
+					m_MoveDir = (int)MoveDir.UpRight;
 
 				else if (m_vMoveDir.x < -0.5f)
-					m_MoveDir = MoveDir.UpLeft;
+					m_MoveDir = (int)MoveDir.UpLeft;
 
 				else 
-					m_MoveDir = MoveDir.Up;
+					m_MoveDir = (int)MoveDir.Up;
 			}
 
 			else if (m_vMoveDir.y < 0.0f)
 			{
 				if (m_vMoveDir.x > 0.5f)
-					m_MoveDir = MoveDir.DownRight;
+					m_MoveDir = (int)MoveDir.DownRight;
 
 				else if (m_vMoveDir.x < -0.5f)
-					m_MoveDir = MoveDir.DownLeft;
+					m_MoveDir = (int)MoveDir.DownLeft;
 
 				else 
-					m_MoveDir = MoveDir.Down;
+					m_MoveDir = (int)MoveDir.Down;
 			}
 		}
+
+		PosInfo.Movedir = m_MoveDir;
 
 		CheckUpdatedFlag();
 	}

@@ -130,11 +130,12 @@ public class EightPathScene : BaseScene
 
         UserName = Managers.Data.GetCurrentUser();
         ColorIndex = Managers.Data.GetCurrentUserColorIndex();
-        // TODO 위치, 방향 정보
+        //// TODO 위치, 방향 정보
         //PosX = Managers.Data.GetCurrentPosX(1);
-        // PosY = Managers.Data.GetCurrentPosY(1);
-        // MovedirX = Managers.Data.GetCurrentDirX(1);
-        // MovedirY = Managers.Data.GetCurrentDirY(1);
+        //PosY = Managers.Data.GetCurrentPosY(1);
+        //MovedirX = Managers.Data.GetCurrentDirX(1);
+        //MovedirY = Managers.Data.GetCurrentDirY(1);
+        //오류남
 
         //씬입장
         CheckUpdatedFlag();

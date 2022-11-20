@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Server.Game
 {
-	public class GameRoom
+	public class GameRoom : JobSerializer
 	{
-		object _lock = new object();
+		//object _lock = new object();
 		public int RoomId { get; set; }
 
 		List<Player> _players = new List<Player>();
@@ -17,90 +17,83 @@ namespace Server.Game
 		{
 			if (newPlayer == null)
 				return;
-			
-			lock (_lock)
+
+			_players.Add(newPlayer);
+			newPlayer.Room = this;
+
+
+			// 본인한테 정보 전송
 			{
-				_players.Add(newPlayer);
-				newPlayer.Room = this;
+				S_EnterGame enterPacket = new S_EnterGame();
+				enterPacket.Player = newPlayer.Info;
+				//Console.WriteLine($"S_EnterGame({enterPacket.Player.UserName})");
+				//Console.WriteLine($"S_EnterGame({enterPacket.Player.ColorIndex})");
+				newPlayer.Session.Send(enterPacket);
 
-				// 본인한테 정보 전송
+				//다른사람들 불러오기
+				S_Spawn spawnPacket = new S_Spawn();
+				foreach (Player p in _players)
 				{
-					S_EnterGame enterPacket = new S_EnterGame();
-					enterPacket.Player = newPlayer.Info;
-					Console.WriteLine($"S_EnterGame({enterPacket.Player.UserName})");
-					Console.WriteLine($"S_EnterGame({enterPacket.Player.ColorIndex})");
-					newPlayer.Session.Send(enterPacket);
-
-					S_Spawn spawnPacket = new S_Spawn();
-					foreach (Player p in _players)
-					{
-						if (newPlayer != p)
-							spawnPacket.Players.Add(p.Info);
-					}
-					newPlayer.Session.Send(spawnPacket);
+					if (newPlayer != p)
+						spawnPacket.Players.Add(p.Info);
 				}
+				newPlayer.Session.Send(spawnPacket);
+			}
 
-				// 타인한테 정보 전송
+			// 타인한테 정보 전송
+			{
+				S_Spawn spawnPacket = new S_Spawn();
+				spawnPacket.Players.Add(newPlayer.Info);
+				foreach (Player p in _players)
 				{
-					S_Spawn spawnPacket = new S_Spawn();
-					spawnPacket.Players.Add(newPlayer.Info);
-					foreach (Player p in _players)
-					{
-						if (newPlayer != p)
-							p.Session.Send(spawnPacket);
-					}
+					if (newPlayer != p)
+						p.Session.Send(spawnPacket);
 				}
 			}
 		}
 
 		public void LeaveGame(int playerId)
 		{
-			lock (_lock)
+			Player player = _players.Find(p => p.Info.PlayerId == playerId);
+			if (player == null)
+				return;
+
+			_players.Remove(player);
+			player.Room = null;
+
+			// 본인한테 정보 전송
 			{
-				Player player = _players.Find(p => p.Info.PlayerId == playerId);
-				if (player == null)
-					return;
+				S_LeaveGame leavePacket = new S_LeaveGame();
+				player.Session.Send(leavePacket);
+			}
 
-				_players.Remove(player);
-				player.Room = null;
-
-				// 본인한테 정보 전송
+			// 타인한테 정보 전송
+			{
+				S_Despawn despawnPacket = new S_Despawn();
+				despawnPacket.PlayerIds.Add(player.Info.PlayerId);
+				foreach (Player p in _players)
 				{
-					S_LeaveGame leavePacket = new S_LeaveGame();
-					player.Session.Send(leavePacket);
-				}
-
-				// 타인한테 정보 전송
-				{
-					S_Despawn despawnPacket = new S_Despawn();
-					despawnPacket.PlayerIds.Add(player.Info.PlayerId);
-					foreach (Player p in _players)
-					{
-						if (player != p)
-							p.Session.Send(despawnPacket);
-					}
+					if (player != p)
+						p.Session.Send(despawnPacket);
 				}
 			}
 		}
 
 		public void HandleMove(Player player, C_Move movePacket)
-        {
+		{
 			if (player == null)
 				return;
 
-			lock(_lock)
-            {
-				// 일단 서버에서 좌표 이동
-				PlayerInfo info = player.Info;
-				info.PosInfo = movePacket.PosInfo;
+			// 일단 서버에서 좌표 이동
+			PlayerInfo info = player.Info;
+			info.PosInfo = movePacket.PosInfo;
 
-				// 다른 플레이어한테도 알려준다
-				S_Move resMovePacket = new S_Move();
-				resMovePacket.PlayerId = player.Info.PlayerId;
-				resMovePacket.PosInfo = movePacket.PosInfo;
+			// 다른 플레이어한테도 알려준다
+			S_Move resMovePacket = new S_Move();
+			resMovePacket.PlayerId = player.Info.PlayerId;
+			resMovePacket.PosInfo = movePacket.PosInfo;
 
-				Broadcast(resMovePacket);
-			}
+			Broadcast(resMovePacket);
 		}
 
 		public void HandleChat(Player player, C_Chat chatPacket)
@@ -108,44 +101,34 @@ namespace Server.Game
 			if (player == null)
 				return;
 
-			lock (_lock)
-			{
-				// 다른 플레이어한테 전해주기
-				S_Chat resChatPacket = new S_Chat();
-				resChatPacket.PlayerId = player.Info.PlayerId;
-				resChatPacket.ChatInfo = chatPacket.ChatInfo;
+			// 다른 플레이어한테 전해주기
+			S_Chat resChatPacket = new S_Chat();
+			resChatPacket.PlayerId = player.Info.PlayerId;
+			resChatPacket.ChatInfo = chatPacket.ChatInfo;
 
-				Broadcast(resChatPacket);
-			}
+			Broadcast(resChatPacket);
 		}
 
 		public void HandleEnter(C_EnterGame enterPacket)
-        {
-			lock (_lock)
-			{
-				// 다른 플레이어한테 전해주기
-				S_EnterGame resEnterPacket = new S_EnterGame();
-				//resEnterPacket.PlayerId = player.Info.PlayerId;
-				resEnterPacket.Player.UserName = enterPacket.Player.UserName;
-				resEnterPacket.Player.ColorIndex = enterPacket.Player.ColorIndex;
-				resEnterPacket.Player.PosInfo.PosX = enterPacket.Player.PosInfo.PosX;
-				resEnterPacket.Player.PosInfo.PosY = enterPacket.Player.PosInfo.PosY;
-				resEnterPacket.Player.PosInfo.MovedirX = enterPacket.Player.PosInfo.MovedirX;
-				resEnterPacket.Player.PosInfo.MovedirY = enterPacket.Player.PosInfo.MovedirY;
+		{
+			S_EnterGame resEnterPacket = new S_EnterGame();
+			//resEnterPacket.PlayerId = player.Info.PlayerId;
+			resEnterPacket.Player.UserName = enterPacket.Player.UserName;
+			resEnterPacket.Player.ColorIndex = enterPacket.Player.ColorIndex;
+			resEnterPacket.Player.PosInfo.PosX = enterPacket.Player.PosInfo.PosX;
+			resEnterPacket.Player.PosInfo.PosY = enterPacket.Player.PosInfo.PosY;
+			resEnterPacket.Player.PosInfo.MovedirX = enterPacket.Player.PosInfo.MovedirX;
+			resEnterPacket.Player.PosInfo.MovedirY = enterPacket.Player.PosInfo.MovedirY;
 
-				Broadcast(resEnterPacket);
-			}
+			Broadcast(resEnterPacket);
 		}
 
 		//방의 모든 플레이어들에게 send함
 		public void Broadcast(IMessage packet)
 		{
-			lock (_lock)
+			foreach (Player p in _players)
 			{
-				foreach (Player p in _players)
-				{
-					p.Session.Send(packet);
-				}
+				p.Session.Send(packet);
 			}
 		}
 	}
