@@ -11,6 +11,8 @@ public class UserControllerScript : MonoBehaviour
 	// Start is called before the first frame update
 	Animator m_Animator;
 	Rigidbody2D m_Rigid;
+	Vector2 m_SynchroPos = new Vector2(0.0f, 0.0f);
+	bool m_IsSyncPos = true;
 
 	protected bool _updated = false; //패킷 업데이트
 
@@ -157,11 +159,26 @@ public class UserControllerScript : MonoBehaviour
 
 	}
 
+	protected virtual void FixedUpdate()
+    {
+        if (!m_IsSyncPos)
+        {
+            Vector2 Dir = m_SynchroPos - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            Vector2 Velocity = Dir * Time.deltaTime;
+			m_Rigid.MovePosition(m_SynchroPos);
+		}
+
+        else
+            gameObject.transform.position = m_SynchroPos;
+    }
+
 	protected virtual void Update()
 	{
 		//GetInput();
 		OtherUpdatePosition();
-		UpdateIsMoving();
+		//UpdateIsMoving();
+
+		
 	}
 
 	protected virtual void LateUpdate()
@@ -265,11 +282,12 @@ public class UserControllerScript : MonoBehaviour
 		else
 			VelocityY = 0.0f;
 
-		m_Rigid.velocity = new Vector2(VelocityX, VelocityY);
-		//Vector2 destPos = CellPos;
-		//destPos.x = m_Rigid.transform.position.x;
-		//destPos.y = m_Rigid.transform.position.y;
-		//CellPos = destPos;
+		m_SynchroPos = new Vector2(PosInfo.PosX, PosInfo.PosY);
+
+		m_IsSyncPos = 0.1f > (Vector2.Distance(m_SynchroPos, gameObject.transform.position));
+
+		//gameObject.transform.position = m_SynchroPos;
+		m_MoveDir = PosInfo.Movedir;
 	}
 
 	protected virtual void UpdateIsMoving()
