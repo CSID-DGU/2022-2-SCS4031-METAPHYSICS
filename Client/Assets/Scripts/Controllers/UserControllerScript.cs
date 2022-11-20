@@ -28,6 +28,13 @@ public class UserControllerScript : MonoBehaviour
 			m_vMoveDir = new Vector2(value.MovedirX, value.MovedirY);
 		}
 	}
+
+	public void SyncPos()
+    {
+		Vector2 destPos = CellPos;
+		transform.position = destPos;
+    }
+
 	[SerializeField]
 	public Vector2 CellPos //이거 서버 전달
 	{

@@ -14,7 +14,7 @@ class PacketHandler
 		C_Move movePacket = packet as C_Move;
 		ClientSession clientSession = session as ClientSession;
 
-        //Console.WriteLine($"C_Move({movePacket.PosInfo.PosX}, {movePacket.PosInfo.PosY})");
+		//Console.WriteLine($"C_Move({movePacket.PosInfo.PosX}, {movePacket.PosInfo.PosY})");
 
 		Player player = clientSession.MyPlayer;
 		if (player == null)
@@ -24,11 +24,11 @@ class PacketHandler
 		if (room == null)
 			return;
 
-		room.HandleMove(player, movePacket);
+		room.Push(room.HandleMove, player, movePacket);
 	}
 
 	public static void C_ChatHandler(PacketSession session, IMessage packet)
-    {
+	{
 		C_Chat chatPacket = packet as C_Chat;
 		ClientSession clientSession = session as ClientSession;
 
@@ -42,7 +42,7 @@ class PacketHandler
 		if (room == null)
 			return;
 
-		room.HandleChat(player, chatPacket);
+		room.Push(room.HandleChat, player, chatPacket);
 	}
 
 	public static void C_EnterGameHandler(PacketSession session, IMessage packet)
@@ -65,7 +65,8 @@ class PacketHandler
 			clientSession.MyPlayer.Session = clientSession;
 		}
 
-		RoomManager.Instance.Find(1).EnterGame(clientSession.MyPlayer);
+		GameRoom room = RoomManager.Instance.Find(1);
+		room.Push(room.EnterGame, clientSession.MyPlayer);
 	}
 
 	public static void C_LeaveGameHandler(PacketSession session, IMessage packet)
