@@ -26,7 +26,7 @@ namespace Server.Game
 			{
 				S_EnterGame enterPacket = new S_EnterGame();
 				enterPacket.Player = newPlayer.Info;
-				//Console.WriteLine($"S_EnterGame({enterPacket.Player.UserName})");
+				//Console.WriteLine($"S_EnterGame({enterPacket.Player.UserPrivilege})");
 				//Console.WriteLine($"S_EnterGame({enterPacket.Player.ColorIndex})");
 				newPlayer.Session.Send(enterPacket);
 

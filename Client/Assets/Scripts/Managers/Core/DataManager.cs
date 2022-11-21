@@ -17,6 +17,7 @@ public class DataManager
     private UserPrivileges  m_UserPrivilege = UserPrivileges.None;
     private string          m_CurrentUserName = null;
     private UserCustomize m_CurrentUserColor = UserCustomize.End;
+    private int m_PrivilegeIndex;
     private int m_ColorIndex;
     private float m_posX;
     private float m_posY;
@@ -101,6 +102,12 @@ public class DataManager
     public void SetCurrentPrivilege(UserPrivileges UserPrivilege)
     {
         m_UserPrivilege = UserPrivilege;
+    }
+
+    public void SetCurrentPrivilege(int UserPrivilege)
+    {
+        m_PrivilegeIndex = UserPrivilege;
+        SetCurrentPrivilege((UserPrivileges)UserPrivilege);
     }
 
     public UserPrivileges GetCurrentPrivilege()

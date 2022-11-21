@@ -3,10 +3,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Define;
 
 public class ObjectManager
 {
 	public MyPlayerController MyPlayer { get; set; }
+	public UserControllerScript OtherPlayer { get; set; }
 	Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>();
 
 	public void Add(PlayerInfo info, bool myPlayer = false)
@@ -14,27 +16,29 @@ public class ObjectManager
 		if (myPlayer)
 		{
 			GameObject go = Managers.Resource.Instantiate("User/MyPlayer");
-			//go.name = info.Name;
-			_objects.Add(info.PlayerId, go);
 
 			MyPlayer = go.GetComponent<MyPlayerController>();
 			MyPlayer.Id = info.PlayerId;
 			MyPlayer.PosInfo = info.PosInfo;
+			Managers.Data.SetCurrentUserColor(info.ColorIndex);
+			MyPlayer.SetCustomPrivilege(info.UserPrivilege);
 			MyPlayer.SyncPos();
+
+			_objects.Add(info.PlayerId, go);
 		}
 		else
 		{
 			GameObject go = Managers.Resource.Instantiate("User/ACO");
 			//go.name = info.Name;
+
+			OtherPlayer = go.GetComponent<UserControllerScript>();
+			OtherPlayer.Id = info.PlayerId;
+			OtherPlayer.PosInfo = info.PosInfo;
+			OtherPlayer.SetCustomColor(info.ColorIndex);
+			OtherPlayer.SetCustomPrivilege(info.UserPrivilege);
+			OtherPlayer.SyncPos();
+
 			_objects.Add(info.PlayerId, go);
-
-			UserControllerScript pc = go.GetComponent<UserControllerScript>();
-			pc.Id = info.PlayerId;
-			pc.PosInfo = info.PosInfo;
-			pc.SyncPos();
-
-			DataManager dc = go.GetComponent<DataManager>();
-			dc.SetCurrentUser(info.UserName);
 		}
 	}
 

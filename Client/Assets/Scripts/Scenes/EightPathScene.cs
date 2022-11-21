@@ -65,6 +65,19 @@ public class EightPathScene : BaseScene
             _updated = true;
         }
     }
+    public int UserPrivilege //이거 서버 전달
+    {
+        get
+        {
+            return Player_Info.UserPrivilege;
+        }
+
+        set
+        {
+            Player_Info.UserPrivilege = value;
+            _updated = true;
+        }
+    }
     public float PosX //이거 서버 전달
     {
         get
@@ -130,6 +143,7 @@ public class EightPathScene : BaseScene
 
         UserName = Managers.Data.GetCurrentUser();
         ColorIndex = Managers.Data.GetCurrentUserColorIndex();
+        UserPrivilege = (int)Managers.Data.GetCurrentPrivilege();
         //// TODO 위치, 방향 정보
         //PosX = Managers.Data.GetCurrentPosX(1);
         //PosY = Managers.Data.GetCurrentPosY(1);

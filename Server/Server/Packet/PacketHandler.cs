@@ -15,7 +15,7 @@ class PacketHandler
 		ClientSession clientSession = session as ClientSession;
 
 		//애니메이션 번호 출력
-		Console.WriteLine($"C_Move({movePacket.PosInfo.Movedir})");
+		//Console.WriteLine($"C_Move({movePacket.PosInfo.Movedir})");
 
 		Player player = clientSession.MyPlayer;
 		if (player == null)
@@ -57,12 +57,9 @@ class PacketHandler
 		clientSession.MyPlayer = PlayerManager.Instance.Add();
 		{
 			//내용 집어넣기
-			clientSession.MyPlayer.Info.PosInfo.PosX = 0.0f;
-			clientSession.MyPlayer.Info.PosInfo.PosY = 0.0f;
-			clientSession.MyPlayer.Info.PosInfo.MovedirX = 0.0f;
-			clientSession.MyPlayer.Info.PosInfo.MovedirY = 0.0f;
 			clientSession.MyPlayer.Info.ColorIndex = enterPacket.Player.ColorIndex;
 			clientSession.MyPlayer.Info.UserName = enterPacket.Player.UserName;
+			clientSession.MyPlayer.Info.UserPrivilege = enterPacket.Player.UserPrivilege;
 			clientSession.MyPlayer.Session = clientSession;
 		}
 

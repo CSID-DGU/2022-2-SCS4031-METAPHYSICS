@@ -37,17 +37,18 @@ namespace Google.Protobuf.Protocol {
             "AiABKAsyFi5Qcm90b2NvbC5Qb3NpdGlvbkluZm8iLgoGQ19DaGF0EiQKCGNo",
             "YXRJbmZvGAEgASgLMhIuUHJvdG9jb2wuQ2hhdEluZm8iQAoGU19DaGF0EhAK",
             "CHBsYXllcklkGAEgASgFEiQKCGNoYXRJbmZvGAIgASgLMhIuUHJvdG9jb2wu",
-            "Q2hhdEluZm8ibQoKUGxheWVySW5mbxIQCghwbGF5ZXJJZBgBIAEoBRIQCgh1",
-            "c2VyTmFtZRgCIAEoCRISCgpjb2xvckluZGV4GAMgASgFEicKB3Bvc0luZm8Y",
-            "BCABKAsyFi5Qcm90b2NvbC5Qb3NpdGlvbkluZm8iXwoMUG9zaXRpb25JbmZv",
-            "EgwKBHBvc1gYASABKAISDAoEcG9zWRgCIAEoAhIQCghtb3ZlZGlyWBgDIAEo",
-            "AhIQCghtb3ZlZGlyWRgEIAEoAhIPCgdtb3ZlZGlyGAUgASgFIjIKCENoYXRJ",
-            "bmZvEhAKCHVzZXJOYW1lGAEgASgJEhQKDGNoYXR0aW5nVGV4dBgCIAEoCSq3",
-            "AQoFTXNnSWQSEAoMU19FTlRFUl9HQU1FEAASEAoMU19MRUFWRV9HQU1FEAES",
-            "CwoHU19TUEFXThACEg0KCVNfREVTUEFXThADEhAKDENfRU5URVJfR0FNRRAE",
-            "EhAKDENfTEVBVkVfR0FNRRAFEgsKB0NfU1BBV04QBhINCglDX0RFU1BBV04Q",
-            "BxIKCgZDX01PVkUQCBIKCgZTX01PVkUQCRIKCgZDX0NIQVQQChIKCgZTX0NI",
-            "QVQQC0IbqgIYR29vZ2xlLlByb3RvYnVmLlByb3RvY29sYgZwcm90bzM="));
+            "Q2hhdEluZm8ihAEKClBsYXllckluZm8SEAoIcGxheWVySWQYASABKAUSEAoI",
+            "dXNlck5hbWUYAiABKAkSEgoKY29sb3JJbmRleBgDIAEoBRIVCg11c2VyUHJp",
+            "dmlsZWdlGAQgASgFEicKB3Bvc0luZm8YBSABKAsyFi5Qcm90b2NvbC5Qb3Np",
+            "dGlvbkluZm8iXwoMUG9zaXRpb25JbmZvEgwKBHBvc1gYASABKAISDAoEcG9z",
+            "WRgCIAEoAhIQCghtb3ZlZGlyWBgDIAEoAhIQCghtb3ZlZGlyWRgEIAEoAhIP",
+            "Cgdtb3ZlZGlyGAUgASgFIjIKCENoYXRJbmZvEhAKCHVzZXJOYW1lGAEgASgJ",
+            "EhQKDGNoYXR0aW5nVGV4dBgCIAEoCSq3AQoFTXNnSWQSEAoMU19FTlRFUl9H",
+            "QU1FEAASEAoMU19MRUFWRV9HQU1FEAESCwoHU19TUEFXThACEg0KCVNfREVT",
+            "UEFXThADEhAKDENfRU5URVJfR0FNRRAEEhAKDENfTEVBVkVfR0FNRRAFEgsK",
+            "B0NfU1BBV04QBhINCglDX0RFU1BBV04QBxIKCgZDX01PVkUQCBIKCgZTX01P",
+            "VkUQCRIKCgZDX0NIQVQQChIKCgZTX0NIQVQQC0IbqgIYR29vZ2xlLlByb3Rv",
+            "YnVmLlByb3RvY29sYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.MsgId), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -63,7 +64,7 @@ namespace Google.Protobuf.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_Move), global::Google.Protobuf.Protocol.S_Move.Parser, new[]{ "PlayerId", "PosInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.C_Chat), global::Google.Protobuf.Protocol.C_Chat.Parser, new[]{ "ChatInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_Chat), global::Google.Protobuf.Protocol.S_Chat.Parser, new[]{ "PlayerId", "ChatInfo" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.PlayerInfo), global::Google.Protobuf.Protocol.PlayerInfo.Parser, new[]{ "PlayerId", "UserName", "ColorIndex", "PosInfo" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.PlayerInfo), global::Google.Protobuf.Protocol.PlayerInfo.Parser, new[]{ "PlayerId", "UserName", "ColorIndex", "UserPrivilege", "PosInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.PositionInfo), global::Google.Protobuf.Protocol.PositionInfo.Parser, new[]{ "PosX", "PosY", "MovedirX", "MovedirY", "Movedir" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ChatInfo), global::Google.Protobuf.Protocol.ChatInfo.Parser, new[]{ "UserName", "ChattingText" }, null, null, null, null)
           }));
@@ -1520,7 +1521,7 @@ namespace Google.Protobuf.Protocol {
     public const int PlayerIdFieldNumber = 1;
     private int playerId_;
     /// <summary>
-    ///식별id
+    /// 식별id
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int PlayerId {
@@ -1675,6 +1676,7 @@ namespace Google.Protobuf.Protocol {
       playerId_ = other.playerId_;
       userName_ = other.userName_;
       colorIndex_ = other.colorIndex_;
+      userPrivilege_ = other.userPrivilege_;
       posInfo_ = other.posInfo_ != null ? other.posInfo_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -1688,7 +1690,7 @@ namespace Google.Protobuf.Protocol {
     public const int PlayerIdFieldNumber = 1;
     private int playerId_;
     /// <summary>
-    ///식별id
+    /// 식별id
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int PlayerId {
@@ -1702,7 +1704,7 @@ namespace Google.Protobuf.Protocol {
     public const int UserNameFieldNumber = 2;
     private string userName_ = "";
     /// <summary>
-    ///닉네임
+    /// 닉네임
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string UserName {
@@ -1715,6 +1717,9 @@ namespace Google.Protobuf.Protocol {
     /// <summary>Field number for the "colorIndex" field.</summary>
     public const int ColorIndexFieldNumber = 3;
     private int colorIndex_;
+    /// <summary>
+    /// 색깔
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int ColorIndex {
       get { return colorIndex_; }
@@ -1723,8 +1728,22 @@ namespace Google.Protobuf.Protocol {
       }
     }
 
+    /// <summary>Field number for the "userPrivilege" field.</summary>
+    public const int UserPrivilegeFieldNumber = 4;
+    private int userPrivilege_;
+    /// <summary>
+    /// 게스트 여부
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int UserPrivilege {
+      get { return userPrivilege_; }
+      set {
+        userPrivilege_ = value;
+      }
+    }
+
     /// <summary>Field number for the "posInfo" field.</summary>
-    public const int PosInfoFieldNumber = 4;
+    public const int PosInfoFieldNumber = 5;
     private global::Google.Protobuf.Protocol.PositionInfo posInfo_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Google.Protobuf.Protocol.PositionInfo PosInfo {
@@ -1750,6 +1769,7 @@ namespace Google.Protobuf.Protocol {
       if (PlayerId != other.PlayerId) return false;
       if (UserName != other.UserName) return false;
       if (ColorIndex != other.ColorIndex) return false;
+      if (UserPrivilege != other.UserPrivilege) return false;
       if (!object.Equals(PosInfo, other.PosInfo)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -1760,6 +1780,7 @@ namespace Google.Protobuf.Protocol {
       if (PlayerId != 0) hash ^= PlayerId.GetHashCode();
       if (UserName.Length != 0) hash ^= UserName.GetHashCode();
       if (ColorIndex != 0) hash ^= ColorIndex.GetHashCode();
+      if (UserPrivilege != 0) hash ^= UserPrivilege.GetHashCode();
       if (posInfo_ != null) hash ^= PosInfo.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1786,8 +1807,12 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(24);
         output.WriteInt32(ColorIndex);
       }
+      if (UserPrivilege != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(UserPrivilege);
+      }
       if (posInfo_ != null) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(42);
         output.WriteMessage(PosInfo);
       }
       if (_unknownFields != null) {
@@ -1806,6 +1831,9 @@ namespace Google.Protobuf.Protocol {
       }
       if (ColorIndex != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(ColorIndex);
+      }
+      if (UserPrivilege != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UserPrivilege);
       }
       if (posInfo_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(PosInfo);
@@ -1829,6 +1857,9 @@ namespace Google.Protobuf.Protocol {
       }
       if (other.ColorIndex != 0) {
         ColorIndex = other.ColorIndex;
+      }
+      if (other.UserPrivilege != 0) {
+        UserPrivilege = other.UserPrivilege;
       }
       if (other.posInfo_ != null) {
         if (posInfo_ == null) {
@@ -1859,7 +1890,11 @@ namespace Google.Protobuf.Protocol {
             ColorIndex = input.ReadInt32();
             break;
           }
-          case 34: {
+          case 32: {
+            UserPrivilege = input.ReadInt32();
+            break;
+          }
+          case 42: {
             if (posInfo_ == null) {
               PosInfo = new global::Google.Protobuf.Protocol.PositionInfo();
             }
@@ -1957,6 +1992,9 @@ namespace Google.Protobuf.Protocol {
     /// <summary>Field number for the "movedir" field.</summary>
     public const int MovedirFieldNumber = 5;
     private int movedir_;
+    /// <summary>
+    /// 애니메이션
+    /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int Movedir {
       get { return movedir_; }

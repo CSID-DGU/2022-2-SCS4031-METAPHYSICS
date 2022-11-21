@@ -63,15 +63,16 @@ message C_Chat {
 }
 
 message S_Chat {
-  int32 playerId = 1; //식별id
+  int32 playerId = 1; // 식별id
   ChatInfo chatInfo = 2;
 }
 
 message PlayerInfo {
-  int32 playerId = 1; //식별id
-  string userName = 2; //닉네임
-  int32 colorIndex = 3;
-  PositionInfo posInfo = 4;
+  int32 playerId = 1; // 식별id
+  string userName = 2; // 닉네임
+  int32 colorIndex = 3; // 색깔
+  int32 userPrivilege = 4; // 게스트 여부
+  PositionInfo posInfo = 5;
 }
 
 message PositionInfo {
@@ -79,7 +80,7 @@ message PositionInfo {
   float posY = 2;
   float movedirX = 3;
   float movedirY = 4;
-  int32 movedir = 5;
+  int32 movedir = 5; // 애니메이션
 }
 
 message ChatInfo {
