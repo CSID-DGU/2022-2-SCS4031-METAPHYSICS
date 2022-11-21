@@ -22,7 +22,8 @@ public class ObjectManager
 			MyPlayer.PosInfo = info.PosInfo;
 			Managers.Data.SetCurrentUserColor(info.ColorIndex);
 			MyPlayer.SetCustomPrivilege(info.UserPrivilege);
-			MyPlayer.SyncPos();
+			MyPlayer.SetUserName(info.UserName);
+			//MyPlayer.SyncPos();
 
 			_objects.Add(info.PlayerId, go);
 		}
@@ -31,12 +32,13 @@ public class ObjectManager
 			GameObject go = Managers.Resource.Instantiate("User/ACO");
 			//go.name = info.Name;
 
-			OtherPlayer = go.GetComponent<UserControllerScript>();
-			OtherPlayer.Id = info.PlayerId;
-			OtherPlayer.PosInfo = info.PosInfo;
-			OtherPlayer.SetCustomColor(info.ColorIndex);
-			OtherPlayer.SetCustomPrivilege(info.UserPrivilege);
-			OtherPlayer.SyncPos();
+			UserControllerScript iOtherPlayer = go.GetComponent<UserControllerScript>();
+			iOtherPlayer.Id = info.PlayerId;
+			iOtherPlayer.PosInfo = info.PosInfo;
+			iOtherPlayer.SetCustomColor(info.ColorIndex);
+			iOtherPlayer.SetCustomPrivilege(info.UserPrivilege);
+			iOtherPlayer.SetUserName(info.UserName);
+			//OtherPlayer.SyncPos();
 
 			_objects.Add(info.PlayerId, go);
 		}
