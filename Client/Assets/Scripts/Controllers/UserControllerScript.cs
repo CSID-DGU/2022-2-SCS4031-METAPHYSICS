@@ -16,6 +16,15 @@ public class UserControllerScript : MonoBehaviour
 	int m_CustomColor = -1;
 	int m_CustomPrivilege = -1;
 
+	[SerializeField]
+	protected string m_UserName = null;
+	[SerializeField]
+	protected Text m_UserNameText = null;
+
+	public void SetUserName(string UserName)
+	{
+		m_UserName = UserName;
+	}
 	public void SetCustomColor(int  color)
     {
 		m_CustomColor = color;
@@ -118,8 +127,9 @@ public class UserControllerScript : MonoBehaviour
 		SetCustomizeColor();
 
 		// user 이름 호출
-		Text UserText = gameObject.GetComponentInChildren<Text>();
-		UserText.text = Managers.Data.GetCurrentUser();
+		m_UserNameText.text = m_UserName;
+
+		transform.position = new Vector2(PosInfo.PosX, PosInfo.PosY);
 
 	}
 
@@ -132,8 +142,8 @@ public class UserControllerScript : MonoBehaviour
 			m_Rigid.MovePosition(m_SynchroPos);
 		}
 
-        else
-            gameObject.transform.position = m_SynchroPos;
+        //else
+        //    gameObject.transform.position = m_SynchroPos;
     }
 
 	protected virtual void Update()
@@ -141,7 +151,7 @@ public class UserControllerScript : MonoBehaviour
 		//GetInput();
 		OtherUpdatePosition();
 		//UpdateIsMoving();
-
+		UpdateUIPos();
 	}
 
 	protected virtual void LateUpdate()
@@ -188,6 +198,19 @@ public class UserControllerScript : MonoBehaviour
         }
 
 		m_vMoveDir = MoveDir;
+    }
+
+	protected void UpdateUIPos()
+    {
+        if (m_UserNameText)
+        {
+            Camera MainCamera = Camera.main;
+            Vector2 ScreenPos = MainCamera.WorldToScreenPoint(gameObject.transform.position);
+            Resolution RS = Screen.currentResolution;
+
+			//임의의 비율대로만 조금 올림
+            m_UserNameText.transform.position = ScreenPos + Vector2.up * 140.0f;
+        }
     }
 
 	protected virtual void UpdatePosition()

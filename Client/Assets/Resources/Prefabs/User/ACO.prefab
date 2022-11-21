@@ -222,8 +222,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4bc38281be8d54badb51d63a578d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_UserName: 
+  m_UserNameText: {fileID: 7073443490942808523}
   m_MoveSpeed: 0
-  m_MoveDir: 0
   m_FriendListPrefab: {fileID: 1563026765626957857, guid: 41252ae3ede7d82479b04904a3c73fca,
     type: 3}
 --- !u!61 &7073443490280313755
