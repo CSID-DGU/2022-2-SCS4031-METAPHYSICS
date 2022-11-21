@@ -13,6 +13,18 @@ public class UserControllerScript : MonoBehaviour
 	Rigidbody2D m_Rigid;
 	Vector2 m_SynchroPos = new Vector2(0.0f, 0.0f);
 	bool m_IsSyncPos = true;
+	int m_CustomColor = -1;
+	int m_CustomPrivilege = -1;
+
+	public void SetCustomColor(int  color)
+    {
+		m_CustomColor = color;
+    }
+
+	public void SetCustomPrivilege(int privilege)
+	{
+		m_CustomPrivilege = privilege;
+	}
 
 	protected bool _updated = false; //패킷 업데이트
 
@@ -96,52 +108,6 @@ public class UserControllerScript : MonoBehaviour
 
 	protected virtual void Start()
 	{
-		UserCustomize UserColor = Managers.Data.GetCurrentUserColor();
-
-		string AnimationPath = "";
-
-		if (Managers.Data.GetCurrentPrivilege() == UserPrivileges.Guest)
-			AnimationPath = "Animations\\Guest\\GuestAnimController";
-
-		else
-		{
-			AnimationPath = "Animations\\ACO\\";
-
-			switch (UserColor)
-			{
-				case UserCustomize.Red:
-					AnimationPath += "Red\\";
-					break;
-				case UserCustomize.Orange:
-					AnimationPath += "Orange\\";
-					break;
-				case UserCustomize.Yellow:
-					AnimationPath += "Yellow\\";
-					break;
-				case UserCustomize.Green:
-					AnimationPath += "Green\\";
-					break;
-				case UserCustomize.Pink:
-					AnimationPath += "Pink\\";
-					break;
-				case UserCustomize.SkyBlue:
-					AnimationPath += "SkyBlue\\";
-					break;
-				case UserCustomize.Navy:
-					AnimationPath += "Navy\\";
-					break;
-				case UserCustomize.Black:
-					AnimationPath += "Black\\";
-					break;
-				case UserCustomize.End:
-					AnimationPath += "Black\\";
-					break;
-			}
-
-			AnimationPath += "ACOAnimController";
-
-		}
-
 
 		m_Animator = GetComponent<Animator>();
 		m_Rigid = GetComponent<Rigidbody2D>();
@@ -149,13 +115,11 @@ public class UserControllerScript : MonoBehaviour
 		m_vMoveDir = new Vector2(0.0f, 0.0f);
 		transform.position = new Vector3Int(0, 0, 0);
 
+		SetCustomizeColor();
+
+		// user 이름 호출
 		Text UserText = gameObject.GetComponentInChildren<Text>();
 		UserText.text = Managers.Data.GetCurrentUser();
-
-		RuntimeAnimatorController Cont = Resources.Load<RuntimeAnimatorController>(AnimationPath);
-
-		m_Animator.runtimeAnimatorController 
-			= RuntimeAnimatorController.Instantiate(Resources.Load<RuntimeAnimatorController>(AnimationPath));
 
 	}
 
@@ -178,7 +142,6 @@ public class UserControllerScript : MonoBehaviour
 		OtherUpdatePosition();
 		//UpdateIsMoving();
 
-		
 	}
 
 	protected virtual void LateUpdate()
@@ -390,5 +353,69 @@ public class UserControllerScript : MonoBehaviour
         }
 
     }
+
+	public virtual void SetCustomizeColor()
+    {
+		UserCustomize UserColor = Managers.Data.GetCurrentUserColor();
+
+
+		if (m_CustomColor != -1)
+			UserColor = (UserCustomize)m_CustomColor;
+
+		// Managers.Data.SetCurrentUserColor(color_index);
+
+		string AnimationPath = "";
+
+		//if (Managers.Data.GetCurrentPrivilege() == UserPrivileges.Guest)
+		//	AnimationPath = "Animations\\Guest\\GuestAnimController";
+		if (m_CustomPrivilege == 2)
+		{
+			AnimationPath = "Animations\\Guest\\GuestAnimController";
+		}
+		else
+		{
+			AnimationPath = "Animations\\ACO\\";
+
+			switch (UserColor)
+			{
+				case UserCustomize.Red:
+					AnimationPath += "Red\\";
+					break;
+				case UserCustomize.Orange:
+					AnimationPath += "Orange\\";
+					break;
+				case UserCustomize.Yellow:
+					AnimationPath += "Yellow\\";
+					break;
+				case UserCustomize.Green:
+					AnimationPath += "Green\\";
+					break;
+				case UserCustomize.Pink:
+					AnimationPath += "Pink\\";
+					break;
+				case UserCustomize.SkyBlue:
+					AnimationPath += "SkyBlue\\";
+					break;
+				case UserCustomize.Navy:
+					AnimationPath += "Navy\\";
+					break;
+				case UserCustomize.Black:
+					AnimationPath += "Black\\";
+					break;
+				case UserCustomize.End:
+					AnimationPath += "Black\\";
+					break;
+			}
+
+			AnimationPath += "ACOAnimController";
+
+		}
+
+
+		RuntimeAnimatorController Cont = Resources.Load<RuntimeAnimatorController>(AnimationPath);
+
+		m_Animator.runtimeAnimatorController
+			= RuntimeAnimatorController.Instantiate(Resources.Load<RuntimeAnimatorController>(AnimationPath));
+	}
 
 }

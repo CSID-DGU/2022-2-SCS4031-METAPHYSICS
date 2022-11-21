@@ -42,7 +42,7 @@ public class MyPlayerController : UserControllerScript
 		gameObject.transform.position = InitPos;
 	}
 
-	void FixedUpdate()
+	protected override void FixedUpdate()
     {
 
     }
