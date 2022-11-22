@@ -51,16 +51,17 @@ public class ObjectManager
 
 	public void Remove(int id)
 	{
-		_objects.Remove(id);
-	}
-
-	public void RemoveMyPlayer()
-	{
-		if (MyPlayer == null)
+		if (MyPlayer != null && MyPlayer.Id == id)
+			return;
+		if (_objects.ContainsKey(id) == false)
 			return;
 
-		Remove(MyPlayer.Id);
-		MyPlayer = null;
+		GameObject go = FindById(id);
+		if (go == null)
+			return;
+
+		_objects.Remove(id);
+		Managers.Resource.Destroy(go);
 	}
 
 	public GameObject FindById(int id)

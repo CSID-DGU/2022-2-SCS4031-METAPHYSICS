@@ -63,12 +63,14 @@ namespace Server.Game
 
 			// 본인한테 정보 전송
 			{
+				//Console.WriteLine($"OnDisconnected : {player.Info.PlayerId}");
 				S_LeaveGame leavePacket = new S_LeaveGame();
 				player.Session.Send(leavePacket);
 			}
 
 			// 타인한테 정보 전송
 			{
+				//Console.WriteLine($"OnDisconnected : {player.Info.PlayerId}");
 				S_Despawn despawnPacket = new S_Despawn();
 				despawnPacket.PlayerIds.Add(player.Info.PlayerId);
 				foreach (Player p in _players)
