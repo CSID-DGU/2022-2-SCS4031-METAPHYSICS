@@ -18,7 +18,7 @@ class PacketHandler
 	public static void S_LeaveGameHandler(PacketSession session, IMessage packet)
 	{
 		S_LeaveGame leaveGameHandler = packet as S_LeaveGame;
-		Managers.Object.RemoveMyPlayer();
+		Managers.Object.Clear();
 	}
 
 
@@ -39,7 +39,6 @@ class PacketHandler
 		{
 			Managers.Object.Remove(id);
 		}
-		//Debug.Log("S_DespawnHandler");
 	}
 
 	public static void S_MoveHandler(PacketSession session, IMessage packet)
