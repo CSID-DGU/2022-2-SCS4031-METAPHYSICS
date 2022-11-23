@@ -21,6 +21,20 @@ public class GlobalChaatingUI : MonoBehaviour
 
     private RectTransform m_ScrollRectTransform = null;
 
+    [SerializeField]
+    private RectTransform m_ImagePanelRect = null;
+
+    [SerializeField]
+    private Button m_ResizeButton = null;
+
+    [SerializeField]
+    private bool m_IsMinimalized = false;
+
+    [SerializeField]
+    private Sprite m_ArrowUpImg = null;
+    [SerializeField]
+    private Sprite m_ArrowDownImg = null;
+
     ~GlobalChaatingUI()
     {
         Managers.Chat.SetGlobalChattingUI(null);
@@ -37,7 +51,7 @@ public class GlobalChaatingUI : MonoBehaviour
         Managers.Chat.SetGlobalChattingUI(this);
 
         ReceiveMessage(data);
-
+        
     }
 
     // Update is called once per frame
@@ -80,6 +94,33 @@ public class GlobalChaatingUI : MonoBehaviour
 
     }
 
+    public void SizeButtonCallback()
+    {
+        if(!m_IsMinimalized)
+        {
+            Vector2 PanelSize = m_ImagePanelRect.sizeDelta;
+            PanelSize.y /= 3.0f;
+
+            m_ImagePanelRect.sizeDelta = PanelSize;
+
+            m_IsMinimalized = true;
+
+            m_ResizeButton.image.sprite = m_ArrowUpImg;
+        }
+
+        else
+        {
+
+            Vector2 PanelSize = m_ImagePanelRect.sizeDelta;
+            PanelSize.y *= 3.0f;
+
+            m_ImagePanelRect.sizeDelta = PanelSize;
+
+            m_IsMinimalized = false;
+
+            m_ResizeButton.image.sprite = m_ArrowDownImg;
+        }
+    }
     void Fit(RectTransform Rect)
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate(Rect);

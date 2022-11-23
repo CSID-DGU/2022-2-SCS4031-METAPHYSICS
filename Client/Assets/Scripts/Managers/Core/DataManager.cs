@@ -27,6 +27,8 @@ public class DataManager
     private Dictionary<String, UserData> m_UserDataDict = new Dictionary<String, UserData>();
     private List<UserData> m_ArrayUserData = new List<UserData>();
 
+    public FriendManager m_FriendManager = new FriendManager();
+
     public void Init()
     {
         //초기 실험용 데이터
@@ -38,12 +40,18 @@ public class DataManager
 
         AddUserData(UD);
 
+        //DB와 연결 작업 여기서
+
+
+        //연결된 DB 토대로 FriendManager 초기화
+        m_FriendManager.Init();
         
     }
 
     public void update()
     {
 
+        m_FriendManager.Update();
     }
     Loader LoadJson<Loader, Key, Value>(string path) where Loader : ILoader<Key, Value>
     {
