@@ -9,6 +9,8 @@ public class UIManager
     Stack<UI_Popup> _popupStack = new Stack<UI_Popup>();
     UI_Scene _sceneUI = null;
 
+    public int m_DragUICount = 0;
+
     public GameObject Root
     {
         get
@@ -128,5 +130,23 @@ public class UIManager
     {
         CloseAllPopupUI();
         _sceneUI = null;
+    }
+
+    public void AddDragUICount()
+    {
+        ++m_DragUICount;
+    }
+
+    public void MinusDragUICount()
+    {
+        --m_DragUICount;
+
+        if (m_DragUICount < 0)
+            m_DragUICount = 0;
+    }
+
+    public int GetDragUICount()
+    {
+        return m_DragUICount;
     }
 }

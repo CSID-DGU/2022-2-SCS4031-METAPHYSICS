@@ -23,13 +23,16 @@ public class UI_Drag : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     void Start()
     {
-        SetSortingOrder(DragUISortingOroder);
+        Managers.UI.AddDragUICount();
+        int Count = Managers.UI.GetDragUICount();
     }
 
     void OnDestroy()
     {
         if (CurrentTopUI == this)
             CurrentTopUI = null;
+
+        Managers.UI.MinusDragUICount();
     }
 
     // Update is called once per frame
