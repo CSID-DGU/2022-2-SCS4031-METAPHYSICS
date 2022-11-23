@@ -43,6 +43,20 @@ public class FriendListUI : UI_Drag
         CheckSearchInputField();
     }
 
+    private void LateUpdate()
+    {
+        if (m_SearchInputField.isFocused)
+        {
+            Managers.UI.ChatEnable = true;
+        }
+
+        else
+        {
+
+            Managers.UI.ChatEnable = false;
+        }
+    }
+
     void InitFriendList()
     {
         List<string> FriendList = Managers.Data.m_FriendManager.GetFriendList();
@@ -125,10 +139,7 @@ public class FriendListUI : UI_Drag
                 string UserName = m_SearchInputField.text;
 
                 FindUser(UserName);
-
                 m_SearchInputField.text = null;
-                m_SearchInputField.DeactivateInputField();
-                
             }
         }
     }
@@ -143,6 +154,5 @@ public class FriendListUI : UI_Drag
             m_SearchInputField.text = null;
         }
 
-        m_SearchInputField.DeactivateInputField();
     }
 }

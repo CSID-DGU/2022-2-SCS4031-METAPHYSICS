@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager
 {
@@ -11,15 +12,59 @@ public class UIManager
 
     public int m_DragUICount = 0;
 
+    [SerializeField]
+    private bool m_IsChattingEnable = false;
+
+    private InputField m_FocusedInputField = null;
+
+    private int m_ActiveInputFieldCount = 0;
+
     public GameObject Root
     {
         get
         {
-			GameObject root = GameObject.Find("@UI_Root");
-			if (root == null)
-				root = new GameObject { name = "@UI_Root" };
+            GameObject root = GameObject.Find("@UI_Root");
+            if (root == null)
+                root = new GameObject { name = "@UI_Root" };
             return root;
-		}
+        }
+    }
+
+    public bool ChatEnable
+    {
+        get
+        {
+            return m_IsChattingEnable;
+        }
+
+        set
+        {
+            m_IsChattingEnable = value;
+        }
+    }
+
+    public InputField FocusedInputField
+    {
+        get
+        {
+            return m_FocusedInputField;
+        }
+
+        set
+        {
+            m_FocusedInputField = value;
+        }
+    }
+
+    public void ActiveCount(bool Active)
+    {
+        if (Active)
+            ++m_ActiveInputFieldCount;
+
+        else
+            --m_ActiveInputFieldCount;
+
+        //
     }
 
     public void SetCanvas(GameObject go, bool sort = true)

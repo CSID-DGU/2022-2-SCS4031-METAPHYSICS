@@ -65,16 +65,28 @@ public class GlobalChaatingUI : MonoBehaviour
             else
             {
                 GlobalChatData Data;
-                //Data.UserName = "박용준";
                 Data.UserName = Managers.Data.GetCurrentUser();
                 Data.ChattingText = m_MessageInput.text;
 
                 Managers.Chat.SendGlobalChat(Data);
 
                 m_MessageInput.text = null;
+
             }
+        }        
+    }
+
+    private void LateUpdate()
+    {
+        if (m_MessageInput.isFocused)
+        {
+            Managers.UI.ChatEnable = true;
         }
 
+        else
+        {
+            Managers.UI.ChatEnable = false;
+        }
     }
 
     //메세지 받아서 unity에 띄우기
