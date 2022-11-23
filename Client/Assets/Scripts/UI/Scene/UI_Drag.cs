@@ -43,12 +43,12 @@ public class UI_Drag : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (CurrentTopUI != null)
-            CurrentTopUI.SetSortingOrder(DragUISortingOroder);
+        //if (CurrentTopUI != null)
+        //    CurrentTopUI.SetSortingOrder(DragUISortingOroder);
 
-        //임의로 가장 큰 값을 넣어줘서 가장 앞에 올 수 있도록 출력
-        SetSortingOrder(20);
-        CurrentTopUI = this;
+        ////임의로 가장 큰 값을 넣어줘서 가장 앞에 올 수 있도록 출력
+        //SetSortingOrder(20);
+        //CurrentTopUI = this;
 
     }
 

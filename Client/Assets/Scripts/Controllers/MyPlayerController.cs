@@ -152,6 +152,10 @@ public class MyPlayerController : UserControllerScript
 	// 키보드 입력
 	protected override void GetInput()
 	{
+		//채팅 입력이 활성화 되어있을 경우 움직이지 않는다.
+		if (Managers.UI.ChatEnable)
+			return;
+
 		base.GetInput();
 	}
 

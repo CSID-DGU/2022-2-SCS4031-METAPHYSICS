@@ -46,7 +46,6 @@ public class DirectChatUI : UI_Drag
 
     void Update()
     {
-        
         if (Input.GetKeyDown(KeyCode.Return))
         {
             if(m_MessageInput.text.Length == 0)
@@ -54,8 +53,16 @@ public class DirectChatUI : UI_Drag
 
             else
             {
-                SendDirectMessage();
+               SendDirectMessage();
             }
+        }
+
+        if (m_MessageInput.isFocused)
+            Managers.UI.ChatEnable = true;
+
+        else
+        {
+            Managers.UI.ChatEnable = false;
         }
 
         //친구 채팅 테스트
