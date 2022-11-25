@@ -34,3 +34,15 @@
 ![result1](https://user-images.githubusercontent.com/101785677/201854661-ae7f37e8-c1d2-47f0-92cf-83f1c083b091.png)
 ![result2](https://user-images.githubusercontent.com/101785677/201854749-6272a60d-04fe-42c1-9336-d94cdf015fff.png)
 
+
+### * Notice UI
+![56](https://user-images.githubusercontent.com/101785677/203992860-c4b7c05a-53aa-437e-913a-de4f95dc9620.png)
+![566](https://user-images.githubusercontent.com/101785677/203992863-3a7f8b1d-12e8-45f7-97c9-5eaff9b5c2d4.png)
+
+### * Setting UI
+![33](https://user-images.githubusercontent.com/101785677/203992848-f6ead4c2-d15b-45c3-862c-82d8f32ae08f.png)
+
+
+
+
+
