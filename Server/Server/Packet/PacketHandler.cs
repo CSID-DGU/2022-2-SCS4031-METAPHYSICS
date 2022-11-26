@@ -1,10 +1,12 @@
 ﻿using Google.Protobuf;
 using Google.Protobuf.Protocol;
 using Server;
+using Server.DB;
 using Server.Game;
 using ServerCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 class PacketHandler
@@ -120,6 +122,36 @@ class PacketHandler
 
 		room.Push(room.LeaveScene, leavePacket);
 		Console.WriteLine($"C_LeaveSceneHandler : {leavePacket.Player.Scene}");
+	}
+
+	public static void C_LoginHandler(PacketSession session, IMessage packet)
+	{
+		C_Login loginpacket = packet as C_Login;
+		ClientSession clientSession = session as ClientSession;
+
+		Console.WriteLine($"UniqueId : {loginpacket.UniqueId}");
+
+		using (AppDbContext db = new AppDbContext())
+        {
+			// 만들어져 있는지 확인
+			AccountDb findAccount = db.Accounts
+				.Where(a => a.AccountName == loginpacket.UniqueId).FirstOrDefault();
+
+			if(findAccount != null)
+            {
+				S_Login loginOk = new S_Login() { LoginOk = 1 };
+				clientSession.Send(loginOk);
+            }
+            else
+            {
+				AccountDb newAccount = new AccountDb() { AccountName = loginpacket.UniqueId };
+				db.Accounts.Add(newAccount);
+				db.SaveChanges();
+
+				S_Login loginOk = new S_Login() { LoginOk = 1 };
+				clientSession.Send(loginOk);
+            }
+        }
 	}
 
 }

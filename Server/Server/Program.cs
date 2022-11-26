@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Google.Protobuf;
 using Google.Protobuf.Protocol;
 using Google.Protobuf.WellKnownTypes;
+using Server.DB;
 using Server.Game;
 using ServerCore;
 
@@ -26,6 +27,13 @@ namespace Server
 		static void Main(string[] args)
 		{
 			RoomManager.Instance.Add();
+
+			// DB Test
+			//using(AppDbContext db = new AppDbContext())
+   //         {
+			//	db.Accounts.Add(new AccountDb() { AccountName = "TestAccount" });
+			//	db.SaveChanges();
+   //         }
 
 			// DNS (Domain Name System)
 			string host = Dns.GetHostName();

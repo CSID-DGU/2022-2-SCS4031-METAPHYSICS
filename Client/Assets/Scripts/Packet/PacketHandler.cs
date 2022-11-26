@@ -86,6 +86,20 @@ class PacketHandler
 			cm.PushGlobalChat(chatPacket.ChatInfo.UserName, chatPacket.ChatInfo.ChattingText);
         }
 	}
+
+	public static void S_ConnectedHandler(PacketSession session, IMessage packet)
+	{
+		Debug.Log("S_ConnectedHandler");
+		C_Login loginPacket = new C_Login();
+		loginPacket.UniqueId = SystemInfo.deviceUniqueIdentifier; // 랜덤 아이디 생성기
+		Managers.Network.Send(loginPacket);
+	}
+
+	public static void S_LoginHandler(PacketSession session, IMessage packet)
+	{
+		S_Login loginPacket = packet as S_Login;
+		Debug.Log($"LoginOK({loginPacket.LoginOk}");
+	}
 }
 
 
