@@ -24,6 +24,7 @@ public class EightPathScene : BaseScene
             PosY = value.PosInfo.PosY;
             MovedirX = value.PosInfo.MovedirX;
             MovedirY = value.PosInfo.MovedirY;
+            Scene = value.Scene;
         }
     }
     public string UserName //이거 서버 전달
@@ -36,6 +37,19 @@ public class EightPathScene : BaseScene
         set
         {
             Player_Info.UserName = value;
+            _updated = true;
+        }
+    }
+    public string Scene //이거 서버 전달
+    {
+        get
+        {
+            return Player_Info.Scene;
+        }
+
+        set
+        {
+            Player_Info.Scene = value;
             _updated = true;
         }
     }
@@ -144,6 +158,8 @@ public class EightPathScene : BaseScene
         UserName = Managers.Data.GetCurrentUser();
         ColorIndex = Managers.Data.GetCurrentUserColorIndex();
         UserPrivilege = (int)Managers.Data.GetCurrentPrivilege();
+        PlayerID = Managers.Data.GetCurrentUserId();
+        Scene = Managers.Data.GetCurrentScene();
         //// TODO 위치, 방향 정보
         //PosX = Managers.Data.GetCurrentPosX(1);
         //PosY = Managers.Data.GetCurrentPosY(1);
@@ -151,20 +167,37 @@ public class EightPathScene : BaseScene
         //MovedirY = Managers.Data.GetCurrentDirY(1);
         //오류남
 
-        //씬입장
-        CheckUpdatedFlag();
-    }
-
-    void CheckUpdatedFlag()
-    {
-        if (_updated)
+        // 씬입장
+        if(!Managers.Data.start)
         {
             C_EnterGame enterPacket = new C_EnterGame();
             enterPacket.Player = Player_Info;
             Managers.Network.Send(enterPacket);
-            _updated = false;
+            Managers.Data.start = true;
+        }
+        else
+        {
+            // 씬입장전 초기화
+            C_LeaveScene leaveScenePacket = new C_LeaveScene();
+            leaveScenePacket.Player = Player_Info;
+            Managers.Network.Send(leaveScenePacket);
+
+            C_EnterScene enterPacket = new C_EnterScene();
+            enterPacket.Player = Player_Info;
+            Managers.Network.Send(enterPacket);
         }
     }
+
+    //void CheckUpdatedFlag()
+    //{
+    //    if (_updated)
+    //    {
+    //        C_EnterGame enterPacket = new C_EnterGame();
+    //        enterPacket.Player = Player_Info;
+    //        Managers.Network.Send(enterPacket);
+    //        _updated = false;
+    //    }
+    //}
 
     public override void Clear()
     {

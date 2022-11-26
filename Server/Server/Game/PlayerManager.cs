@@ -26,6 +26,18 @@ namespace Server.Game
 			return player;
 		}
 
+		public Player Add(int id)
+		{
+			Player player = new Player();
+
+			lock (_lock)
+			{
+				player.Info.PlayerId = id;
+				_players.Add(id, player);
+			}
+			return player;
+		}
+
 		public bool Remove(int playerId)
 		{
 			lock (_lock)

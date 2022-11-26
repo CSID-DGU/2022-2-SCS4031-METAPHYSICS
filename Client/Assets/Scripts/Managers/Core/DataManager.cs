@@ -19,10 +19,13 @@ public class DataManager
     private UserCustomize m_CurrentUserColor = UserCustomize.End;
     private int m_PrivilegeIndex;
     private int m_ColorIndex;
+    private string m_CurrentScene = null;
+    private int m_UserId;
     private float m_posX;
     private float m_posY;
     private float m_movedirX;
     private float m_movedirY;
+    public bool start = false;
     //임시
     private Dictionary<String, UserData> m_UserDataDict = new Dictionary<String, UserData>();
     private List<UserData> m_ArrayUserData = new List<UserData>();
@@ -102,6 +105,11 @@ public class DataManager
         m_CurrentUserName = UserName;
     }
 
+    public void SetCurrentScene(string Scene)
+    {
+        m_CurrentScene = Scene;
+    }
+
     public string GetCurrentUser()
     {
         return m_CurrentUserName;
@@ -136,9 +144,24 @@ public class DataManager
         SetCurrentUserColor((UserCustomize)UserColor);
     }
 
+    public void SetCurrentUserId(int UserColor)
+    {
+        m_UserId = UserColor;
+    }
+
+    public int GetCurrentUserId()
+    {
+        return m_UserId;
+    }
+
     public int GetCurrentUserColorIndex()
     {
         return m_ColorIndex;
+    }
+
+    public string GetCurrentScene()
+    {
+        return m_CurrentScene;
     }
 
     public UserCustomize GetCurrentUserColor()

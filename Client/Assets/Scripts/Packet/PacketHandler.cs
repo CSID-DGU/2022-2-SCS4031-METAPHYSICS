@@ -15,6 +15,16 @@ class PacketHandler
 		//Debug.Log("S_EnterGameHandler");
 	}
 
+	public static void S_EnterSceneHandler(PacketSession session, IMessage packet)
+	{
+		S_EnterScene enterScenePacket = packet as S_EnterScene;
+		// 전의 id 오브젝트를 삭제
+		//Managers.Object.Remove(enterScenePacket.Player.PlayerId);
+		// 같은 id 오브젝트를 추가
+		Managers.Object.Add(enterScenePacket.Player, myPlayer: true);
+		//Debug.Log("S_EnterGameHandler");
+	}
+
 	public static void S_LeaveGameHandler(PacketSession session, IMessage packet)
 	{
 		S_LeaveGame leaveGameHandler = packet as S_LeaveGame;
