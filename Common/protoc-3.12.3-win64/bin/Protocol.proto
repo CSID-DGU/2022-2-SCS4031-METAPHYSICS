@@ -17,6 +17,9 @@ enum MsgId {
   S_MOVE = 9;
   C_CHAT = 10;
   S_CHAT = 11;
+  C_LEAVE_SCENE = 12;
+  C_ENTER_SCENE = 13;
+  S_ENTER_SCENE = 14;
 }
 
 message S_EnterGame {
@@ -67,12 +70,25 @@ message S_Chat {
   ChatInfo chatInfo = 2;
 }
 
+message C_LeaveScene {
+  PlayerInfo player = 1;
+}
+
+message C_EnterScene {
+  PlayerInfo player = 1;
+}
+
+message S_EnterScene {
+  PlayerInfo player = 1;
+}
+
 message PlayerInfo {
   int32 playerId = 1; // 식별id
   string userName = 2; // 닉네임
   int32 colorIndex = 3; // 색깔
   int32 userPrivilege = 4; // 게스트 여부
-  PositionInfo posInfo = 5;
+  string scene = 5;
+  PositionInfo posInfo = 6;
 }
 
 message PositionInfo {

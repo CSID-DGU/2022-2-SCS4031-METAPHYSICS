@@ -21,6 +21,8 @@ public class ObjectManager
 			MyPlayer.Id = info.PlayerId;
 			MyPlayer.PosInfo = info.PosInfo;
 			Managers.Data.SetCurrentUserColor(info.ColorIndex);
+			Managers.Data.SetCurrentUserId(info.PlayerId);
+			Managers.Data.SetCurrentScene(info.Scene);
 			MyPlayer.SetCustomPrivilege(info.UserPrivilege);
 			MyPlayer.SetUserName(info.UserName);
 			//MyPlayer.SyncPos();

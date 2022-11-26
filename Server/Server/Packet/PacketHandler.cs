@@ -9,6 +9,40 @@ using System.Text;
 
 class PacketHandler
 {
+	public static void C_EnterGameHandler(PacketSession session, IMessage packet)
+	{
+		C_EnterGame enterPacket = packet as C_EnterGame;
+		ClientSession clientSession = session as ClientSession;
+
+		clientSession.MyPlayer = PlayerManager.Instance.Add();
+		{
+			//내용 집어넣기
+			clientSession.MyPlayer.Info.ColorIndex = enterPacket.Player.ColorIndex;
+			clientSession.MyPlayer.Info.UserName = enterPacket.Player.UserName;
+			clientSession.MyPlayer.Info.UserPrivilege = enterPacket.Player.UserPrivilege;
+			clientSession.MyPlayer.Info.Scene = enterPacket.Player.Scene;
+			clientSession.MyPlayer.Session = clientSession;
+		}
+
+		GameRoom room = RoomManager.Instance.Find(1);
+		room.Push(room.EnterGame, clientSession.MyPlayer);
+	}
+
+	public static void C_LeaveGameHandler(PacketSession session, IMessage packet)
+	{
+
+	}
+
+	public static void C_SpawnHandler(PacketSession session, IMessage packet)
+	{
+
+	}
+
+	public static void C_DespawnHandler(PacketSession session, IMessage packet)
+	{
+
+	}
+
 	public static void C_MoveHandler(PacketSession session, IMessage packet)
 	{
 		C_Move movePacket = packet as C_Move;
@@ -46,47 +80,46 @@ class PacketHandler
 		room.Push(room.HandleChat, player, chatPacket);
 	}
 
-	public static void C_EnterGameHandler(PacketSession session, IMessage packet)
+	public static void C_EnterSceneHandler(PacketSession session, IMessage packet)
 	{
-		C_EnterGame enterPacket = packet as C_EnterGame;
+		C_EnterScene enterPacket = packet as C_EnterScene;
 		ClientSession clientSession = session as ClientSession;
 
-		//Console.WriteLine($"C_EnterGame({enterPacket.Player.UserName})");
-		//Console.WriteLine($"C_EnterGame({enterPacket.Player.ColorIndex})");
-
-		clientSession.MyPlayer = PlayerManager.Instance.Add();
+		clientSession.MyPlayer = PlayerManager.Instance.Find(enterPacket.Player.PlayerId);
 		{
 			//내용 집어넣기
 			clientSession.MyPlayer.Info.ColorIndex = enterPacket.Player.ColorIndex;
 			clientSession.MyPlayer.Info.UserName = enterPacket.Player.UserName;
 			clientSession.MyPlayer.Info.UserPrivilege = enterPacket.Player.UserPrivilege;
+			clientSession.MyPlayer.Info.Scene = enterPacket.Player.Scene;
 			clientSession.MyPlayer.Session = clientSession;
 		}
+		Player player = clientSession.MyPlayer;
+		if (player == null)
+			return;
 
-		//Console.WriteLine($"C_EnterGame({clientSession.MyPlayer.Info.PosInfo.PosX})");
-		//Console.WriteLine($"C_EnterGame({clientSession.MyPlayer.Info.PosInfo.PosY})");
-		//Console.WriteLine($"C_EnterGame({clientSession.MyPlayer.Info.PosInfo.MovedirX})");
-		//Console.WriteLine($"C_EnterGame({clientSession.MyPlayer.Info.PosInfo.MovedirY})");
-		//Console.WriteLine($"C_EnterGame({clientSession.MyPlayer.Info.UserName})");
-		//Console.WriteLine($"C_EnterGame({clientSession.MyPlayer.Info.ColorIndex})");
-		//Console.WriteLine($"C_EnterGame({clientSession.MyPlayer.Info.PlayerId})");
+		GameRoom room = player.Room;
+		if (room == null)
+			return;
 
-		GameRoom room = RoomManager.Instance.Find(1);
-		room.Push(room.EnterGame, clientSession.MyPlayer);
+		room.Push(room.EnterScene, clientSession.MyPlayer);
 	}
 
-	public static void C_LeaveGameHandler(PacketSession session, IMessage packet)
+	public static void C_LeaveSceneHandler(PacketSession session, IMessage packet)
 	{
+		C_LeaveScene leavePacket = packet as C_LeaveScene;
+		ClientSession clientSession = session as ClientSession;
 
+		Player player = clientSession.MyPlayer;
+		if (player == null)
+			return;
+
+		GameRoom room = player.Room;
+		if (room == null)
+			return;
+
+		room.Push(room.LeaveScene, leavePacket);
+		Console.WriteLine($"C_LeaveSceneHandler : {leavePacket.Player.Scene}");
 	}
 
-	public static void C_SpawnHandler(PacketSession session, IMessage packet)
-	{
-
-	}
-
-	public static void C_DespawnHandler(PacketSession session, IMessage packet)
-	{
-
-	}
 }

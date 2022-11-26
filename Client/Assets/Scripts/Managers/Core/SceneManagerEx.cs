@@ -75,6 +75,7 @@ public class SceneManagerEx
     {
         m_NextSceneName = SceneName;
         m_bChangeScene = true;
+        Managers.Data.SetCurrentScene(SceneName);
     }
 
     public void SetCurrentSceneName(string SceneName)
