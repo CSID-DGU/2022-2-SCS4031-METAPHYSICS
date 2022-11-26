@@ -33,17 +33,10 @@ namespace Server
 		{
 			Console.WriteLine($"OnConnected : {endPoint}");
 
-            //MyPlayer = PlayerManager.Instance.Add();
-            //{
-            //    MyPlayer.Info.Name = $"Player_{MyPlayer.Info.PlayerId}";
-            //    MyPlayer.Info.PosInfo.PosX = 0;
-            //    MyPlayer.Info.PosInfo.PosY = 0;
-            //    MyPlayer.Info.PosInfo.MovedirX = 0.0f;
-            //    MyPlayer.Info.PosInfo.MovedirY = 0.0f;
-            //    MyPlayer.Session = this;
-            //}
-
-            //RoomManager.Instance.Find(1).EnterGame(MyPlayer);
+            {
+				S_Connected connectedPacket = new S_Connected();
+				Send(connectedPacket);
+            }
         }
 
 		public override void OnRecvPacket(ArraySegment<byte> buffer)

@@ -20,6 +20,9 @@ enum MsgId {
   C_LEAVE_SCENE = 12;
   C_ENTER_SCENE = 13;
   S_ENTER_SCENE = 14;
+  S_CONNECTED = 15;
+  C_LOGIN = 16;
+  S_LOGIN = 17;
 }
 
 message S_EnterGame {
@@ -80,6 +83,17 @@ message C_EnterScene {
 
 message S_EnterScene {
   PlayerInfo player = 1;
+}
+
+message S_Connected {
+}
+
+message C_Login {
+  string uniqueId = 1;
+}
+
+message S_Login {
+  int32 loginOk = 1;
 }
 
 message PlayerInfo {
