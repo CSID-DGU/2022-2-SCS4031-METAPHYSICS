@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class URLOpener : MonoBehaviour
+public class URLOpener : MousePickCallbackObj
 {
     [SerializeField]
     private string m_URLAdress = null;
@@ -29,6 +29,16 @@ public class URLOpener : MonoBehaviour
         set
         {
             m_URLAdress = value;
+        }
+    }
+
+    public override void MouseClickCallback()
+    {
+        base.MouseClickCallback();
+
+        if(m_URLAdress!= null)
+        {
+            Application.OpenURL(m_URLAdress);
         }
     }
 }
