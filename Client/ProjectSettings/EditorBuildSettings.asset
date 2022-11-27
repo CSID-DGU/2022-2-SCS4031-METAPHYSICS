@@ -29,4 +29,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ManhaeGwangjang.unity
     guid: 82e5ecb5688744dc38f9ca2bcf0ca657
+  - enabled: 1
+    path: Assets/Scenes/ManhaeOutScene.unity
+    guid: b177684ea3c8f4019a2ccf89b7f70977
+  - enabled: 1
+    path: Assets/Scenes/WonHeungIndoor.unity
+    guid: 352a5ef88a2b84a07a47f773e20d4f8b
   m_configObjects: {}
