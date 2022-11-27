@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 156292615}
   - component: {fileID: 156292614}
   - component: {fileID: 156292616}
+  - component: {fileID: 156292617}
   m_Layer: 0
   m_Name: Wall ornaments1
   m_TagString: Untagged
@@ -402,6 +403,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 12.68, y: 5.42}
   m_EdgeRadius: 0
+--- !u!114 &156292617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156292613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 693507af3074a674da79345640fe5c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &165339945
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,6 +635,7 @@ GameObject:
   - component: {fileID: 272035100}
   - component: {fileID: 272035099}
   - component: {fileID: 272035101}
+  - component: {fileID: 272035102}
   m_Layer: 0
   m_Name: Board1
   m_TagString: Untagged
@@ -722,6 +736,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.92, y: 5.79}
   m_EdgeRadius: 0
+--- !u!114 &272035102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272035098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 693507af3074a674da79345640fe5c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &300002903
 GameObject:
   m_ObjectHideFlags: 0
@@ -3999,6 +4025,7 @@ GameObject:
   - component: {fileID: 1046213057}
   - component: {fileID: 1046213056}
   - component: {fileID: 1046213058}
+  - component: {fileID: 1046213059}
   m_Layer: 0
   m_Name: Wall ornaments2
   m_TagString: Untagged
@@ -4099,6 +4126,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 12.67, y: 5.41}
   m_EdgeRadius: 0
+--- !u!114 &1046213059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046213055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 693507af3074a674da79345640fe5c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1069728688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4801,6 +4840,7 @@ GameObject:
   - component: {fileID: 1295397455}
   - component: {fileID: 1295397454}
   - component: {fileID: 1295397456}
+  - component: {fileID: 1295397457}
   m_Layer: 0
   m_Name: Board2
   m_TagString: Untagged
@@ -4901,6 +4941,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.95, y: 5.81}
   m_EdgeRadius: 0
+--- !u!114 &1295397457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295397453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 693507af3074a674da79345640fe5c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1318892460
 GameObject:
   m_ObjectHideFlags: 0
