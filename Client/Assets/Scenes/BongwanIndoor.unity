@@ -497,6 +497,7 @@ GameObject:
   - component: {fileID: 267869707}
   - component: {fileID: 267869706}
   - component: {fileID: 267869708}
+  - component: {fileID: 267869709}
   m_Layer: 0
   m_Name: booth2
   m_TagString: Untagged
@@ -597,6 +598,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.62, y: 5.79}
   m_EdgeRadius: 0
+--- !u!114 &267869709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267869705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5029be3c696f847b4dffa1a6afcf1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_URLAdress: https://www.dongguk.edu/page/199
 --- !u!1 &272035098
 GameObject:
   m_ObjectHideFlags: 0
@@ -3367,6 +3381,7 @@ GameObject:
   - component: {fileID: 667503058}
   - component: {fileID: 667503057}
   - component: {fileID: 667503059}
+  - component: {fileID: 667503060}
   m_Layer: 0
   m_Name: booth4
   m_TagString: Untagged
@@ -3467,6 +3482,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.62, y: 5.58}
   m_EdgeRadius: 0
+--- !u!114 &667503060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667503056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5029be3c696f847b4dffa1a6afcf1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_URLAdress: https://www.youtube.com/channel/UCcKfGOfFVeoYZnv2xL5d4cQ
 --- !u!1 &695210163
 GameObject:
   m_ObjectHideFlags: 0
@@ -3562,6 +3590,7 @@ GameObject:
   - component: {fileID: 702893958}
   - component: {fileID: 702893957}
   - component: {fileID: 702893959}
+  - component: {fileID: 702893960}
   m_Layer: 0
   m_Name: booth1
   m_TagString: Untagged
@@ -3662,6 +3691,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.64, y: 5.96}
   m_EdgeRadius: 0
+--- !u!114 &702893960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702893956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5029be3c696f847b4dffa1a6afcf1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_URLAdress: https://scholarship.dongguk.edu/page/2681
 --- !u!1 &791074423
 GameObject:
   m_ObjectHideFlags: 0
@@ -4267,6 +4309,7 @@ GameObject:
   - component: {fileID: 1110086087}
   - component: {fileID: 1110086086}
   - component: {fileID: 1110086088}
+  - component: {fileID: 1110086089}
   m_Layer: 0
   m_Name: booth3
   m_TagString: Untagged
@@ -4367,6 +4410,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.61, y: 6.49}
   m_EdgeRadius: 0
+--- !u!114 &1110086089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110086085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5029be3c696f847b4dffa1a6afcf1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_URLAdress: https://www.dongguk.edu/dandae/1
 --- !u!1 &1119362531
 GameObject:
   m_ObjectHideFlags: 0

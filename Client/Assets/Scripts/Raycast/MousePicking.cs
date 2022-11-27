@@ -24,6 +24,10 @@ public class MousePicking : MonoBehaviour
             {
                 GameObject HitObj = hit.transform.gameObject;
                 Debug.Log(HitObj.name);
+
+
+                URLOpener OpenerComponent = HitObj.GetComponent<URLOpener>();
+                Application.OpenURL(OpenerComponent.URLAdress);
             }
 
         }
