@@ -50,8 +50,9 @@ public class Define
         EightPathScene,
         MyeonJinIndoorScene,
         BongwanIndoor,
+        ManhaeOutScene,
+        WonHeungIndoor,
         ManhaeGwangjang,
-        WonHeungGwan,
         End
     }
 

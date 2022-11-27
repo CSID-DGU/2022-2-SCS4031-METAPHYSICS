@@ -62,10 +62,10 @@ public class SceneChangePopUp : MonoBehaviour
             case GameScene.BongwanIndoor:
                 m_SceneName.text = "º»°ü";
                 break;
-            case GameScene.ManhaeGwangjang:
+            case GameScene.ManhaeOutScene:
                 m_SceneName.text = "¸¸ÇØ±¤Àå";
                 break;
-            case GameScene.WonHeungGwan:
+            case GameScene.WonHeungIndoor:
                 m_SceneName.text = "¿øÈï°ü";
                 break;
         }

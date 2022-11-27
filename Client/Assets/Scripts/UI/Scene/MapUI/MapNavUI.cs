@@ -34,10 +34,10 @@ public class MapNavUI : UI_Drag
                 case GameScene.BongwanIndoor:
                     Options.Add("º»°ü");
                     break;
-                case GameScene.ManhaeGwangjang:
+                case GameScene.ManhaeOutScene:
                     Options.Add("¸¸ÇØ±¤Àå");
                     break;
-                case GameScene.WonHeungGwan:
+                case GameScene.WonHeungIndoor:
                     Options.Add("¿øÈï°ü");
                     break;
                 case GameScene.End:

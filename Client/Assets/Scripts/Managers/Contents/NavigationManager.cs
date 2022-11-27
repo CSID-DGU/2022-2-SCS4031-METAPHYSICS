@@ -144,7 +144,7 @@ public class NavigationManager
 
         Data = new PortalData();
         Data.CurrentScene = GameScene.EightPathScene;
-        Data.NextSceneType = GameScene.ManhaeGwangjang;
+        Data.NextSceneType = GameScene.ManhaeOutScene;
         m_WayPointList[(int)GameScene.EightPathScene].Add(Data);
 
         //명진관 실내에 존재하는 Portal 정보 세팅
@@ -161,9 +161,22 @@ public class NavigationManager
 
         //만해광장에 존재하는 Portal 정보 세팅
         Data = new PortalData();
-        Data.CurrentScene = GameScene.ManhaeGwangjang;
+        Data.CurrentScene = GameScene.ManhaeOutScene;
         Data.NextSceneType = GameScene.EightPathScene;
-        m_WayPointList[(int)GameScene.ManhaeGwangjang].Add(Data);
+        m_WayPointList[(int)GameScene.ManhaeOutScene].Add(Data);
+
+
+        Data = new PortalData();
+        Data.CurrentScene = GameScene.ManhaeOutScene;
+        Data.NextSceneType = GameScene.WonHeungIndoor;
+        m_WayPointList[(int)GameScene.ManhaeOutScene].Add(Data);
+
+        //원흥관에 존재하는 Portal 정보 세팅
+
+        Data = new PortalData();
+        Data.CurrentScene = GameScene.WonHeungIndoor;
+        Data.NextSceneType = GameScene.ManhaeOutScene;
+        m_WayPointList[(int)GameScene.WonHeungIndoor].Add(Data);
 
     }
 }
