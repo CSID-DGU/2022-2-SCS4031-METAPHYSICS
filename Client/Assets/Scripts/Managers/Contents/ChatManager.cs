@@ -18,6 +18,7 @@ public class ChatManager
     private Scene m_CurrentScene;
 
     Queue<GlobalChatData> m_GlobalChatQueue = new Queue<GlobalChatData>();
+    private List<GlobalChatData> m_GlobalChatList = new List<GlobalChatData>();
 
     ChatInfo _chatInfo = new ChatInfo();
 
@@ -103,6 +104,11 @@ public class ChatManager
         CheckUpdatedFlag();
     }
 
+    public List<GlobalChatData> GetGlobalChatList()
+    {
+        return m_GlobalChatList;
+    }
+
     public void SendGlobalChat(GlobalChatData Data)
     {
         if (m_GlobalChatUI == null)
@@ -136,6 +142,11 @@ public class ChatManager
             return;
 
         m_GlobalChatUI.ReceiveMessage(Data);
+
+        GlobalChatData NewData = new GlobalChatData();
+        NewData.UserName = Data.UserName;
+        NewData.ChattingText = Data.ChattingText;
+        m_GlobalChatList.Add(NewData);
     }
 
     public void PushGlobalChat(string UserName, string Message)
