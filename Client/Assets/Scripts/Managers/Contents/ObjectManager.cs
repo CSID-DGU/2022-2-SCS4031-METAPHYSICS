@@ -9,7 +9,7 @@ public class ObjectManager
 {
 	public MyPlayerController MyPlayer { get; set; }
 	public UserControllerScript OtherPlayer { get; set; }
-	Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>();
+	public Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>();
 
 	public void Add(PlayerInfo info, bool myPlayer = false)
 	{
@@ -27,7 +27,8 @@ public class ObjectManager
 			MyPlayer.SetUserName(info.UserName);
 			//MyPlayer.SyncPos();
 
-			_objects.Add(info.PlayerId, go);
+			if(!(_objects.ContainsKey(info.PlayerId)))
+				_objects.Add(info.PlayerId, go);
 		}
 		else
 		{
@@ -42,7 +43,14 @@ public class ObjectManager
 			iOtherPlayer.SetUserName(info.UserName);
 			//OtherPlayer.SyncPos();
 
-			_objects.Add(info.PlayerId, go);
+			if (!(_objects.ContainsKey(info.PlayerId)))
+				_objects.Add(info.PlayerId, go);
+
+			else
+            {
+				_objects.Remove(info.PlayerId);
+				_objects.Add(info.PlayerId, go);
+			}
 		}
 	}
 
