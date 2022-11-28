@@ -45,13 +45,14 @@ public class GlobalChaatingUI : MonoBehaviour
     {
         m_ScrollRectTransform = m_ScrollView.content;
 
-        GlobalChatData data;
-        data.ChattingText = "이게뭐지";
-        data.UserName = "유재헌";
         Managers.Chat.SetGlobalChattingUI(this);
 
-        ReceiveMessage(data);
-        
+        List<GlobalChatData> ChatDataList = Managers.Chat.GetGlobalChatList();
+
+        for (int i = 0; i < ChatDataList.Count; ++i)
+        {
+            ReceiveMessage(ChatDataList[i]);
+        }
     }
 
     // Update is called once per frame
