@@ -12,6 +12,7 @@ public class LoginButton : MonoBehaviour
     public GameObject m_RejectUIPrefab = null;
 
     public GameObject m_CustomizeUIPrefab = null;
+    public int count = 0;
     public void LoginClick()
     {
         if (GameObject.Find("AlertPopUp(Clone)") != null || GameObject.Find("AlertPopUp")
@@ -46,46 +47,45 @@ public class LoginButton : MonoBehaviour
             C_LoginCheck loginCheckPacket = new C_LoginCheck();
             loginCheckPacket.AccountId = UserNum;
             Managers.Network.Send(loginCheckPacket);
+            count++;
 
-            //UserData Data = Managers.Data.FindUserData(UserNum);
-
-            //if (!Managers.Data.IsOverlappedUser(UserNum))
-            //    WarnText.text += "틀린 학번입니다.";
-
-            if (!Managers.Data.GetIsPrevUser())
+            if(count>1)
             {
-                WarnText.text = "틀린 학번입니다.";
-            }
-            else
-            {
-                if (Managers.Data.GetUserPassword()==Password)
+                if (!Managers.Data.GetIsPrevUser())
                 {
-                    Destroy(RejectPrefab);
-
-                    Managers.Data.SetCurrentUser(Managers.Data.GetUserName());
-                    Managers.Data.SetCurrentPrivilege(UserPrivileges.Student);
-
-                    //커스터마이징 UI 띄워서 설정
-                    GameObject CustomizePrefab = GameObject.Instantiate(m_CustomizeUIPrefab);
-
-                    //if (Data.UserColor != Define.UserCustomize.End)
-                    //{
-                    //    GameObject AcceptPrefab = GameObject.Instantiate(m_AcceptUIPrefab);
-                    //    Text AcceptText = AcceptPrefab.GetComponentInChildren<Text>();
-                    //    AcceptText.text = Managers.Data.GetUserName() + " 님 환영합니다.";
-                    //}
-
-                    //else
-                    //{
-                    //    //커스터마이징 UI 띄워서 설정
-                    //    GameObject CustomizePrefab = GameObject.Instantiate(m_CustomizeUIPrefab);
-                    //}
-
+                    WarnText.text = "틀린 학번입니다.";
                 }
-
                 else
                 {
-                    WarnText.text += "비밀번호를 확인해주세요.";
+                    if (Managers.Data.GetUserPassword() == Password)
+                    {
+                        Destroy(RejectPrefab);
+
+                        Managers.Data.SetCurrentUser(Managers.Data.GetUserName());
+                        Managers.Data.SetCurrentPrivilege(UserPrivileges.Student);
+
+                        //커스터마이징 UI 띄워서 설정
+                        GameObject CustomizePrefab = GameObject.Instantiate(m_CustomizeUIPrefab);
+
+                        //if (Data.UserColor != Define.UserCustomize.End)
+                        //{
+                        //    GameObject AcceptPrefab = GameObject.Instantiate(m_AcceptUIPrefab);
+                        //    Text AcceptText = AcceptPrefab.GetComponentInChildren<Text>();
+                        //    AcceptText.text = Managers.Data.GetUserName() + " 님 환영합니다.";
+                        //}
+
+                        //else
+                        //{
+                        //    //커스터마이징 UI 띄워서 설정
+                        //    GameObject CustomizePrefab = GameObject.Instantiate(m_CustomizeUIPrefab);
+                        //}
+                        count = 0;
+                    }
+
+                    else
+                    {
+                        WarnText.text += "비밀번호를 확인해주세요.";
+                    }
                 }
             }
         }
