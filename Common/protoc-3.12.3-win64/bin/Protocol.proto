@@ -110,6 +110,9 @@ message C_LoginCheck{
 
 message S_Login {
   int32 loginOk = 1;
+  string accountId = 2;
+  string accountName = 3;
+  string accountPassword = 4;
 }
 
 message PlayerInfo {

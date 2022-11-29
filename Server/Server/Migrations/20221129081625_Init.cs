@@ -13,8 +13,8 @@ namespace Server.Migrations
                     AccountDbId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AccountId = table.Column<string>(nullable: true),
-                    AccountName = table.Column<string>(nullable: true),
-                    AccountPassword = table.Column<string>(nullable: true)
+                    AccountPassword = table.Column<string>(nullable: true),
+                    AccountName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

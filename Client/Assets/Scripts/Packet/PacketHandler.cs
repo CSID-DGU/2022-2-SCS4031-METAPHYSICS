@@ -98,11 +98,13 @@ class PacketHandler
 	public static void S_LoginHandler(PacketSession session, IMessage packet)
 	{
 		S_Login loginPacket = packet as S_Login;
-		Debug.Log($"LoginOK({loginPacket.LoginOk}");
+		//Debug.Log($"LoginOK({loginPacket.LoginOk}");
 		if(loginPacket.LoginOk == 0)
         {
 			Managers.Data.prevUser = true;
-
+			Managers.Data.userId = loginPacket.AccountId;
+			Managers.Data.userPassword = loginPacket.AccountPassword;
+			Managers.Data.userName = loginPacket.AccountName;
 		}
         else
         {

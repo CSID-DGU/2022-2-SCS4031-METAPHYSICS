@@ -10,7 +10,7 @@ namespace Server.DB
 	{
 		public int AccountDbId { get; set; }
 		public string AccountId { get; set; }
-		public string AccountName { get; set; }
 		public string AccountPassword { get; set; }
+		public string AccountName { get; set; }
 	}
 }

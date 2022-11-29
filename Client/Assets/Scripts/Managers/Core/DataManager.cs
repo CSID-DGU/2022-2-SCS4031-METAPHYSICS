@@ -27,6 +27,9 @@ public class DataManager
     private float m_movedirY;
     public bool start = false;
     public bool prevUser = false;
+    public string userId = "";
+    public string userPassword = "";
+    public string userName = "";
     //임시
     private Dictionary<String, UserData> m_UserDataDict = new Dictionary<String, UserData>();
     private List<UserData> m_ArrayUserData = new List<UserData>();
@@ -43,8 +46,6 @@ public class DataManager
         UD.UserColor = UserCustomize.Black;
 
         AddUserData(UD);
-
-        //DB와 연결 작업 여기서
 
 
         //연결된 DB 토대로 FriendManager 초기화
@@ -114,6 +115,21 @@ public class DataManager
     public string GetCurrentUser()
     {
         return m_CurrentUserName;
+    }
+
+    public string GetUserId()
+    {
+        return userId;
+    }
+
+    public string GetUserPassword()
+    {
+        return userPassword;
+    }
+
+    public string GetUserName()
+    {
+        return userName;
     }
 
     public void SetCurrentPrivilege(UserPrivileges UserPrivilege)

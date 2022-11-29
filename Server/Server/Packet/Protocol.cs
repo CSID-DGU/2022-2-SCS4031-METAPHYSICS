@@ -46,22 +46,23 @@ namespace Google.Protobuf.Protocol {
             "b3JkGAQgASgJIl0KCENfU2lnblVwEhAKCHVuaXF1ZUlkGAEgASgJEhEKCWFj",
             "Y291bnRJZBgCIAEoCRITCgthY2NvdW50TmFtZRgDIAEoCRIXCg9hY2NvdW50",
             "UGFzc3dvcmQYBCABKAkiIQoMQ19Mb2dpbkNoZWNrEhEKCWFjY291bnRJZBgB",
-            "IAEoCSIaCgdTX0xvZ2luEg8KB2xvZ2luT2sYASABKAUikwEKClBsYXllcklu",
-            "Zm8SEAoIcGxheWVySWQYASABKAUSEAoIdXNlck5hbWUYAiABKAkSEgoKY29s",
-            "b3JJbmRleBgDIAEoBRIVCg11c2VyUHJpdmlsZWdlGAQgASgFEg0KBXNjZW5l",
-            "GAUgASgJEicKB3Bvc0luZm8YBiABKAsyFi5Qcm90b2NvbC5Qb3NpdGlvbklu",
-            "Zm8iXwoMUG9zaXRpb25JbmZvEgwKBHBvc1gYASABKAISDAoEcG9zWRgCIAEo",
-            "AhIQCghtb3ZlZGlyWBgDIAEoAhIQCghtb3ZlZGlyWRgEIAEoAhIPCgdtb3Zl",
-            "ZGlyGAUgASgFIjIKCENoYXRJbmZvEhAKCHVzZXJOYW1lGAEgASgJEhQKDGNo",
-            "YXR0aW5nVGV4dBgCIAEoCSq9AgoFTXNnSWQSEAoMU19FTlRFUl9HQU1FEAAS",
-            "EAoMU19MRUFWRV9HQU1FEAESCwoHU19TUEFXThACEg0KCVNfREVTUEFXThAD",
-            "EhAKDENfRU5URVJfR0FNRRAEEhAKDENfTEVBVkVfR0FNRRAFEgsKB0NfU1BB",
-            "V04QBhINCglDX0RFU1BBV04QBxIKCgZDX01PVkUQCBIKCgZTX01PVkUQCRIK",
-            "CgZDX0NIQVQQChIKCgZTX0NIQVQQCxIRCg1DX0xFQVZFX1NDRU5FEAwSEQoN",
-            "Q19FTlRFUl9TQ0VORRANEhEKDVNfRU5URVJfU0NFTkUQDhIPCgtTX0NPTk5F",
-            "Q1RFRBAPEgsKB0NfTE9HSU4QEBILCgdTX0xPR0lOEBESDQoJQ19TSUdOX1VQ",
-            "EBISEQoNQ19MT0dJTl9DSEVDSxATQhuqAhhHb29nbGUuUHJvdG9idWYuUHJv",
-            "dG9jb2xiBnByb3RvMw=="));
+            "IAEoCSJbCgdTX0xvZ2luEg8KB2xvZ2luT2sYASABKAUSEQoJYWNjb3VudElk",
+            "GAIgASgJEhMKC2FjY291bnROYW1lGAMgASgJEhcKD2FjY291bnRQYXNzd29y",
+            "ZBgEIAEoCSKTAQoKUGxheWVySW5mbxIQCghwbGF5ZXJJZBgBIAEoBRIQCgh1",
+            "c2VyTmFtZRgCIAEoCRISCgpjb2xvckluZGV4GAMgASgFEhUKDXVzZXJQcml2",
+            "aWxlZ2UYBCABKAUSDQoFc2NlbmUYBSABKAkSJwoHcG9zSW5mbxgGIAEoCzIW",
+            "LlByb3RvY29sLlBvc2l0aW9uSW5mbyJfCgxQb3NpdGlvbkluZm8SDAoEcG9z",
+            "WBgBIAEoAhIMCgRwb3NZGAIgASgCEhAKCG1vdmVkaXJYGAMgASgCEhAKCG1v",
+            "dmVkaXJZGAQgASgCEg8KB21vdmVkaXIYBSABKAUiMgoIQ2hhdEluZm8SEAoI",
+            "dXNlck5hbWUYASABKAkSFAoMY2hhdHRpbmdUZXh0GAIgASgJKr0CCgVNc2dJ",
+            "ZBIQCgxTX0VOVEVSX0dBTUUQABIQCgxTX0xFQVZFX0dBTUUQARILCgdTX1NQ",
+            "QVdOEAISDQoJU19ERVNQQVdOEAMSEAoMQ19FTlRFUl9HQU1FEAQSEAoMQ19M",
+            "RUFWRV9HQU1FEAUSCwoHQ19TUEFXThAGEg0KCUNfREVTUEFXThAHEgoKBkNf",
+            "TU9WRRAIEgoKBlNfTU9WRRAJEgoKBkNfQ0hBVBAKEgoKBlNfQ0hBVBALEhEK",
+            "DUNfTEVBVkVfU0NFTkUQDBIRCg1DX0VOVEVSX1NDRU5FEA0SEQoNU19FTlRF",
+            "Ul9TQ0VORRAOEg8KC1NfQ09OTkVDVEVEEA8SCwoHQ19MT0dJThAQEgsKB1Nf",
+            "TE9HSU4QERINCglDX1NJR05fVVAQEhIRCg1DX0xPR0lOX0NIRUNLEBNCG6oC",
+            "GEdvb2dsZS5Qcm90b2J1Zi5Qcm90b2NvbGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.MsgId), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -84,7 +85,7 @@ namespace Google.Protobuf.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.C_Login), global::Google.Protobuf.Protocol.C_Login.Parser, new[]{ "UniqueId", "AccountId", "AccountName", "AccountPassword" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.C_SignUp), global::Google.Protobuf.Protocol.C_SignUp.Parser, new[]{ "UniqueId", "AccountId", "AccountName", "AccountPassword" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.C_LoginCheck), global::Google.Protobuf.Protocol.C_LoginCheck.Parser, new[]{ "AccountId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_Login), global::Google.Protobuf.Protocol.S_Login.Parser, new[]{ "LoginOk" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.S_Login), global::Google.Protobuf.Protocol.S_Login.Parser, new[]{ "LoginOk", "AccountId", "AccountName", "AccountPassword" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.PlayerInfo), global::Google.Protobuf.Protocol.PlayerInfo.Parser, new[]{ "PlayerId", "UserName", "ColorIndex", "UserPrivilege", "Scene", "PosInfo" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.PositionInfo), global::Google.Protobuf.Protocol.PositionInfo.Parser, new[]{ "PosX", "PosY", "MovedirX", "MovedirY", "Movedir" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ChatInfo), global::Google.Protobuf.Protocol.ChatInfo.Parser, new[]{ "UserName", "ChattingText" }, null, null, null, null)
@@ -2764,6 +2765,9 @@ namespace Google.Protobuf.Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public S_Login(S_Login other) : this() {
       loginOk_ = other.loginOk_;
+      accountId_ = other.accountId_;
+      accountName_ = other.accountName_;
+      accountPassword_ = other.accountPassword_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2783,6 +2787,39 @@ namespace Google.Protobuf.Protocol {
       }
     }
 
+    /// <summary>Field number for the "accountId" field.</summary>
+    public const int AccountIdFieldNumber = 2;
+    private string accountId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountId {
+      get { return accountId_; }
+      set {
+        accountId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "accountName" field.</summary>
+    public const int AccountNameFieldNumber = 3;
+    private string accountName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountName {
+      get { return accountName_; }
+      set {
+        accountName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "accountPassword" field.</summary>
+    public const int AccountPasswordFieldNumber = 4;
+    private string accountPassword_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountPassword {
+      get { return accountPassword_; }
+      set {
+        accountPassword_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as S_Login);
@@ -2797,6 +2834,9 @@ namespace Google.Protobuf.Protocol {
         return true;
       }
       if (LoginOk != other.LoginOk) return false;
+      if (AccountId != other.AccountId) return false;
+      if (AccountName != other.AccountName) return false;
+      if (AccountPassword != other.AccountPassword) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2804,6 +2844,9 @@ namespace Google.Protobuf.Protocol {
     public override int GetHashCode() {
       int hash = 1;
       if (LoginOk != 0) hash ^= LoginOk.GetHashCode();
+      if (AccountId.Length != 0) hash ^= AccountId.GetHashCode();
+      if (AccountName.Length != 0) hash ^= AccountName.GetHashCode();
+      if (AccountPassword.Length != 0) hash ^= AccountPassword.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2821,6 +2864,18 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(8);
         output.WriteInt32(LoginOk);
       }
+      if (AccountId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(AccountId);
+      }
+      if (AccountName.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(AccountName);
+      }
+      if (AccountPassword.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(AccountPassword);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2831,6 +2886,15 @@ namespace Google.Protobuf.Protocol {
       int size = 0;
       if (LoginOk != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(LoginOk);
+      }
+      if (AccountId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountId);
+      }
+      if (AccountName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountName);
+      }
+      if (AccountPassword.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountPassword);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2846,6 +2910,15 @@ namespace Google.Protobuf.Protocol {
       if (other.LoginOk != 0) {
         LoginOk = other.LoginOk;
       }
+      if (other.AccountId.Length != 0) {
+        AccountId = other.AccountId;
+      }
+      if (other.AccountName.Length != 0) {
+        AccountName = other.AccountName;
+      }
+      if (other.AccountPassword.Length != 0) {
+        AccountPassword = other.AccountPassword;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -2859,6 +2932,18 @@ namespace Google.Protobuf.Protocol {
             break;
           case 8: {
             LoginOk = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            AccountId = input.ReadString();
+            break;
+          }
+          case 26: {
+            AccountName = input.ReadString();
+            break;
+          }
+          case 34: {
+            AccountPassword = input.ReadString();
             break;
           }
         }

@@ -38,17 +38,22 @@ public class SignUpAcceptBtn : MonoBehaviour
         else
         {
             
-            //bool Overlapped = Managers.Data.IsOverlappedUser(UserNum);
+            bool Overlapped = Managers.Data.IsOverlappedUser(UserNum);
 
             //Debug.Log("C_LoginCheck");
-            C_LoginCheck loginCheckPacket = new C_LoginCheck();
-            loginCheckPacket.AccountId = UserNum;
-            Managers.Network.Send(loginCheckPacket);
+            //C_LoginCheck loginCheckPacket = new C_LoginCheck();
+            //loginCheckPacket.AccountId = UserNum;
+            //Managers.Network.Send(loginCheckPacket);
 
-            if (!Managers.Data.GetIsPrevUser())
+            if(Overlapped)
             {
                 AlertText.text = "이미 가입된 학번입니다.";
             }
+
+            //if (Managers.Data.GetIsPrevUser())
+            //{
+            //    AlertText.text = "이미 가입된 학번입니다.";
+            //}
 
             else
             {
@@ -60,16 +65,15 @@ public class SignUpAcceptBtn : MonoBehaviour
 
                 Managers.Data.AddUserData(UD);
 
+                AlertText.text = UserName + "님 환영합니다.";
+                UIPrefab.GetComponent<AllertPopUpBtn>().SetRemoveUIEnable(true, "SignUpUI");
+
                 // 회원가입 유저 정보 전달해서 서버에 db에 넣기
-                Debug.Log("C_SignUp");
                 C_SignUp signUpPacket = new C_SignUp();
                 signUpPacket.AccountId = UserNum;
                 signUpPacket.AccountName = UserName;
                 signUpPacket.AccountPassword = Password;
                 Managers.Network.Send(signUpPacket);
-
-                AlertText.text = UserName + "님 환영합니다.";
-                UIPrefab.GetComponent<AllertPopUpBtn>().SetRemoveUIEnable(true, "SignUpUI");
             }
         }
 

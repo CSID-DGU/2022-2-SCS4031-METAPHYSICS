@@ -159,7 +159,7 @@ class PacketHandler
 		C_SignUp signUpPacket = packet as C_SignUp;
 		ClientSession clientSession = session as ClientSession;
 
-		Console.WriteLine($"UniqueId : {signUpPacket.UniqueId}");
+		Console.WriteLine($"C_SignUpHandler : {signUpPacket.AccountName}");
 
 		using (AppDbContext db = new AppDbContext())
 		{
@@ -167,6 +167,9 @@ class PacketHandler
 			AccountName = signUpPacket.AccountName, AccountPassword = signUpPacket.AccountPassword };
 			db.Accounts.Add(newAccount);
 			db.SaveChanges();
+			Console.WriteLine($"AccountId : {signUpPacket.AccountId}");
+			Console.WriteLine($"AccountName : {signUpPacket.AccountName}");
+			Console.WriteLine($"AccountPassword : {signUpPacket.AccountPassword}");
 		}
 	}
 
@@ -181,11 +184,16 @@ class PacketHandler
 			AccountDb findAccount = db.Accounts
 				.Where(a => a.AccountId == loginCheckpacket.AccountId).FirstOrDefault();
 
+			Console.WriteLine($"C_LoginCheckHandler : {loginCheckpacket.AccountId}");
 			// 있으면
 			if (findAccount != null)
 			{
-				S_Login loginOk = new S_Login() { LoginOk = 0 };
+				S_Login loginOk = new S_Login() { LoginOk = 0, AccountId = findAccount.AccountId,
+				AccountName = findAccount.AccountName, AccountPassword = findAccount.AccountPassword};
 				clientSession.Send(loginOk);
+				Console.WriteLine($"AccountId : {findAccount.AccountId}");
+				Console.WriteLine($"AccountName : {findAccount.AccountName}");
+				Console.WriteLine($"AccountPassword : {findAccount.AccountPassword}");
 			}
             else
             {

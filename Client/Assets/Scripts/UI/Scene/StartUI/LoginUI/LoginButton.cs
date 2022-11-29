@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Google.Protobuf.Protocol;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -42,32 +43,43 @@ public class LoginButton : MonoBehaviour
 
         else
         {
-            UserData Data = Managers.Data.FindUserData(UserNum);
+            C_LoginCheck loginCheckPacket = new C_LoginCheck();
+            loginCheckPacket.AccountId = UserNum;
+            Managers.Network.Send(loginCheckPacket);
 
-            if (!Managers.Data.IsOverlappedUser(UserNum))
-                WarnText.text += "틀린 학번입니다.";
+            //UserData Data = Managers.Data.FindUserData(UserNum);
 
+            //if (!Managers.Data.IsOverlappedUser(UserNum))
+            //    WarnText.text += "틀린 학번입니다.";
+
+            if (!Managers.Data.GetIsPrevUser())
+            {
+                WarnText.text = "틀린 학번입니다.";
+            }
             else
             {
-                if (Data.Password.Equals(Password))
+                if (Managers.Data.GetUserPassword()==Password)
                 {
                     Destroy(RejectPrefab);
 
-                    Managers.Data.SetCurrentUser(Data.UserName);
+                    Managers.Data.SetCurrentUser(Managers.Data.GetUserName());
                     Managers.Data.SetCurrentPrivilege(UserPrivileges.Student);
 
-                    if (Data.UserColor != Define.UserCustomize.End)
-                    {
-                        GameObject AcceptPrefab = GameObject.Instantiate(m_AcceptUIPrefab);
-                        Text AcceptText = AcceptPrefab.GetComponentInChildren<Text>();
-                        AcceptText.text = Data.UserName + " 님 환영합니다.";
-                    }
+                    //커스터마이징 UI 띄워서 설정
+                    GameObject CustomizePrefab = GameObject.Instantiate(m_CustomizeUIPrefab);
 
-                    else
-                    {
-                        //커스터마이징 UI 띄워서 설정
-                        GameObject CustomizePrefab = GameObject.Instantiate(m_CustomizeUIPrefab);
-                    }
+                    //if (Data.UserColor != Define.UserCustomize.End)
+                    //{
+                    //    GameObject AcceptPrefab = GameObject.Instantiate(m_AcceptUIPrefab);
+                    //    Text AcceptText = AcceptPrefab.GetComponentInChildren<Text>();
+                    //    AcceptText.text = Managers.Data.GetUserName() + " 님 환영합니다.";
+                    //}
+
+                    //else
+                    //{
+                    //    //커스터마이징 UI 띄워서 설정
+                    //    GameObject CustomizePrefab = GameObject.Instantiate(m_CustomizeUIPrefab);
+                    //}
 
                 }
 
