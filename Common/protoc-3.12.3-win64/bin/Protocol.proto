@@ -23,6 +23,8 @@ enum MsgId {
   S_CONNECTED = 15;
   C_LOGIN = 16;
   S_LOGIN = 17;
+  C_SIGN_UP = 18;
+  C_LOGIN_CHECK = 19;
 }
 
 message S_EnterGame {
@@ -90,6 +92,20 @@ message S_Connected {
 
 message C_Login {
   string uniqueId = 1;
+  string accountId = 2;
+  string accountName = 3;
+  string accountPassword = 4;
+}
+
+message C_SignUp{
+  string uniqueId = 1;
+  string accountId = 2;
+  string accountName = 3;
+  string accountPassword = 4;
+}
+
+message C_LoginCheck{
+  string accountId = 1;
 }
 
 message S_Login {

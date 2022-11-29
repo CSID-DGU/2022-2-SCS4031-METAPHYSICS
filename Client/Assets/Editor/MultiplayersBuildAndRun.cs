@@ -52,10 +52,14 @@ public class MultiplayersBuildAndRun
 			scenes[i] = EditorBuildSettings.scenes[i].path;
 		}
 		*/
-		string[] scenes = new string[3];
-		for (int i = 0; i < scenes.Length; i++)
+		string[] scenes = new string[7];
+		for (int i = 0; i < 3; i++)
 		{
 			scenes[i] = EditorBuildSettings.scenes[2*i+1].path;
+		}
+		for (int i = 3; i < scenes.Length; i++)
+		{
+			scenes[i] = EditorBuildSettings.scenes[i+3].path;
 		}
 
 		return scenes;

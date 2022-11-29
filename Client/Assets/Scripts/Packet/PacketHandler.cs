@@ -99,6 +99,15 @@ class PacketHandler
 	{
 		S_Login loginPacket = packet as S_Login;
 		Debug.Log($"LoginOK({loginPacket.LoginOk}");
+		if(loginPacket.LoginOk == 0)
+        {
+			Managers.Data.prevUser = true;
+
+		}
+        else
+        {
+			Managers.Data.prevUser = false;
+		}
 	}
 }
 

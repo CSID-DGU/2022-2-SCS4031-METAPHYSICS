@@ -26,6 +26,7 @@ public class DataManager
     private float m_movedirX;
     private float m_movedirY;
     public bool start = false;
+    public bool prevUser = false;
     //임시
     private Dictionary<String, UserData> m_UserDataDict = new Dictionary<String, UserData>();
     private List<UserData> m_ArrayUserData = new List<UserData>();
@@ -152,6 +153,11 @@ public class DataManager
     public int GetCurrentUserId()
     {
         return m_UserId;
+    }
+
+    public bool GetIsPrevUser()
+    {
+        return prevUser;
     }
 
     public int GetCurrentUserColorIndex()

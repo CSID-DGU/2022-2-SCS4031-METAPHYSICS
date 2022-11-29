@@ -154,4 +154,45 @@ class PacketHandler
         }
 	}
 
+	public static void C_SignUpHandler(PacketSession session, IMessage packet)
+	{
+		C_SignUp signUpPacket = packet as C_SignUp;
+		ClientSession clientSession = session as ClientSession;
+
+		Console.WriteLine($"UniqueId : {signUpPacket.UniqueId}");
+
+		using (AppDbContext db = new AppDbContext())
+		{
+			AccountDb newAccount = new AccountDb() { AccountId = signUpPacket.AccountId,
+			AccountName = signUpPacket.AccountName, AccountPassword = signUpPacket.AccountPassword };
+			db.Accounts.Add(newAccount);
+			db.SaveChanges();
+		}
+	}
+
+	public static void C_LoginCheckHandler(PacketSession session, IMessage packet)
+	{
+		C_LoginCheck loginCheckpacket = packet as C_LoginCheck;
+		ClientSession clientSession = session as ClientSession;
+
+		using (AppDbContext db = new AppDbContext())
+		{
+			// 만들어져 있는지 확인
+			AccountDb findAccount = db.Accounts
+				.Where(a => a.AccountId == loginCheckpacket.AccountId).FirstOrDefault();
+
+			// 있으면
+			if (findAccount != null)
+			{
+				S_Login loginOk = new S_Login() { LoginOk = 0 };
+				clientSession.Send(loginOk);
+			}
+            else
+            {
+				S_Login loginOk = new S_Login() { LoginOk = 1 };
+				clientSession.Send(loginOk);
+			}
+		}
+	}
+
 }
