@@ -27,7 +27,21 @@ public static class Struct
 
     public struct PortalData
     {
-        public GameScene    CurrentScene; 
-        public GameScene    NextSceneType;
+        public GameScene CurrentScene;
+        public GameScene NextSceneType;
     }
+    public struct DirectMessageStruct
+    {
+        public string ChattingText;
+        public string SenderUser;
+        public string ReceiverUser;
+    }
+
+    public struct FriendData
+    {
+        public string FriendName;
+        public List<DirectMessageStruct> DirectMessageList;
+    }
+
+
 }
