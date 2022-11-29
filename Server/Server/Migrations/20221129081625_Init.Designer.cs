@@ -9,7 +9,7 @@ using Server.DB;
 namespace Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221126200221_Init")]
+    [Migration("20221129081625_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,6 +27,9 @@ namespace Server.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AccountId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("AccountName")
                         .HasColumnType("nvarchar(450)");
 
@@ -40,39 +43,6 @@ namespace Server.Migrations
                         .HasFilter("[AccountName] IS NOT NULL");
 
                     b.ToTable("Account");
-                });
-
-            modelBuilder.Entity("Server.DB.PlayerDb", b =>
-                {
-                    b.Property<int>("PlayerDbId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AccountDbId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PlayerName")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("PlayerDbId");
-
-                    b.HasIndex("AccountDbId");
-
-                    b.HasIndex("PlayerName")
-                        .IsUnique()
-                        .HasFilter("[PlayerName] IS NOT NULL");
-
-                    b.ToTable("Player");
-                });
-
-            modelBuilder.Entity("Server.DB.PlayerDb", b =>
-                {
-                    b.HasOne("Server.DB.AccountDb", "Account")
-                        .WithMany("Players")
-                        .HasForeignKey("AccountDbId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

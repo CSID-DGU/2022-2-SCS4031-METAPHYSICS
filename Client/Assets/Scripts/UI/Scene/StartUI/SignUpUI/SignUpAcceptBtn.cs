@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Google.Protobuf.Protocol;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,10 +40,20 @@ public class SignUpAcceptBtn : MonoBehaviour
             
             bool Overlapped = Managers.Data.IsOverlappedUser(UserNum);
 
+            //Debug.Log("C_LoginCheck");
+            //C_LoginCheck loginCheckPacket = new C_LoginCheck();
+            //loginCheckPacket.AccountId = UserNum;
+            //Managers.Network.Send(loginCheckPacket);
+
             if(Overlapped)
             {
                 AlertText.text = "이미 가입된 학번입니다.";
             }
+
+            //if (Managers.Data.GetIsPrevUser())
+            //{
+            //    AlertText.text = "이미 가입된 학번입니다.";
+            //}
 
             else
             {
@@ -56,6 +67,13 @@ public class SignUpAcceptBtn : MonoBehaviour
 
                 AlertText.text = UserName + "님 환영합니다.";
                 UIPrefab.GetComponent<AllertPopUpBtn>().SetRemoveUIEnable(true, "SignUpUI");
+
+                // 회원가입 유저 정보 전달해서 서버에 db에 넣기
+                C_SignUp signUpPacket = new C_SignUp();
+                signUpPacket.AccountId = UserNum;
+                signUpPacket.AccountName = UserName;
+                signUpPacket.AccountPassword = Password;
+                Managers.Network.Send(signUpPacket);
             }
         }
 

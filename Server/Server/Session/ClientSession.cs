@@ -32,11 +32,6 @@ namespace Server
 		public override void OnConnected(EndPoint endPoint)
 		{
 			Console.WriteLine($"OnConnected : {endPoint}");
-
-            {
-				S_Connected connectedPacket = new S_Connected();
-				Send(connectedPacket);
-            }
         }
 
 		public override void OnRecvPacket(ArraySegment<byte> buffer)

@@ -14,7 +14,8 @@ public class StartScene : BaseScene
     {
         base.Init();
 
-        Screen.SetResolution(1920, 980, false);
+        Screen.SetResolution(1920, 1080, false);
+        //Screen.SetResolution(1920, 980, false);
         //Screen.SetResolution(640, 480, false);
     }
 
