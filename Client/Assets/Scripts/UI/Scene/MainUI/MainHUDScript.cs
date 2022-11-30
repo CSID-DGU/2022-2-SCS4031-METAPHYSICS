@@ -26,6 +26,13 @@ public class MainHUDScript : MonoBehaviour
     private SettingUI m_SettingUI = null;
     private GameObject m_SettingObj = null;
 
+    [SerializeField]
+    private GameObject m_NoticeUIPrefab = null;
+
+    [SerializeField]
+    private NoticeUI m_NoticeUI = null;
+    private GameObject m_NoticeObj = null;
+
     //Button 관련 멤버
     [SerializeField]
     private Button m_FriendBtn = null;
@@ -85,6 +92,15 @@ public class MainHUDScript : MonoBehaviour
                 m_SettingUION = false;
             }
         }
+
+        if (m_NoticeObj)
+        {
+            if (!m_NoticeObj.activeInHierarchy)
+            {
+                m_NoticeUI = null;
+                m_NoticeUION = false;
+            }
+        }
     }
 
     public void FriendButtonCallback()
@@ -136,7 +152,23 @@ public class MainHUDScript : MonoBehaviour
 
     public void NoticeButtonCallback()
     {
+        if (m_NoticeBtn)
+        {
+            if (!m_NoticeUION)
+            {
+                m_NoticeUION = true;
+                m_NoticeObj = Instantiate(m_NoticeUIPrefab);
 
+                m_NoticeUI = m_NoticeObj.GetComponentInChildren<NoticeUI>();
+            }
+
+            else
+            {
+                m_NoticeUION = false;
+                Destroy(m_NoticeObj);
+                m_NoticeObj = null;
+            }
+        }
     }
 
     public void SoundButtonCallback()

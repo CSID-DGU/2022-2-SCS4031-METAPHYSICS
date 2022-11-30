@@ -7,6 +7,47 @@ public class SoundManager
     AudioSource[] _audioSources = new AudioSource[(int)Define.Sound.MaxCount];
     Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
 
+    public float m_MasterSoundVolume = 100.0f;
+    public float m_EffectSoundVolume = 100.0f;
+
+    public float MasterSoundVolume
+    {
+        get
+        {
+            return m_MasterSoundVolume;
+        }
+
+        set
+        {
+            if (value > 100.0f)
+                value = 100.0f;
+
+            else if (value < 0.0f)
+                value = 0.0f;
+
+            m_MasterSoundVolume = value;
+        }
+    }
+
+    public float EffectSoundVolume
+    {
+        get
+        {
+            return m_EffectSoundVolume;
+        }
+
+        set
+        {
+            if (value > 100.0f)
+                value = 100.0f;
+
+            else if (value < 0.0f)
+                value = 0.0f;
+
+            m_EffectSoundVolume = value;
+        }
+    }
+
     // MP3 Player   -> AudioSource
     // MP3 음원     -> AudioClip
     // 관객(귀)     -> AudioListener
