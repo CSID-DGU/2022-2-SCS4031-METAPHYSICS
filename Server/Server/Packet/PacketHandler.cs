@@ -230,15 +230,18 @@ class PacketHandler
 				.Where(a => a.AccountName == checkPacket.AccountName).FirstOrDefault();
 
 			Console.WriteLine($"C_FriendCheckHandler : {checkPacket.AccountName}");
-			S_FriendCheck friendPacket = new S_FriendCheck()
+			if (findAccount != null)
 			{
-				FriendList = findAccount.FriendList
-			};
-			clientSession.Send(friendPacket);
+				S_FriendCheck friendPacket = new S_FriendCheck()
+				{
+					FriendList = findAccount.FriendList
+				};
+				clientSession.Send(friendPacket);
+			}
 		}
 	}
 
-	public static void C_AddFriend(PacketSession session, IMessage packet)
+	public static void C_AddFriendHandler(PacketSession session, IMessage packet)
 	{
 		C_AddFriend addFriendPacket = packet as C_AddFriend;
 		ClientSession clientSession = session as ClientSession;
@@ -252,25 +255,28 @@ class PacketHandler
 			AccountDb findAccount2 = db.Accounts
 				.Where(a => a.AccountName == addFriendPacket.Sender).FirstOrDefault();
 
-			Console.WriteLine($"C_AddFriend : {addFriendPacket.Name}");
-			if(findAccount.FriendList==null)
-            {
-				findAccount.FriendList = addFriendPacket.Sender;
-            }
-            else
-            {
-				findAccount.FriendList = findAccount.FriendList + "," + addFriendPacket.Sender;
+			if (findAccount != null)
+			{
+				Console.WriteLine($"C_AddFriend : {addFriendPacket.Name}");
+				if (findAccount.FriendList == null)
+				{
+					findAccount.FriendList = addFriendPacket.Sender;
+				}
+				else
+				{
+					findAccount.FriendList = findAccount.FriendList + "," + addFriendPacket.Sender;
+				}
+				if (findAccount2.FriendList == null)
+				{
+					findAccount2.FriendList = addFriendPacket.Name;
+				}
+				else
+				{
+					findAccount2.FriendList = findAccount2.FriendList + "," + addFriendPacket.Name;
+				}
+				db.SaveChanges();
 			}
 
-			if (findAccount2.FriendList == null)
-			{
-				findAccount2.FriendList = addFriendPacket.Name;
-			}
-			else
-			{
-				findAccount2.FriendList = findAccount2.FriendList + "," + addFriendPacket.Name;
-			}
-			db.SaveChanges();
 
 			//S_AddFriend friendPacket = new S_AddFriend()
 			//{
