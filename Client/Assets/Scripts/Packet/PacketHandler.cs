@@ -127,12 +127,6 @@ class PacketHandler
 		S_FriendCheck friendPacket = packet as S_FriendCheck;
 		Managers.Data.m_FriendManager.SetFriendList(friendPacket.FriendList);
 	}
-
-	public static void S_AddFriend(PacketSession session, IMessage packet)
-	{
-		S_AddFriend friendPacket = packet as S_AddFriend;
-		Managers.Data.m_FriendManager.SetFriendList(friendPacket.FriendList);
-	}
 }
 
 
