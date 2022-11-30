@@ -51,7 +51,7 @@ public class Managers : MonoBehaviour
         Data.update();
         Navigation.update();
         Scene.SceneUpdate();
-
+        Sound.Update();
     }
 
     static void Init()
