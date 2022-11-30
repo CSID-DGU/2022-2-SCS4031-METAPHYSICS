@@ -82,6 +82,7 @@ public class MyPlayerController : UserControllerScript
 					{
 						DestPortalObj = PortalObjs[i];
 						m_AutoMovingDest = SceneColliderComponent.GetNextScene();
+						break;
 					}
                 }
 

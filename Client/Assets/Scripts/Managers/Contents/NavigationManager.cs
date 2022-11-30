@@ -50,6 +50,8 @@ public class NavigationManager
                 {
                     CurrentPortalList.Add(m_WayPointList[i][j]);
                 }
+
+                break;
             }
         }
 
