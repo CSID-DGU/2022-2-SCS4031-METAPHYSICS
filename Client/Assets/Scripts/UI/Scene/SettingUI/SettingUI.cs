@@ -45,6 +45,7 @@ public class SettingUI : MonoBehaviour
 
     void Start()
     {
+        //초기값 임의 지정
         m_AlarmHandleSlider.maxValue = 0.3f;
         m_AlarmHandleSlider.minValue = 0.0f;
 
@@ -69,6 +70,9 @@ public class SettingUI : MonoBehaviour
 
         m_EffectSoundBar.maxValue = SoundMaxValue;
         m_EffectSoundBar.minValue = SoundMinValue;
+
+        m_SoundBar.value = Managers.Sound.MasterSoundVolume;
+        m_EffectSoundBar.value = Managers.Sound.EffectSoundVolume;
     }
 
     void Update()
@@ -141,6 +145,8 @@ public class SettingUI : MonoBehaviour
     {
         Managers.Data.m_FriendManager.AlarmEnable = m_AlarmEnable;
 
+        Managers.Sound.MasterSoundVolume = m_SoundBar.value;
+        Managers.Sound.EffectSoundVolume = m_EffectSoundBar.value;
         //사운드 설정
     }
 
