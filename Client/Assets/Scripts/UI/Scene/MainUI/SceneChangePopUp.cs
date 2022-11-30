@@ -38,6 +38,9 @@ public class SceneChangePopUp : MonoBehaviour
         if (m_NextScene == GameScene.End)
             return;
 
+        string DoorOpenSoundName = "Door_Open_1";
+        Managers.Sound.PlayByName(DoorOpenSoundName, Sound.Effect);
+
         string SceneName = m_NextScene.ToString();
 
         Managers.Scene.SetNextScene(SceneName);

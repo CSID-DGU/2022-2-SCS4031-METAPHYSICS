@@ -14,10 +14,12 @@ public class MyPlayerController : UserControllerScript
 	Stack<Vector3> m_PathStack = new Stack<Vector3>();
 	bool m_IsAutoMoving = false;
 	GameScene m_AutoMovingDest = GameScene.End;
+	AudioClip m_WalkSound = null;
 	protected override void Start()
 	{
 		base.Start();
 
+		m_WalkSound = Managers.Sound.FindClip("Walk_1");
 		//Vector3 InitPos = Managers.Scene.GetPlayerInitPos();
 		//gameObject.transform.position = InitPos;
 
@@ -52,6 +54,7 @@ public class MyPlayerController : UserControllerScript
 		UpdatePosition();
 		UpdateNavigation();
 		UpdateIsMoving();
+		UpdateWalkSound();
 	}
 
 	
@@ -242,6 +245,30 @@ public class MyPlayerController : UserControllerScript
 			Managers.Network.Send(movePacket);
 			_updated = false;
 		}
+	}
+
+	void UpdateWalkSound()
+    {
+		AudioSource Source = Managers.Sound.GetAudioSource(Sound.LoopEffect);
+
+		if (m_MoveDir == (int)MoveDir.None)
+		{
+			if (Source.clip == m_WalkSound)
+			{
+				Source.Stop();
+			}
+		}
+
+		else
+		{
+			if (Source.clip == m_WalkSound)
+			{
+				if (Source.isPlaying)
+					return;
+			}
+				
+				Managers.Sound.Play(m_WalkSound, Sound.LoopEffect, 1.5f);
+			}
 	}
 
 	public bool IsAutoMoving()

@@ -147,7 +147,7 @@ public class BongwanIndoor : BaseScene
     protected override void Init()
     {
         base.Init();
-
+        Managers.Sound.PlayByName("Bon_Gwan_BGM", Define.Sound.Bgm);
         SceneType = Define.Scene.Game;
 
         Screen.SetResolution(1920, 980, false);
