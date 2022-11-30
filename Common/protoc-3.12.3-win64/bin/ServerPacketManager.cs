@@ -40,7 +40,11 @@ class PacketManager
 		_onRecv.Add((ushort)MsgId.CEnterScene, MakePacket<C_EnterScene>);
 		_handler.Add((ushort)MsgId.CEnterScene, PacketHandler.C_EnterSceneHandler);		
 		_onRecv.Add((ushort)MsgId.CLogin, MakePacket<C_Login>);
-		_handler.Add((ushort)MsgId.CLogin, PacketHandler.C_LoginHandler);
+		_handler.Add((ushort)MsgId.CLogin, PacketHandler.C_LoginHandler);		
+		_onRecv.Add((ushort)MsgId.CSignUp, MakePacket<C_SignUp>);
+		_handler.Add((ushort)MsgId.CSignUp, PacketHandler.C_SignUpHandler);		
+		_onRecv.Add((ushort)MsgId.CLoginCheck, MakePacket<C_LoginCheck>);
+		_handler.Add((ushort)MsgId.CLoginCheck, PacketHandler.C_LoginCheckHandler);
 	}
 
 	public void OnRecvPacket(PacketSession session, ArraySegment<byte> buffer)

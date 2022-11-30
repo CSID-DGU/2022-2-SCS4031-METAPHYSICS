@@ -152,7 +152,8 @@ public class EightPathScene : BaseScene
 
         Managers.Map.LoadMap(2);
 
-        Screen.SetResolution(1920, 980, false);
+        Screen.SetResolution(1920, 1080, false);
+        //Screen.SetResolution(1920, 980, false);
         //Screen.SetResolution(640, 480, false);
 
         UserName = Managers.Data.GetCurrentUser();

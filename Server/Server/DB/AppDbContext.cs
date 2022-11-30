@@ -9,7 +9,6 @@ namespace Server.DB
 	public class AppDbContext : DbContext
 	{
 		public DbSet<AccountDb> Accounts { get; set; }
-		public DbSet<PlayerDb> Players { get; set; }
 
 		// 로그 찍는데 사용
 		static readonly ILoggerFactory _logger = LoggerFactory.Create(builder => { builder.AddConsole(); });
@@ -27,10 +26,6 @@ namespace Server.DB
 		{
 			builder.Entity<AccountDb>()
 				.HasIndex(a => a.AccountName)
-				.IsUnique();
-
-			builder.Entity<PlayerDb>()
-				.HasIndex(p => p.PlayerName)
 				.IsUnique();
 		}
 	}

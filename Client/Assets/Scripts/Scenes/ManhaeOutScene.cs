@@ -19,6 +19,7 @@ public class ManhaeOutScene : BaseScene
             _playerInfo = value;
             PlayerID = value.PlayerId;
             UserName = value.UserName;
+            Scene = value.Scene;
             ColorIndex = value.ColorIndex;
             PosX = value.PosInfo.PosX;
             PosY = value.PosInfo.PosY;
@@ -36,6 +37,19 @@ public class ManhaeOutScene : BaseScene
         set
         {
             Player_Info.UserName = value;
+            _updated = true;
+        }
+    }
+    public string Scene //이거 서버 전달
+    {
+        get
+        {
+            return Player_Info.Scene;
+        }
+
+        set
+        {
+            Player_Info.Scene = value;
             _updated = true;
         }
     }
@@ -142,6 +156,8 @@ public class ManhaeOutScene : BaseScene
         UserName = Managers.Data.GetCurrentUser();
         ColorIndex = Managers.Data.GetCurrentUserColorIndex();
         UserPrivilege = (int)Managers.Data.GetCurrentPrivilege();
+        PlayerID = Managers.Data.GetCurrentUserId();
+        Scene = Managers.Data.GetCurrentScene();
         //// TODO 위치, 방향 정보
         //PosX = Managers.Data.GetCurrentPosX(1);
         //PosY = Managers.Data.GetCurrentPosY(1);
@@ -149,20 +165,27 @@ public class ManhaeOutScene : BaseScene
         //MovedirY = Managers.Data.GetCurrentDirY(1);
         //오류남
 
-        //씬입장
-        CheckUpdatedFlag();
+        // 씬입장전 초기화
+        C_LeaveScene leaveScenePacket = new C_LeaveScene();
+        leaveScenePacket.Player = Player_Info;
+        Managers.Network.Send(leaveScenePacket);
+
+        // 씬입장
+        C_EnterScene enterPacket = new C_EnterScene();
+        enterPacket.Player = Player_Info;
+        Managers.Network.Send(enterPacket);
     }
 
-    void CheckUpdatedFlag()
-    {
-        if (_updated)
-        {
-            C_EnterGame enterPacket = new C_EnterGame();
-            enterPacket.Player = Player_Info;
-            Managers.Network.Send(enterPacket);
-            _updated = false;
-        }
-    }
+    //void CheckUpdatedFlag()
+    //{
+    //    if (_updated)
+    //    {
+    //        C_EnterGame enterPacket = new C_EnterGame();
+    //        enterPacket.Player = Player_Info;
+    //        Managers.Network.Send(enterPacket);
+    //        _updated = false;
+    //    }
+    //}
 
     public override void Clear()
     {
