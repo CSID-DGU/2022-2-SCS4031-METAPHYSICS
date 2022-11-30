@@ -147,6 +147,7 @@ public class EightPathScene : BaseScene
     protected override void Init()
     {
         base.Init();
+        Managers.Sound.PlayByName("Main_BGM", Define.Sound.Bgm);
 
         SceneType = Define.Scene.Game;
 

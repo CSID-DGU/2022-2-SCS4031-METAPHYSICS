@@ -147,7 +147,7 @@ public class WonHeungIndoor : BaseScene
     protected override void Init()
     {
         base.Init();
-
+        Managers.Sound.PlayByName("Main_BGM", Define.Sound.Bgm);
         SceneType = Define.Scene.Game;
 
         Screen.SetResolution(1920, 980, false);

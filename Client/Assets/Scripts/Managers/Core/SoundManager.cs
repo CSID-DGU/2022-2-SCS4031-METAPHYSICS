@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SoundManager
 {
@@ -26,6 +27,7 @@ public class SoundManager
                 value = 0.0f;
 
             m_MasterSoundVolume = value;
+            UpdateSoundsVolume();
         }
     }
 
@@ -45,6 +47,7 @@ public class SoundManager
                 value = 0.0f;
 
             m_EffectSoundVolume = value;
+            UpdateSoundsVolume();
         }
     }
 
@@ -66,20 +69,65 @@ public class SoundManager
                 GameObject go = new GameObject { name = soundNames[i] };
                 _audioSources[i] = go.AddComponent<AudioSource>();
                 go.transform.parent = root.transform;
+
+                _audioSources[i].volume = m_MasterSoundVolume / 100.0f;
             }
 
             _audioSources[(int)Define.Sound.Bgm].loop = true;
+            _audioSources[(int)Define.Sound.LoopEffect].loop = true;
+        }
+
+        AudioClip[] BGMs = Resources.LoadAll<AudioClip>("Sounds\\BGM");
+
+        for (int i = 0; i < BGMs.Length; ++i) 
+        {
+            _audioClips.Add(BGMs[i].name, BGMs[i]);
+
+        }
+
+        AudioClip[] Effects = Resources.LoadAll<AudioClip>("Sounds\\EFFECT");
+
+        for (int i = 0; i < Effects.Length; ++i)
+        {
+            _audioClips.Add(Effects[i].name, Effects[i]);
+
+        }
+
+        AudioClip[] UIEffects = Resources.LoadAll<AudioClip>("Sounds\\UI");
+
+        for (int i = 0; i < UIEffects.Length; ++i)
+        {
+            _audioClips.Add(UIEffects[i].name, UIEffects[i]);
+
+        }
+
+        AudioClip[] GameEffects = Resources.LoadAll<AudioClip>("Sounds\\GAME");
+
+        for (int i = 0; i < GameEffects.Length; ++i)
+        {
+            _audioClips.Add(GameEffects[i].name, GameEffects[i]);
+
+        }
+    }
+
+    public void Update()
+    {
+        //UI 충돌 중일 때만 마우스 클릭 사운드 들리게
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            if (Input.GetMouseButtonUp(0))
+                PlayByName("Button_Click_1", Define.Sound.UIEffect);
         }
     }
 
     public void Clear()
     {
-        foreach (AudioSource audioSource in _audioSources)
-        {
-            audioSource.clip = null;
-            audioSource.Stop();
-        }
-        _audioClips.Clear();
+        //foreach (AudioSource audioSource in _audioSources)
+        //{
+        //    audioSource.clip = null;
+        //    audioSource.Stop();
+        //}
+        //_audioClips.Clear();
     }
 
     public void Play(string path, Define.Sound type = Define.Sound.Effect, float pitch = 1.0f)
@@ -88,14 +136,21 @@ public class SoundManager
         Play(audioClip, type, pitch);
     }
 
+    public void PlayByName(string ClipName, Define.Sound Type, float pitch = 1.0f)
+    {
+        AudioClip Clip = _audioClips[ClipName];
+
+        Play(Clip, Type, pitch);
+    }
+
 	public void Play(AudioClip audioClip, Define.Sound type = Define.Sound.Effect, float pitch = 1.0f)
 	{
         if (audioClip == null)
             return;
 
-		if (type == Define.Sound.Bgm)
+		if (type == Define.Sound.Bgm || type == Define.Sound.LoopEffect)
 		{
-			AudioSource audioSource = _audioSources[(int)Define.Sound.Bgm];
+			AudioSource audioSource = _audioSources[(int)type];
 			if (audioSource.isPlaying)
 				audioSource.Stop();
 
@@ -105,7 +160,7 @@ public class SoundManager
 		}
 		else
 		{
-			AudioSource audioSource = _audioSources[(int)Define.Sound.Effect];
+			AudioSource audioSource = _audioSources[(int)type];
 			audioSource.pitch = pitch;
 			audioSource.PlayOneShot(audioClip);
 		}
@@ -135,5 +190,22 @@ public class SoundManager
 			Debug.Log($"AudioClip Missing ! {path}");
 
 		return audioClip;
+    }
+
+    public AudioClip FindClip(string ClipName)
+    {
+        return _audioClips[ClipName];
+    }
+    public AudioSource GetAudioSource(Define.Sound SoundType)
+    {
+        return _audioSources[(int)SoundType];
+    }
+
+    void UpdateSoundsVolume()
+    {
+        _audioSources[(int)Define.Sound.Bgm].volume = m_MasterSoundVolume / 100.0f;
+        _audioSources[(int)Define.Sound.Effect].volume = m_EffectSoundVolume / 100.0f;
+        _audioSources[(int)Define.Sound.LoopEffect].volume = m_EffectSoundVolume / 100.0f;
+        _audioSources[(int)Define.Sound.UIEffect].volume = m_EffectSoundVolume / 100.0f;
     }
 }
