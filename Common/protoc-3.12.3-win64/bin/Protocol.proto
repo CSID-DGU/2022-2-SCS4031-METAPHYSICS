@@ -27,6 +27,8 @@ enum MsgId {
   C_LOGIN_CHECK = 19;
   C_FRIEND_CHECK = 20;
   S_FRIEND_CHECK = 21;
+  C_DIRECT_CHAT = 22;
+  S_DIRECT_CHAT = 23;
 }
 
 message S_EnterGame {
@@ -123,6 +125,18 @@ message S_Login {
   string accountId = 2;
   string accountName = 3;
   string accountPassword = 4;
+}
+
+message C_DirectChat {
+  string sender = 1;
+  string chattingText = 2;
+  string receiver = 3;
+}
+
+message S_DirectChat {
+  string sender = 1;
+  string chattingText = 2;
+  string receiver = 3;
 }
 
 message PlayerInfo {

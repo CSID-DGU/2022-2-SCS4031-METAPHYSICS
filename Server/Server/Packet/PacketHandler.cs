@@ -82,6 +82,21 @@ class PacketHandler
 		room.Push(room.HandleChat, player, chatPacket);
 	}
 
+	public static void C_DirectChatHandler(PacketSession session, IMessage packet)
+	{
+		C_DirectChat checkPacket = packet as C_DirectChat;
+		ClientSession clientSession = session as ClientSession;
+
+		Console.WriteLine($"C_DirectChatHandler : {checkPacket.Receiver}");
+		S_DirectChat directChatPacket = new S_DirectChat()
+		{
+			Sender = checkPacket.Sender,
+			Receiver = checkPacket.Receiver,
+			ChattingText = checkPacket.ChattingText
+		};
+		clientSession.Send(directChatPacket);
+	}
+
 	public static void C_EnterSceneHandler(PacketSession session, IMessage packet)
 	{
 		C_EnterScene enterPacket = packet as C_EnterScene;

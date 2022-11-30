@@ -29,9 +29,9 @@ public class FriendManager
     public void Init()
     {
         //친구 리스트 DB에서 받아와서 넘겨주기
-        C_FriendCheck enterPacket = new C_FriendCheck();
-        enterPacket.AccountName = Managers.Data.GetUserName();
-        Managers.Network.Send(enterPacket);
+        C_FriendCheck friendCheckPacket = new C_FriendCheck();
+        friendCheckPacket.AccountName = Managers.Data.GetUserName();
+        Managers.Network.Send(friendCheckPacket);
 
         m_FriendList = new List<string>();
         InitFriendList();
@@ -90,6 +90,11 @@ public class FriendManager
             Data.DirectMessageList.Add(MessageData);
 
             //여기서 DirectChatting 패킷 보내야함
+            C_DirectChat directChatPacket = new C_DirectChat();
+            directChatPacket.Sender = MessageData.SenderUser;
+            directChatPacket.Receiver = MessageData.ReceiverUser;
+            directChatPacket.ChattingText = MessageData.ChattingText;
+            Managers.Network.Send(directChatPacket);
 
         }
 
