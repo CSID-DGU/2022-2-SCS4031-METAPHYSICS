@@ -177,8 +177,11 @@ public class FriendManager
 
     public void SendFriendRequest(string FriendName)
     {
-        //db통해서 친구요청 보내기
-
+        //db통해서 친구요청 보내기(내db, 상대db의 friendlist에 모두 각자 추가)
+        C_AddFriend addFriendPacket = new C_AddFriend();
+        addFriendPacket.Name = FriendName;
+        addFriendPacket.Sender = Managers.Data.GetCurrentUser();
+        Managers.Network.Send(addFriendPacket);
     }
 
     public List<string> GetFriendList()
