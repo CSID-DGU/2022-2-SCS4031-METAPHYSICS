@@ -12,5 +12,6 @@ namespace Server.DB
 		public string AccountId { get; set; }
 		public string AccountPassword { get; set; }
 		public string AccountName { get; set; }
+		public string FriendList { get; set; }
 	}
 }

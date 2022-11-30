@@ -9,7 +9,7 @@ using Server.DB;
 namespace Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221129081625_Init")]
+    [Migration("20221130160219_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,6 +34,9 @@ namespace Server.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AccountPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FriendList")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AccountDbId");

@@ -87,6 +87,16 @@ class PacketHandler
         }
 	}
 
+	public static void S_DirectChatHandler(PacketSession session, IMessage packet)
+	{
+		S_DirectChat directChatPacket = packet as S_DirectChat;
+		DirectMessageStruct MessageData = new DirectMessageStruct();
+		MessageData.ChattingText = directChatPacket.ChattingText;
+		MessageData.ReceiverUser = directChatPacket.Receiver;
+		MessageData.SenderUser = directChatPacket.Sender;
+		Managers.Data.m_FriendManager.ReceiveDirectMessage(MessageData);
+	}
+
 	public static void S_ConnectedHandler(PacketSession session, IMessage packet)
 	{
 		Debug.Log("S_ConnectedHandler");
@@ -110,6 +120,12 @@ class PacketHandler
         {
 			Managers.Data.prevUser = false;
 		}
+	}
+
+	public static void S_FriendCheckHandler(PacketSession session, IMessage packet)
+	{
+		S_FriendCheck friendPacket = packet as S_FriendCheck;
+		Managers.Data.m_FriendManager.SetFriendList(friendPacket.FriendList);
 	}
 }
 

@@ -82,6 +82,21 @@ class PacketHandler
 		room.Push(room.HandleChat, player, chatPacket);
 	}
 
+	public static void C_DirectChatHandler(PacketSession session, IMessage packet)
+	{
+		C_DirectChat checkPacket = packet as C_DirectChat;
+		ClientSession clientSession = session as ClientSession;
+
+		Console.WriteLine($"C_DirectChatHandler : {checkPacket.Receiver}");
+		S_DirectChat directChatPacket = new S_DirectChat()
+		{
+			Sender = checkPacket.Sender,
+			Receiver = checkPacket.Receiver,
+			ChattingText = checkPacket.ChattingText
+		};
+		clientSession.Send(directChatPacket);
+	}
+
 	public static void C_EnterSceneHandler(PacketSession session, IMessage packet)
 	{
 		C_EnterScene enterPacket = packet as C_EnterScene;
@@ -203,4 +218,23 @@ class PacketHandler
 		}
 	}
 
+	public static void C_FriendCheckHandler(PacketSession session, IMessage packet)
+	{
+		C_FriendCheck checkPacket = packet as C_FriendCheck;
+		ClientSession clientSession = session as ClientSession;
+
+		using (AppDbContext db = new AppDbContext())
+		{
+			// 만들어져 있는지 확인
+			AccountDb findAccount = db.Accounts
+				.Where(a => a.AccountName == checkPacket.AccountName).FirstOrDefault();
+
+			Console.WriteLine($"C_FriendCheckHandler : {checkPacket.AccountName}");
+			S_FriendCheck friendPacket = new S_FriendCheck()
+			{
+				FriendList = findAccount.FriendList
+			};
+			clientSession.Send(friendPacket);
+		}
+	}
 }
