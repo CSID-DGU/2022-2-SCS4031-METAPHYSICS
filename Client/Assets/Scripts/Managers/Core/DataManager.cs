@@ -39,13 +39,13 @@ public class DataManager
     public void Init()
     {
         //초기 실험용 데이터
-        UserData UD = new UserData();
-        UD.UserNum = "2017110413";
-        UD.Password = "794613";
-        UD.UserName = "유재헌";
-        UD.UserColor = UserCustomize.Black;
+        //UserData UD = new UserData();
+        //UD.UserNum = "2017110413";
+        //UD.Password = "794613";
+        //UD.UserName = "유재헌";
+        //UD.UserColor = UserCustomize.Black;
 
-        AddUserData(UD);
+        //AddUserData(UD);
 
 
         //연결된 DB 토대로 FriendManager 초기화

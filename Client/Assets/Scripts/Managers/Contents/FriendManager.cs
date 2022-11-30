@@ -9,6 +9,21 @@ public class FriendManager
     private List<string> m_FriendRequestList;
     private Dictionary<string, FriendData> m_FriendDataDict;
 
+    private bool m_AlarmEnable = true;
+
+    public bool AlarmEnable
+    {
+        get
+        {
+            return m_AlarmEnable;
+        }
+
+        set
+        {
+            m_AlarmEnable = value;
+        }
+    }
+
     public void Init()
     {
         //친구 리스트 DB에서 받아와서 넘겨주기
