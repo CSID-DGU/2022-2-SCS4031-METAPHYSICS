@@ -11,7 +11,7 @@ public class MapNavUI : UI_Drag
 
 
     [SerializeField]
-    private int m_SelectIndex = -1;
+    private int m_SelectIndex = 0;
 
 
     // Start is called before the first frame update
@@ -61,6 +61,7 @@ public class MapNavUI : UI_Drag
 
     public void GoButtonCallback()
     {
+        m_SelectIndex = m_DropDown.value;
         string DestName = ((GameScene)m_SelectIndex).ToString();
         string CurrentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 

@@ -83,7 +83,7 @@ public class Navigation
 
         while (NavInfoMan.OpenCount > 0)
         {
-            //if (NavInfoMan.OpenCount > 10000)
+            //if (NavInfoMan.OpenCount > 30000)
             //{
             //    Debug.LogError("InfiniteLoop A*");
             //    break;
@@ -172,11 +172,7 @@ public class Navigation
                     && m_NavData.HasTile(Neighbor[(int)Dir2].TilePos))
                     continue;
 
-                if (m_NavData.HasTile(Neighbor[(int)Dir1].TilePos))
-                    continue;
-
-                if (m_NavData.HasTile(Neighbor[(int)Dir2].TilePos))
-                    continue;
+                
             }
 
             else
