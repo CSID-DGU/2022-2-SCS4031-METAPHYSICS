@@ -187,6 +187,9 @@ MonoBehaviour:
   m_SettingUIPrefab: {fileID: 8875735152385402999, guid: 6eb0a1870ee201646b2610b6f83c4dd4,
     type: 3}
   m_SettingUI: {fileID: 0}
+  m_NoticeUIPrefab: {fileID: 2938363953278041056, guid: 4bb440de416c6494896407ca554539b1,
+    type: 3}
+  m_NoticeUI: {fileID: 0}
   m_FriendBtn: {fileID: 906237325497974937}
   m_FriendListON: 0
   m_MapBtn: {fileID: 3376876872385726666}
