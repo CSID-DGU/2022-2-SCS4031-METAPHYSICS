@@ -34,6 +34,9 @@ namespace Server.Migrations
                     b.Property<string>("AccountPassword")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FriendList")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("AccountDbId");
 
                     b.HasIndex("AccountName")

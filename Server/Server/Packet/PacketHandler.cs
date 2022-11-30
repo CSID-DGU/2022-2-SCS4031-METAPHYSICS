@@ -203,4 +203,23 @@ class PacketHandler
 		}
 	}
 
+	public static void C_FriendCheckHandler(PacketSession session, IMessage packet)
+	{
+		C_FriendCheck checkPacket = packet as C_FriendCheck;
+		ClientSession clientSession = session as ClientSession;
+
+		using (AppDbContext db = new AppDbContext())
+		{
+			// 만들어져 있는지 확인
+			AccountDb findAccount = db.Accounts
+				.Where(a => a.AccountName == checkPacket.AccountName).FirstOrDefault();
+
+			Console.WriteLine($"C_FriendCheckHandler : {checkPacket.AccountName}");
+			S_FriendCheck friendPacket = new S_FriendCheck()
+			{
+				FriendList = findAccount.FriendList
+			};
+			clientSession.Send(friendPacket);
+		}
+	}
 }

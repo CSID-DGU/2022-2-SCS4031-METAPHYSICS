@@ -1,3 +1,4 @@
+using Google.Protobuf.Protocol;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class FriendManager
     private List<string> m_FriendList;
     private List<string> m_FriendRequestList;
     private Dictionary<string, FriendData> m_FriendDataDict;
+    private string packetFriendList;
 
     private bool m_AlarmEnable = true;
 
@@ -27,6 +29,10 @@ public class FriendManager
     public void Init()
     {
         //친구 리스트 DB에서 받아와서 넘겨주기
+        C_FriendCheck enterPacket = new C_FriendCheck();
+        enterPacket.AccountName = Managers.Data.GetUserName();
+        Managers.Network.Send(enterPacket);
+
         m_FriendList = new List<string>();
         InitFriendList();
 
@@ -47,11 +53,13 @@ public class FriendManager
     private void InitFriendList()
     {
         //db에서 친구 리스트 얻어오기
-
-        //테스트용 리스트 생성
-        m_FriendList.Add("Test1");
-        m_FriendList.Add("Test2");
-        m_FriendList.Add("Test3");
+        if (packetFriendList != null)
+        {
+            string[] arrStr = packetFriendList.Split(',');
+            foreach (string arr in arrStr)
+                m_FriendList.Add(arr.Trim());
+            m_FriendList.Sort((x, y) => x.CompareTo(y));
+        }
     }
 
     private void InitFriendData()
@@ -127,7 +135,12 @@ public class FriendManager
         //db에서 친구요청 리스트 얻어와서 추가
     }
 
-    public void AddFreind(string FriendName)
+    public void SetFriendList(string FriendList)
+    {
+        packetFriendList = FriendList;
+    }
+
+    public void AddFriend(string FriendName)
     {
         for (int i = 0; i < m_FriendList.Count; ++i)
         {

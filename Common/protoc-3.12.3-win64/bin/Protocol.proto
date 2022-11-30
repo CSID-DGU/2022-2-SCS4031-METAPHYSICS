@@ -25,6 +25,8 @@ enum MsgId {
   S_LOGIN = 17;
   C_SIGN_UP = 18;
   C_LOGIN_CHECK = 19;
+  C_FRIEND_CHECK = 20;
+  S_FRIEND_CHECK = 21;
 }
 
 message S_EnterGame {
@@ -106,6 +108,14 @@ message C_SignUp{
 
 message C_LoginCheck{
   string accountId = 1;
+}
+
+message C_FriendCheck{
+  string accountName = 1; 
+}
+
+message S_FriendCheck{
+  string friendList = 1;
 }
 
 message S_Login {

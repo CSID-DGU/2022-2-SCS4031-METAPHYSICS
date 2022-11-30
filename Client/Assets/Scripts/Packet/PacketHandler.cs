@@ -111,6 +111,12 @@ class PacketHandler
 			Managers.Data.prevUser = false;
 		}
 	}
+
+	public static void S_FriendCheckHandler(PacketSession session, IMessage packet)
+	{
+		S_FriendCheck friendPacket = packet as S_FriendCheck;
+		Managers.Data.m_FriendManager.SetFriendList(friendPacket.FriendList);
+	}
 }
 
 
