@@ -48,7 +48,9 @@ class PacketManager
 		_onRecv.Add((ushort)MsgId.CFriendCheck, MakePacket<C_FriendCheck>);
 		_handler.Add((ushort)MsgId.CFriendCheck, PacketHandler.C_FriendCheckHandler);		
 		_onRecv.Add((ushort)MsgId.CDirectChat, MakePacket<C_DirectChat>);
-		_handler.Add((ushort)MsgId.CDirectChat, PacketHandler.C_DirectChatHandler);
+		_handler.Add((ushort)MsgId.CDirectChat, PacketHandler.C_DirectChatHandler);		
+		_onRecv.Add((ushort)MsgId.CAddFriend, MakePacket<C_AddFriend>);
+		_handler.Add((ushort)MsgId.CAddFriend, PacketHandler.C_AddFriendHandler);
 	}
 
 	public void OnRecvPacket(PacketSession session, ArraySegment<byte> buffer)

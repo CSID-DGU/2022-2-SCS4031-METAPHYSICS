@@ -237,4 +237,46 @@ class PacketHandler
 			clientSession.Send(friendPacket);
 		}
 	}
+
+	public static void C_AddFriend(PacketSession session, IMessage packet)
+	{
+		C_AddFriend addFriendPacket = packet as C_AddFriend;
+		ClientSession clientSession = session as ClientSession;
+
+		using (AppDbContext db = new AppDbContext())
+		{
+			// 만들어져 있는지 확인
+			AccountDb findAccount = db.Accounts
+				.Where(a => a.AccountName == addFriendPacket.Name).FirstOrDefault();
+
+			AccountDb findAccount2 = db.Accounts
+				.Where(a => a.AccountName == addFriendPacket.Sender).FirstOrDefault();
+
+			Console.WriteLine($"C_AddFriend : {addFriendPacket.Name}");
+			if(findAccount.FriendList==null)
+            {
+				findAccount.FriendList = addFriendPacket.Sender;
+            }
+            else
+            {
+				findAccount.FriendList = findAccount.FriendList + "," + addFriendPacket.Sender;
+			}
+
+			if (findAccount2.FriendList == null)
+			{
+				findAccount2.FriendList = addFriendPacket.Name;
+			}
+			else
+			{
+				findAccount2.FriendList = findAccount2.FriendList + "," + addFriendPacket.Name;
+			}
+			db.SaveChanges();
+
+			//S_AddFriend friendPacket = new S_AddFriend()
+			//{
+			//	FriendList = findAccount.FriendList
+			//};
+			//clientSession.Send(friendPacket);
+		}
+	}
 }
