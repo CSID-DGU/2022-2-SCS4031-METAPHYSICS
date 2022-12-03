@@ -127,6 +127,12 @@ class PacketHandler
 		S_FriendCheck friendPacket = packet as S_FriendCheck;
 		Managers.Data.m_FriendManager.SetFriendList(friendPacket.FriendList);
 	}
+
+	public static void S_UserCheckHandler(PacketSession session, IMessage packet)
+	{
+		S_UserCheck userCheckPacket = packet as S_UserCheck;
+		//Managers.Data.isInUser = true;
+	}
 }
 
 

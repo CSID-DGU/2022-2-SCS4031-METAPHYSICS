@@ -285,4 +285,23 @@ class PacketHandler
 			//clientSession.Send(friendPacket);
 		}
 	}
+
+	public static void C_UserCheckHandler(PacketSession session, IMessage packet)
+	{
+		C_UserCheck checkPacket = packet as C_UserCheck;
+		ClientSession clientSession = session as ClientSession;
+		Console.WriteLine($"C_UserCheckHandler : {checkPacket.Name}");
+		using (AppDbContext db = new AppDbContext())
+		{
+			// 만들어져 있는지 확인
+			AccountDb findAccount = db.Accounts
+				.Where(a => a.AccountName == checkPacket.Name).FirstOrDefault();
+			if (findAccount != null)
+			{
+				Console.WriteLine($"C_UserCheckHandler_find : {checkPacket.Name}");
+				S_UserCheck userCheckPacket = new S_UserCheck();
+				clientSession.Send(userCheckPacket);
+			}
+		}
+	}
 }

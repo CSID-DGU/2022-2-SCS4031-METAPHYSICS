@@ -30,6 +30,7 @@ public class DataManager
     public string userId = "";
     public string userPassword = "";
     public string userName = "";
+    public bool isInUser = false;
     //임시
     private Dictionary<String, UserData> m_UserDataDict = new Dictionary<String, UserData>();
     private List<UserData> m_ArrayUserData = new List<UserData>();
