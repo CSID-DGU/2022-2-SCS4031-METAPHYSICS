@@ -30,6 +30,8 @@ enum MsgId {
   C_DIRECT_CHAT = 22;
   S_DIRECT_CHAT = 23;
   C_ADD_FRIEND = 24;
+  C_USER_CHECK = 25;
+  S_USER_CHECK = 26;
 }
 
 message S_EnterGame {
@@ -143,6 +145,13 @@ message S_DirectChat {
 message C_AddFriend{
   string name = 1;
   string sender = 2;
+}
+
+message C_UserCheck{
+  string name = 1;
+}
+
+message S_UserCheck{
 }
 
 message PlayerInfo {

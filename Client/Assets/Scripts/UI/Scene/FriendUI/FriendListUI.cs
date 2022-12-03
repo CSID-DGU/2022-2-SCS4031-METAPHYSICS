@@ -6,6 +6,7 @@ using static Define;
 using static Struct;
 using UnityEngine.EventSystems;
 using UnityEditor;
+using Google.Protobuf.Protocol;
 
 public class FriendListUI : UI_Drag
 {
@@ -104,23 +105,53 @@ public class FriendListUI : UI_Drag
 
         else
         {
-            if(Managers.Data.ContainsUserName(UserName))
-            {
-                //친구 요청 보내기 선택
-                GameObject PopUpInstane = Instantiate(m_RequestPopUpPrefab);
-                FriendRequestPopUp PopUpUI = PopUpInstane.GetComponent<FriendRequestPopUp>();
+            GameObject PopUpInstane = Instantiate(m_RequestPopUpPrefab);
+            FriendRequestPopUp PopUpUI = PopUpInstane.GetComponent<FriendRequestPopUp>();
 
-                PopUpUI.SetFriendName(UserName);
-            }
+            PopUpUI.SetFriendName(UserName);
 
-            else
-            {
-                //입력한 정보가 없다는 팝업 생성
-                GameObject PopUpInstance = Instantiate(m_AlertPopUpPrefab);
-                Text AlertText = PopUpInstance.GetComponentInChildren<Text>();
-                AlertText.text = "해당 유저 정보가 존재하지 않습니다.";
-            }
+            //C_UserCheck userCheckPacket = new C_UserCheck();
+            //userCheckPacket.Name = UserName;
+            //Managers.Network.Send(userCheckPacket);
+
+            //if (Managers.Data.isInUser)
+            //{
+            //    //친구 요청 보내기 선택
+            //    GameObject PopUpInstane = Instantiate(m_RequestPopUpPrefab);
+            //    FriendRequestPopUp PopUpUI = PopUpInstane.GetComponent<FriendRequestPopUp>();
+
+            //    PopUpUI.SetFriendName(UserName);
+            //}
+            //else
+            //{
+            //    //입력한 정보가 없다는 팝업 생성
+            //    GameObject PopUpInstance = Instantiate(m_AlertPopUpPrefab);
+            //    Text AlertText = PopUpInstance.GetComponentInChildren<Text>();
+            //    AlertText.text = "해당 유저 정보가 존재하지 않습니다.";
+            //}
+            //Managers.Data.isInUser = false;
+
         }
+    }
+
+    void Func(string UserName)
+    {
+        if (Managers.Data.isInUser)
+        {
+            //친구 요청 보내기 선택
+            GameObject PopUpInstane = Instantiate(m_RequestPopUpPrefab);
+            FriendRequestPopUp PopUpUI = PopUpInstane.GetComponent<FriendRequestPopUp>();
+
+            PopUpUI.SetFriendName(UserName);
+        }
+        else
+        {
+            //입력한 정보가 없다는 팝업 생성
+            GameObject PopUpInstance = Instantiate(m_AlertPopUpPrefab);
+            Text AlertText = PopUpInstance.GetComponentInChildren<Text>();
+            AlertText.text = "해당 유저 정보가 존재하지 않습니다.";
+        }
+        Managers.Data.isInUser = false;
     }
 
     void RemoveFriend(string UserName)

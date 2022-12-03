@@ -38,8 +38,14 @@ namespace Server
 			// DNS (Domain Name System)
 			string host = Dns.GetHostName();
 			IPHostEntry ipHost = Dns.GetHostEntry(host);
-			IPAddress ipAddr = ipHost.AddressList[0];
-			//최종 아이피주소, 포트번호
+			
+			// 로컬 버전
+			IPAddress ipAddr = IPAddress.Parse("192.168.35.217");
+
+			// AWS 버전
+			//IPAddress ipAddr = IPAddress.Parse("172.31.46.213");
+
+			// 최종 아이피주소, 포트번호
 			IPEndPoint endPoint = new IPEndPoint(ipAddr, 7777);
 
 			//패킷받기

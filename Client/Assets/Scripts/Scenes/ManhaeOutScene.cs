@@ -151,7 +151,7 @@ public class ManhaeOutScene : BaseScene
 
         SceneType = Define.Scene.Game;
 
-        Screen.SetResolution(1920, 980, false);
+        Screen.SetResolution(1920, 1080, true);
         //Screen.SetResolution(640, 480, false);
 
         UserName = Managers.Data.GetCurrentUser();
