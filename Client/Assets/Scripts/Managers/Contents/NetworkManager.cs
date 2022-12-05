@@ -20,13 +20,12 @@ public class NetworkManager
 		// DNS (Domain Name System)
 		string host = Dns.GetHostName();
 		IPHostEntry ipHost = Dns.GetHostEntry(host);
-		
-		// 로컬 버전
-		IPAddress ipAddr = IPAddress.Parse("192.168.35.217");
-		
+
 		// AWS 버전
 		//IPAddress ipAddr = IPAddress.Parse("3.36.23.9");
 
+		// 로컬 버전
+		IPAddress ipAddr = ipHost.AddressList[0];
 		IPEndPoint endPoint = new IPEndPoint(ipAddr, 7777);
 
 		Connector connector = new Connector();
