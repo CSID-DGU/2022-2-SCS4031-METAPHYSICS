@@ -43,5 +43,16 @@ public static class Struct
         public List<DirectMessageStruct> DirectMessageList;
     }
 
+    public struct QuizRankData
+    {
+        public string   UserName;
+        public int      CorrectCount;
+    }
 
+    public struct QuizData
+    {
+        public string strQuestion;
+        public string strAnswer;
+        public OXMark Answer;
+    }
 }

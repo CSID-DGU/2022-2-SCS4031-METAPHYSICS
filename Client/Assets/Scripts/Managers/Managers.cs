@@ -13,6 +13,7 @@ public class Managers : MonoBehaviour
     NetworkManager _network = new NetworkManager();
     ObjectManager _obj = new ObjectManager();
     NavigationManager _Nav = new NavigationManager();
+    CameraManager   _Cam    = new CameraManager();
 
     public static MapManager Map {  get { return Instance._map; } }
     public static ChatManager Chat { get { return Instance._chat; } }
@@ -20,6 +21,7 @@ public class Managers : MonoBehaviour
     public static ObjectManager Object { get { return Instance._obj; } }
     public static NetworkManager Network { get { return Instance._network; } }
     public static NavigationManager Navigation { get { return Instance._Nav; } }
+    public static CameraManager Cam { get { return Instance._Cam; } }
     #endregion
 
     #region Core
@@ -52,6 +54,7 @@ public class Managers : MonoBehaviour
         Navigation.update();
         Scene.SceneUpdate();
         Sound.Update();
+        Cam.Update();
     }
 
     static void Init()
@@ -74,6 +77,7 @@ public class Managers : MonoBehaviour
             s_instance._sound.Init();
             s_instance._chat.Init();
             s_instance._Nav.Init();
+            s_instance._Cam.Init();
         }		
 	}
 

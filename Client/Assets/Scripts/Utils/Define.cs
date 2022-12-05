@@ -91,4 +91,10 @@ public class Define
         Used
     }
 
+    public enum OXMark
+    {
+        None,
+        O,
+        X
+    }
 }
