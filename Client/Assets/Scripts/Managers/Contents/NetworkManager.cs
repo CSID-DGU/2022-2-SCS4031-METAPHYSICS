@@ -35,6 +35,8 @@ public class NetworkManager
 			1);
 	}
 
+	//*[@id="content_focus"]/div/div[3]/div[2]/ul/li[1]/a/div[2]/p
+
 	public void Update()
 	{
 		List<PacketMessage> list = PacketQueue.Instance.PopAll();

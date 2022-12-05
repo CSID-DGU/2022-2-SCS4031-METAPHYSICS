@@ -1,0 +1,16 @@
+C:\Users\texte\Desktop\2022-2-SCS4031-METAPHYSICS\WindowsFormsApp1\bin\Debug\selenium-manager\linux\selenium-manager
+C:\Users\texte\Desktop\2022-2-SCS4031-METAPHYSICS\WindowsFormsApp1\bin\Debug\selenium-manager\macos\selenium-manager
+C:\Users\texte\Desktop\2022-2-SCS4031-METAPHYSICS\WindowsFormsApp1\bin\Debug\selenium-manager\windows\selenium-manager.exe
+C:\Users\texte\Desktop\2022-2-SCS4031-METAPHYSICS\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\texte\Desktop\2022-2-SCS4031-METAPHYSICS\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+C:\Users\texte\Desktop\2022-2-SCS4031-METAPHYSICS\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\texte\Desktop\2022-2-SCS4031-METAPHYSICS\WindowsFormsApp1\bin\Debug\SeleniumExtras.WaitHelpers.dll
+C:\Users\texte\Desktop\2022-2-SCS4031-METAPHYSICS\WindowsFormsApp1\bin\Debug\WebDriver.dll
+C:\Users\texte\Desktop\2022-2-SCS4031-METAPHYSICS\WindowsFormsApp1\bin\Debug\WebDriver.Support.dll
+C:\Users\texte\Desktop\2022-2-SCS4031-METAPHYSICS\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.AssemblyReference.cache
+C:\Users\texte\Desktop\2022-2-SCS4031-METAPHYSICS\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\texte\Desktop\2022-2-SCS4031-METAPHYSICS\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+C:\Users\texte\Desktop\2022-2-SCS4031-METAPHYSICS\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+C:\Users\texte\Desktop\2022-2-SCS4031-METAPHYSICS\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
+C:\Users\texte\Desktop\2022-2-SCS4031-METAPHYSICS\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+C:\Users\texte\Desktop\2022-2-SCS4031-METAPHYSICS\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
