@@ -8,6 +8,9 @@ public class ManhaeGwangjang : BaseScene
 {
     protected bool _updated = false; //패킷 업데이트
     PlayerInfo _playerInfo = new PlayerInfo();
+
+    public bool m_IsStartQuiz = false;
+
     public PlayerInfo Player_Info
     {
         get { return _playerInfo; }
@@ -187,6 +190,12 @@ public class ManhaeGwangjang : BaseScene
     //        _updated = false;
     //    }
     //}
+
+    private void Update()
+    {
+        //패킷 받아서 퀴즈 진행중인지 true or false 지정
+        //m_IsStartQuiz = false;
+    }
 
     public override void Clear()
     {

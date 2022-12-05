@@ -55,6 +55,8 @@ public class MyPlayerController : UserControllerScript
 		UpdateNavigation();
 		UpdateIsMoving();
 		UpdateWalkSound();
+
+		UpdateUIPos();
 	}
 
 	
@@ -149,7 +151,8 @@ public class MyPlayerController : UserControllerScript
 	{
 		base.LateUpdate();
 
-		Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+		if(Managers.Cam.CamPlayerTrace)
+			Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
 		
 	}
 
