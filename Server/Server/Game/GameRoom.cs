@@ -13,6 +13,10 @@ namespace Server.Game
 
 		List<Player> _players = new List<Player>();
 
+		public int highScore = 0;
+		public string highScoreName = "";
+		int minigamePlayerCount = 0;
+
 		public void EnterGame(Player newPlayer)
 		{
 			if (newPlayer == null)
@@ -107,6 +111,47 @@ namespace Server.Game
 							Console.WriteLine($"spawnPacket : {p.Info.PlayerId}");
 						}
 					}
+				}
+			}
+		}
+
+		public void StartMinigame(string Username)
+		{
+			S_Startminigame startminigamePacket = new S_Startminigame();
+
+			// 만해광장 씬에 있는 나를 제외한 플레이어들에게 패킷 발송
+			foreach (Player p in _players)
+			{
+				if (Username != p.Info.UserName)
+				{
+					if (p.Info.Scene == "ManhaeGwangjang")
+					{
+						p.Session.Send(startminigamePacket);
+						minigamePlayerCount++;
+						Console.WriteLine($"startminigamePacket : {p.Info.UserName}");
+					}
+				}
+			}
+		}
+
+		// 최고 기록자 이름, 점수 저장
+		public void FinishMinigame(string Username, int score)
+		{
+			minigamePlayerCount--;
+			if (highScore < score)
+            {
+				highScore = score;
+				highScoreName = Username;
+            }
+			//마지막 사람의 finishminigame 호출시에 다른 모든 사람들에게 발송
+			if(minigamePlayerCount==0)
+            {
+				S_Finishminigame finishminigamePacket = new S_Finishminigame();
+				finishminigamePacket.UserName = highScoreName;
+				finishminigamePacket.Score = highScore;
+				foreach (Player p in _players)
+				{
+					p.Session.Send(finishminigamePacket);
 				}
 			}
 		}

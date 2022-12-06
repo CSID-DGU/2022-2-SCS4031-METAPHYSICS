@@ -11,6 +11,43 @@ using System.Text;
 
 class PacketHandler
 {
+	public static void C_StartminigameHandler(PacketSession session, IMessage packet)
+	{
+		C_Startminigame minigamePacket = packet as C_Startminigame;
+
+		ClientSession clientSession = session as ClientSession;
+
+		Player player = clientSession.MyPlayer;
+		if (player == null)
+			return;
+
+		GameRoom room = player.Room;
+		if (room == null)
+			return;
+
+		room.Push(room.StartMinigame, minigamePacket.Player.UserName);
+	}
+
+	public static void C_FinishminigameHandler(PacketSession session, IMessage packet)
+	{
+		C_Finishminigame minigamePacket = packet as C_Finishminigame;
+
+		int score = minigamePacket.Score;
+		string username = minigamePacket.UserName;
+
+		ClientSession clientSession = session as ClientSession;
+
+		Player player = clientSession.MyPlayer;
+		if (player == null)
+			return;
+
+		GameRoom room = player.Room;
+		if (room == null)
+			return;
+
+		room.Push(room.FinishMinigame, username, score);
+	}
+
 	public static void C_EnterGameHandler(PacketSession session, IMessage packet)
 	{
 		C_EnterGame enterPacket = packet as C_EnterGame;

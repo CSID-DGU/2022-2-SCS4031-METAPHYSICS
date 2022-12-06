@@ -44,7 +44,13 @@ class PacketManager
 		_onRecv.Add((ushort)MsgId.SFriendCheck, MakePacket<S_FriendCheck>);
 		_handler.Add((ushort)MsgId.SFriendCheck, PacketHandler.S_FriendCheckHandler);		
 		_onRecv.Add((ushort)MsgId.SDirectChat, MakePacket<S_DirectChat>);
-		_handler.Add((ushort)MsgId.SDirectChat, PacketHandler.S_DirectChatHandler);
+		_handler.Add((ushort)MsgId.SDirectChat, PacketHandler.S_DirectChatHandler);		
+		_onRecv.Add((ushort)MsgId.SUserCheck, MakePacket<S_UserCheck>);
+		_handler.Add((ushort)MsgId.SUserCheck, PacketHandler.S_UserCheckHandler);		
+		_onRecv.Add((ushort)MsgId.SStartminigame, MakePacket<S_Startminigame>);
+		_handler.Add((ushort)MsgId.SStartminigame, PacketHandler.S_StartminigameHandler);		
+		_onRecv.Add((ushort)MsgId.SFinishminigame, MakePacket<S_Finishminigame>);
+		_handler.Add((ushort)MsgId.SFinishminigame, PacketHandler.S_FinishminigameHandler);
 	}
 
 	public void OnRecvPacket(PacketSession session, ArraySegment<byte> buffer)

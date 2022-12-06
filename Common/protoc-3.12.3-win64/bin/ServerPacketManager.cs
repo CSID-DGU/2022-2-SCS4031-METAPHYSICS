@@ -52,7 +52,11 @@ class PacketManager
 		_onRecv.Add((ushort)MsgId.CAddFriend, MakePacket<C_AddFriend>);
 		_handler.Add((ushort)MsgId.CAddFriend, PacketHandler.C_AddFriendHandler);		
 		_onRecv.Add((ushort)MsgId.CUserCheck, MakePacket<C_UserCheck>);
-		_handler.Add((ushort)MsgId.CUserCheck, PacketHandler.C_UserCheckHandler);
+		_handler.Add((ushort)MsgId.CUserCheck, PacketHandler.C_UserCheckHandler);		
+		_onRecv.Add((ushort)MsgId.CStartminigame, MakePacket<C_Startminigame>);
+		_handler.Add((ushort)MsgId.CStartminigame, PacketHandler.C_StartminigameHandler);		
+		_onRecv.Add((ushort)MsgId.CFinishminigame, MakePacket<C_Finishminigame>);
+		_handler.Add((ushort)MsgId.CFinishminigame, PacketHandler.C_FinishminigameHandler);
 	}
 
 	public void OnRecvPacket(PacketSession session, ArraySegment<byte> buffer)
