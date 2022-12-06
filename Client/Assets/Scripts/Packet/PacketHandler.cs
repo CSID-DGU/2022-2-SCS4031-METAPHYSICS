@@ -143,10 +143,14 @@ class PacketHandler
 
 	public static void S_FinishminigameHandler(PacketSession session, IMessage packet)
 	{
-		// 가장 높은 점수와 이름
+		// 상위3명 점수와 이름
 		S_Finishminigame finishminigamePacket = packet as S_Finishminigame;
 		string highscoreUsername = finishminigamePacket.UserName;
 		int highscore = finishminigamePacket.Score;
+		string highscoreUsername2 = finishminigamePacket.UserName2;
+		int highscore2 = finishminigamePacket.Score2;
+		string highscoreUsername3 = finishminigamePacket.UserName3;
+		int highscore3 = finishminigamePacket.Score3;
 
 		// 점수 띄우는 SpawnRankingWidget();을 다른 클라에서 쏜 모든 기록들을 종합해서 서버에서 보낸 이 함수에서
 		// 불러야 함
