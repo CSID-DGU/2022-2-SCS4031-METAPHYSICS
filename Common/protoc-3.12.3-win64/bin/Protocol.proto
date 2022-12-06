@@ -32,6 +32,27 @@ enum MsgId {
   C_ADD_FRIEND = 24;
   C_USER_CHECK = 25;
   S_USER_CHECK = 26;
+  C_STARTMINIGAME = 27;
+  S_STARTMINIGAME = 28;
+  C_FINISHMINIGAME = 29;
+  S_FINISHMINIGAME = 30;
+}
+
+message C_Startminigame {
+  PlayerInfo player = 1;
+}
+
+message S_Startminigame {
+}
+
+message C_Finishminigame {
+  string userName = 1;
+  int32 score = 2;
+}
+
+message S_Finishminigame {
+  string userName = 1;
+  int32 score = 2;
 }
 
 message S_EnterGame {

@@ -4,6 +4,7 @@ using UnityEngine;
 using static Define;
 using static Struct;
 using System.IO;
+using Google.Protobuf.Protocol;
 
 public class QuizNPC : MousePickCallbackObj
 {
@@ -133,14 +134,24 @@ public class QuizNPC : MousePickCallbackObj
         m_UserAnswerCount = 0;
         m_CurrentQuizCount = 0;
 
+        // 씬안의 모든 플레이어들의 클라에서 게임 시작되도록
+        C_Startminigame minigamePacket = new C_Startminigame();
+        minigamePacket.Player.UserName = Managers.Data.GetCurrentUser();
+        Managers.Network.Send(minigamePacket);
     }
 
     public void QuizGameFinish()
     {
-        //여기서 
+        //여기서
         string UserName = Managers.Data.GetCurrentUser();
         int CorrectCount = m_UserAnswerCount;
         //이 두 정보 패킷으로 보낸다.
+
+        // 서버로 기록, 이름 전송
+        C_Finishminigame minigamePacket = new C_Finishminigame();
+        minigamePacket.UserName = UserName;
+        minigamePacket.Score = CorrectCount;
+        Managers.Network.Send(minigamePacket);
 
         //카메라 정보 초기화
         CameraManager CamManager = Managers.Cam;

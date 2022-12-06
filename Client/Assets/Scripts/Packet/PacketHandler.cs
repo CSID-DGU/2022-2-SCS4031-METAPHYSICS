@@ -133,6 +133,24 @@ class PacketHandler
 		S_UserCheck userCheckPacket = packet as S_UserCheck;
 		//Managers.Data.isInUser = true;
 	}
+
+	// 미니 게임 시작 하도록 서버에서 받은 패킷
+	public static void S_StartminigameHandler(PacketSession session, IMessage packet)
+	{
+		// 게임 바로 실행 되도록 하는 내용 넣으면 됨
+
+	}
+
+	public static void S_FinishminigameHandler(PacketSession session, IMessage packet)
+	{
+		// 가장 높은 점수와 이름
+		S_Finishminigame finishminigamePacket = packet as S_Finishminigame;
+		string highscoreUsername = finishminigamePacket.UserName;
+		int highscore = finishminigamePacket.Score;
+
+		// 점수 띄우는 SpawnRankingWidget();을 다른 클라에서 쏜 모든 기록들을 종합해서 서버에서 보낸 이 함수에서
+		// 불러야 함
+	}
 }
 
 
