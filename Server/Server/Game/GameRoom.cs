@@ -2,6 +2,7 @@
 using Google.Protobuf.Protocol;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Server.Game
@@ -12,9 +13,15 @@ namespace Server.Game
 		public int RoomId { get; set; }
 
 		List<Player> _players = new List<Player>();
+		List<int> _scores = new List<int>();
+		List<string> _scoresName = new List<string>();
 
 		public int highScore = 0;
+		public int highScore2 = 0;
+		public int highScore3 = 0;
 		public string highScoreName = "";
+		public string highScoreName2 = "";
+		public string highScoreName3 = "";
 		int minigamePlayerCount = 0;
 
 		public void EnterGame(Player newPlayer)
@@ -138,21 +145,48 @@ namespace Server.Game
 		public void FinishMinigame(string Username, int score)
 		{
 			minigamePlayerCount--;
-			if (highScore < score)
-            {
-				highScore = score;
-				highScoreName = Username;
-            }
+			_scores.Add(score);
+			_scoresName.Add(Username);
+
 			//마지막 사람의 finishminigame 호출시에 다른 모든 사람들에게 발송
-			if(minigamePlayerCount==0)
+			if (minigamePlayerCount==0)
             {
+				highScore = _scores.Max();
+				int maxIndex = _scores.IndexOf(highScore);
+				highScoreName = _scoresName[maxIndex];
+				_scores.RemoveAt(maxIndex);
+				_scoresName.RemoveAt(maxIndex);
+
+				highScore2 = _scores.Max();
+				maxIndex = _scores.IndexOf(highScore2);
+				highScoreName2 = _scoresName[maxIndex];
+				_scores.RemoveAt(maxIndex);
+				_scoresName.RemoveAt(maxIndex);
+
+				highScore3 = _scores.Max();
+				maxIndex = _scores.IndexOf(highScore3);
+				highScoreName3 = _scoresName[maxIndex];
+
 				S_Finishminigame finishminigamePacket = new S_Finishminigame();
 				finishminigamePacket.UserName = highScoreName;
 				finishminigamePacket.Score = highScore;
+				finishminigamePacket.UserName2 = highScoreName2;
+				finishminigamePacket.Score2 = highScore2;
+				finishminigamePacket.UserName3 = highScoreName3;
+				finishminigamePacket.Score3 = highScore3;
 				foreach (Player p in _players)
 				{
 					p.Session.Send(finishminigamePacket);
 				}
+				// 초기화
+				_scores.Clear();
+				_scoresName.Clear();
+				highScore = 0;
+				highScore2 = 0;
+				highScore3 = 0;
+				highScoreName = "";
+				highScoreName2 = "";
+				highScoreName3 = "";
 			}
 		}
 

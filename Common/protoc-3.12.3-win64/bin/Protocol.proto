@@ -53,6 +53,10 @@ message C_Finishminigame {
 message S_Finishminigame {
   string userName = 1;
   int32 score = 2;
+  string userName2 = 3;
+  int32 score2 = 4;
+  string userName3 = 5;
+  int32 score3 = 6;
 }
 
 message S_EnterGame {
