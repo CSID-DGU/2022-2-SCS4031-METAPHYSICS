@@ -40,6 +40,9 @@ public class MapNavUI : UI_Drag
                 case GameScene.WonHeungIndoor:
                     Options.Add("원흥관");
                     break;
+                case GameScene.ManhaeGwangjang:
+                    Options.Add("미니게임존");
+                    break;
                 case GameScene.End:
                     break;
             }

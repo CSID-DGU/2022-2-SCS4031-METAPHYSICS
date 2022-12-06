@@ -173,6 +173,11 @@ public class NavigationManager
         Data.NextSceneType = GameScene.WonHeungIndoor;
         m_WayPointList[(int)GameScene.ManhaeOutScene].Add(Data);
 
+        Data = new PortalData();
+        Data.CurrentScene = GameScene.ManhaeOutScene;
+        Data.NextSceneType = GameScene.ManhaeGwangjang;
+        m_WayPointList[(int)GameScene.ManhaeOutScene].Add(Data);
+
         //원흥관에 존재하는 Portal 정보 세팅
 
         Data = new PortalData();
@@ -180,5 +185,11 @@ public class NavigationManager
         Data.NextSceneType = GameScene.ManhaeOutScene;
         m_WayPointList[(int)GameScene.WonHeungIndoor].Add(Data);
 
+
+        //퀴즈게임존에 존재하는 Portal 정보 세팅
+        Data = new PortalData();
+        Data.CurrentScene = GameScene.ManhaeGwangjang;
+        Data.NextSceneType = GameScene.ManhaeOutScene;
+        m_WayPointList[(int)GameScene.ManhaeGwangjang].Add(Data);
     }
 }
