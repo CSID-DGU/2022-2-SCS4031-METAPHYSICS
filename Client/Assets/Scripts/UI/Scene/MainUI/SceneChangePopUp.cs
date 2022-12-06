@@ -71,6 +71,9 @@ public class SceneChangePopUp : MonoBehaviour
             case GameScene.WonHeungIndoor:
                 m_SceneName.text = "원흥관";
                 break;
+            case GameScene.ManhaeGwangjang:
+                m_SceneName.text = "미니게임존";
+                break;
         }
     }
 }

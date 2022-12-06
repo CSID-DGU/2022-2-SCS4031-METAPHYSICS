@@ -207,75 +207,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &57929014
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7073443490280313744, guid: 0d4fdf4bd8d7c3a42aced5250e4704f4,
-        type: 3}
-      propertyPath: m_Name
-      value: MyPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073443490280313756, guid: 0d4fdf4bd8d7c3a42aced5250e4704f4,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 46
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073443490280313756, guid: 0d4fdf4bd8d7c3a42aced5250e4704f4,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073443490280313756, guid: 0d4fdf4bd8d7c3a42aced5250e4704f4,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -10.96
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073443490280313756, guid: 0d4fdf4bd8d7c3a42aced5250e4704f4,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073443490280313756, guid: 0d4fdf4bd8d7c3a42aced5250e4704f4,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073443490280313756, guid: 0d4fdf4bd8d7c3a42aced5250e4704f4,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073443490280313756, guid: 0d4fdf4bd8d7c3a42aced5250e4704f4,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073443490280313756, guid: 0d4fdf4bd8d7c3a42aced5250e4704f4,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073443490280313756, guid: 0d4fdf4bd8d7c3a42aced5250e4704f4,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073443490280313756, guid: 0d4fdf4bd8d7c3a42aced5250e4704f4,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7073443490280313756, guid: 0d4fdf4bd8d7c3a42aced5250e4704f4,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0d4fdf4bd8d7c3a42aced5250e4704f4, type: 3}
 --- !u!1 &161478753
 GameObject:
   m_ObjectHideFlags: 0
@@ -10095,11 +10026,13 @@ MonoBehaviour:
     type: 3}
   m_QuizRankingWidgetPrefab: {fileID: 6666409749161079418, guid: 411c2b1ef3e680a4da2422e48c4fd123,
     type: 3}
+  m_QuizPreparePrefab: {fileID: 5095275261678695724, guid: 834705b3cb21252498b749ee19599d49,
+    type: 3}
   m_IsQuizStart: 0
+  m_QuizCamPos: {x: -5, y: -7.5, z: -10}
   m_QuestionCount: 3
   m_CurrentQuizCount: 0
   m_UserAnswerCount: 0
-  m_QuizCamPos: {x: -5, y: -7.5, z: -10}
 --- !u!1 &1402061054
 GameObject:
   m_ObjectHideFlags: 0
@@ -11357,6 +11290,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SceneLoadCollider
+      objectReference: {fileID: 0}
+    - target: {fileID: 9048428648397450565, guid: 1d53dd5aa4d6a5d429b5263ca4126bef,
+        type: 3}
+      propertyPath: m_NextScene
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d53dd5aa4d6a5d429b5263ca4126bef, type: 3}

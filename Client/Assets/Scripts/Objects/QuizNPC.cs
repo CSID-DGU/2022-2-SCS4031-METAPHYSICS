@@ -16,6 +16,10 @@ public class QuizNPC : MousePickCallbackObj
     [SerializeField]
     GameObject m_QuizRankingWidgetPrefab = null;
 
+
+    [SerializeField]
+    GameObject m_QuizPreparePrefab = null;
+
     [SerializeField]
     bool m_IsQuizStart = false;
     bool m_QuizPopUpEnable = false;
@@ -23,6 +27,8 @@ public class QuizNPC : MousePickCallbackObj
 
     QuizData[] m_QuizData = new QuizData[3];
     QuizData m_CurrentQuizData;
+
+    QuizRankData[] m_QuizRankData = new QuizRankData[3];
 
     public Vector3 m_QuizCamPos = new Vector3(-5.3f, -8.5f, -10.0f);
 
@@ -38,7 +44,7 @@ public class QuizNPC : MousePickCallbackObj
 
     public int CurrentQuizCount
     {
-        get
+        get 
         {
             return m_CurrentQuizCount;
         }
@@ -81,7 +87,7 @@ public class QuizNPC : MousePickCallbackObj
             m_IsQuizStart = value;
 
             if (value)
-                QuizGameStart();
+                SendStartRequest();
 
         }
     }
@@ -127,6 +133,14 @@ public class QuizNPC : MousePickCallbackObj
             PopUp.SetOwnerNPC(this);
         }
     }
+    public void SendStartRequest()
+    {
+
+        // 씬안의 모든 플레이어들의 클라에서 게임 시작되도록
+        C_Startminigame minigamePacket = new C_Startminigame();
+        minigamePacket.Player.UserName = Managers.Data.GetCurrentUser();
+        Managers.Network.Send(minigamePacket);
+    }
 
     public void QuizGameStart()
     {
@@ -134,10 +148,11 @@ public class QuizNPC : MousePickCallbackObj
         m_UserAnswerCount = 0;
         m_CurrentQuizCount = 0;
 
-        // 씬안의 모든 플레이어들의 클라에서 게임 시작되도록
-        C_Startminigame minigamePacket = new C_Startminigame();
-        minigamePacket.Player.UserName = Managers.Data.GetCurrentUser();
-        Managers.Network.Send(minigamePacket);
+        Managers.Sound.PlayByName("Question_Start", Define.Sound.UIEffect);
+        Managers.Cam.CamPlayerTrace = false;
+        Managers.Cam.MainCamSize = 6;
+
+        GameObject PrepareObj = Instantiate(m_QuizPreparePrefab);
     }
 
     public void QuizGameFinish()
@@ -172,7 +187,7 @@ public class QuizNPC : MousePickCallbackObj
         RankingUI RankingWidget = RankingObj.GetComponentInChildren<RankingUI>();
 
         //데이터 받아서 세팅
-        RankingWidget.SetRankData();
+        RankingWidget.SetRankData(m_QuizRankData);
     }
 
     public void PlusAnswerCount()
@@ -187,6 +202,16 @@ public class QuizNPC : MousePickCallbackObj
     public QuizData GetCurrentQuizData()
     {
         return m_QuizData[m_CurrentQuizCount];
+    }
+
+    public void SetQuizRankData(QuizRankData[] Datas)
+    {
+        //3위까지만 입력
+        for (int i = 0; i < 3; ++i)
+        {
+            m_QuizRankData[i] = Datas[i];
+        }
+
     }
 
 }

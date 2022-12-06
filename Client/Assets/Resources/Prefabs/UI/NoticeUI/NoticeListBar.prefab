@@ -149,6 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DetailPageListBarPrefab: {fileID: 4087918133033267348, guid: e2725eeb267ffde48933c6048962db4a,
     type: 3}
+  m_Text: {fileID: 1121161047066931208}
 --- !u!1 &6499231849939778434
 GameObject:
   m_ObjectHideFlags: 0

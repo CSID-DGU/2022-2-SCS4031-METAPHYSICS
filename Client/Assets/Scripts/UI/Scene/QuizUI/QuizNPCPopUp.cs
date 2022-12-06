@@ -25,12 +25,11 @@ public class QuizNPCPopUp : UI_Drag
 
     public void AcceptButtonCallback()
     {
-        m_OwnerNPC.QuizStart = true;
-        Managers.Sound.PlayByName("Question_Start", Define.Sound.UIEffect);
-        Managers.Cam.CamPlayerTrace = false;
-        Managers.Cam.MainCamSize = 6;
+        if (m_OwnerNPC.QuizStart)
+            return;
 
-        GameObject PrepareObj = Instantiate(m_QuizPreparePrefab);
+        //요청보내기
+        m_OwnerNPC.SendStartRequest();
     
     }
 }

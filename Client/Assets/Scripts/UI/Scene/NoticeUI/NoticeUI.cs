@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class NoticeUI : UI_Drag
 {
@@ -22,16 +23,23 @@ public class NoticeUI : UI_Drag
     {
         //크롤링 해서 정보 세팅
 
-        for(int i = 0;i<6;++i)
+        string Path = System.IO.Path.GetDirectoryName(System.Environment.CurrentDirectory);
+
+        string CrawlingPath1 = Path + "\\Crawling1.txt";
+        string CrawlingPath2 = Path + "\\Crawling2.txt";
+
+        string[] CrawlingText = System.IO.File.ReadAllLines(CrawlingPath1);
+
+        for (int i = 0;i< CrawlingText.Length;++i)
         {
             GameObject Obj = Instantiate(m_DetailButtonPrefab, m_ScrollRect.content);
 
             NoticeListBarUI UI = Obj.GetComponentInChildren<NoticeListBarUI>();
             UI.OwnerRectTransform = m_RectTransform;
+            UI.SetText(CrawlingText[i]);
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         
