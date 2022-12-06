@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NoticeListBarUI : MonoBehaviour
 {
@@ -10,6 +11,13 @@ public class NoticeListBarUI : MonoBehaviour
     [SerializeField]
     GameObject m_DetailPageListBarPrefab = null;
 
+    [SerializeField]
+    Text m_Text = null;
+
+    public void SetText(string Text)
+    {
+        m_Text.text = Text;
+    }
 
     public RectTransform OwnerRectTransform
     {

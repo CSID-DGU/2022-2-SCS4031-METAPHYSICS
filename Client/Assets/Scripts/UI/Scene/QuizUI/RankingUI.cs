@@ -6,7 +6,7 @@ using static Struct;
 
 public class RankingUI : UI_Drag
 {
-    List<QuizRankData> m_QuizDataList = new List<QuizRankData>();
+    QuizRankData[] m_RankData = new QuizRankData[3];
 
     [SerializeField]
     GameObject m_RankBarPrefab = null;
@@ -29,26 +29,26 @@ public class RankingUI : UI_Drag
 
     void InitRankingData()
     {
-
+        
     }
     void CreateRankingBar()
     {
-        for (int i = 0; i < 5; ++i)
+        for (int i = 0; i < m_RankData.Length; ++i)
         {
             GameObject Obj = Instantiate(m_RankBarPrefab, m_ContentRect);
 
             RankingBarWidget RankBar = Obj.GetComponentInChildren<RankingBarWidget>();
 
-            RankBar.SetUserText("Test" + (i + 1).ToString());
+            RankBar.SetUserText(m_RankData[i].UserName);
             RankBar.SetPlaceNumber(i + 1);
-            RankBar.SetScoreNumber(5 - i);
+            RankBar.SetScoreNumber(m_RankData[i].CorrectCount);
 
         }
 
     }
 
-    public void SetRankData()
+    public void SetRankData(QuizRankData[] Data)
     {
-
+        m_RankData = Data;
     }
 }

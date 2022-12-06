@@ -138,7 +138,15 @@ class PacketHandler
 	public static void S_StartminigameHandler(PacketSession session, IMessage packet)
 	{
 		// 게임 바로 실행 되도록 하는 내용 넣으면 됨
+		
+		GameObject QuizNPCObj = GameObject.Find("QuizNPC");
 
+		if(QuizNPCObj)
+		{
+			QuizNPC NPC = QuizNPCObj.GetComponent<QuizNPC>();
+			NPC.QuizGameStart();
+
+		}
 	}
 
 	public static void S_FinishminigameHandler(PacketSession session, IMessage packet)
@@ -154,6 +162,28 @@ class PacketHandler
 
 		// 점수 띄우는 SpawnRankingWidget();을 다른 클라에서 쏜 모든 기록들을 종합해서 서버에서 보낸 이 함수에서
 		// 불러야 함
+
+		GameObject QuizNPCObj = GameObject.Find("QuizNPC");
+
+		if (QuizNPCObj)
+		{
+			QuizRankData[] RankData = new QuizRankData[3];
+			RankData[0].UserName = highscoreUsername;
+			RankData[0].CorrectCount = highscore;
+			
+			RankData[1].UserName = highscoreUsername2;
+			RankData[1].CorrectCount = highscore2;
+
+			RankData[2].UserName = highscoreUsername3;
+			RankData[2].CorrectCount = highscore3;
+
+			QuizNPC NPC = QuizNPCObj.GetComponent<QuizNPC>();
+
+			NPC.SetQuizRankData(RankData);
+			NPC.SpawnRankingWidget();
+
+		}
+
 	}
 }
 
