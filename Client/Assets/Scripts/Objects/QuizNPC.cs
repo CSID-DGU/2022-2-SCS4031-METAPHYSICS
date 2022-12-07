@@ -138,7 +138,7 @@ public class QuizNPC : MousePickCallbackObj
 
         // 씬안의 모든 플레이어들의 클라에서 게임 시작되도록
         C_Startminigame minigamePacket = new C_Startminigame();
-        minigamePacket.Player.UserName = Managers.Data.GetCurrentUser();
+        minigamePacket.UserName = Managers.Data.GetCurrentUser();
         Managers.Network.Send(minigamePacket);
     }
 
@@ -173,7 +173,7 @@ public class QuizNPC : MousePickCallbackObj
         CamManager.CamPlayerTrace = true;
         CamManager.InitCameraSize();
 
-        SpawnRankingWidget();
+        //SpawnRankingWidget();
 
         m_IsQuizStart = false;
         m_UserAnswerCount = 0;

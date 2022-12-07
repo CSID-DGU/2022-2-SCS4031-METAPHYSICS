@@ -62,7 +62,9 @@ public class FriendListUI : UI_Drag
     {
         List<string> FriendList = Managers.Data.m_FriendManager.GetFriendList();
 
-        for(int i = 0;i<FriendList.Count;++i)
+        if (FriendList.Count == 0) return;
+
+        for(int i = 0;i<FriendList.Count;i++)
         {
             AddFriend(FriendList[i]);
         }
@@ -71,7 +73,7 @@ public class FriendListUI : UI_Drag
 
     void AddFriend(string UserName)
     {
-        //if(Managers.Data.ContainsUserName(UserName))
+        //if (Managers.Data.ContainsUserName(UserName))
         //{
         //    GameObject Obj = Instantiate(m_FriendListBarPrefab, m_ScrollRectTransform);
         //    ListBar Bar = Obj.GetComponent<ListBar>();
@@ -113,7 +115,7 @@ public class FriendListUI : UI_Drag
             //C_UserCheck userCheckPacket = new C_UserCheck();
             //userCheckPacket.Name = UserName;
             //Managers.Network.Send(userCheckPacket);
-
+            
             //if (Managers.Data.isInUser)
             //{
             //    //친구 요청 보내기 선택

@@ -166,7 +166,7 @@ public class FriendManager
 
     public bool FindFriend(string FriendName)
     {
-        for (int i = 0; i < m_FriendList.Count; ++i)
+        for (int i = 0; i < m_FriendList.Count; i++)
         {
             if (m_FriendList[i] == FriendName)
                 return true;
