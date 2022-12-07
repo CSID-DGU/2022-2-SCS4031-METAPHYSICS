@@ -26,7 +26,7 @@ public class NoticeUI : UI_Drag
     {
         //크롤링 해서 정보 세팅
 
-        string Path = Application.dataPath + "\\Resources\\Data";
+        string Path = Application.streamingAssetsPath;
 
         string CrawlingPath1 = Path + "\\Crawling1.txt";
         string CrawlingPath2 = Path + "\\Crawling2.txt";
