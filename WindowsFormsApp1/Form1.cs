@@ -89,20 +89,39 @@ namespace test1
             var headline4 = driver.FindElement(By.XPath("//*[@id='content_focus']/div/div[3]/div[2]/ul/li[4]/a/div[2]/p"));
             var headline5 = driver.FindElement(By.XPath("//*[@id='content_focus']/div/div[3]/div[2]/ul/li[5]/a/div[2]/p"));
             var headline6 = driver.FindElement(By.XPath("//*[@id='content_focus']/div/div[3]/div[2]/ul/li[6]/a/div[2]/p"));
+
+            //var url1 = driver.FindElement(By.XPath("//*[@id='content_focus']/div/div[3]/div[2]/ul/li[1]/a/div[2]/p"));
+            //var url2 = driver.FindElement(By.XPath("//*[@id='content_focus']/div/div[3]/div[2]/ul/li[2]/a/div[2]/p"));
+            //var url3 = driver.FindElement(By.XPath("//*[@id='content_focus']/div/div[3]/div[2]/ul/li[3]/a/div[2]/p"));
+            //var url4 = driver.FindElement(By.XPath("//*[@id='content_focus']/div/div[3]/div[2]/ul/li[4]/a/div[2]/p"));
+            //var url5 = driver.FindElement(By.XPath("//*[@id='content_focus']/div/div[3]/div[2]/ul/li[5]/a/div[2]/p"));
+            //var url6 = driver.FindElement(By.XPath("//*[@id='content_focus']/div/div[3]/div[2]/ul/li[6]/a/div[2]/p"));
             //*[@id="content_focus"]/div/div[3]/div[2]/ul/li[1]/a/div[2]/p/text()
             //*[@id="content_focus"]/div/div[3]/div[2]/ul/li[1]/a/div[2]/p
             Title = headline.Text;
             New_Paticle.Add(Title);
+            //Title = url1.Text;
+            //New_Paticle.Add(Title);
             Title = headline2.Text;
             New_Paticle.Add(Title);
+            //Title = url2.Text;
+            //New_Paticle.Add(Title);
             Title = headline3.Text;
             New_Paticle.Add(Title);
+            //Title = url3.Text;
+            //New_Paticle.Add(Title);
             Title = headline4.Text;
             New_Paticle.Add(Title);
+            //Title = url4.Text;
+            //New_Paticle.Add(Title);
             Title = headline5.Text;
             New_Paticle.Add(Title);
+            //Title = url5.Text;
+            //New_Paticle.Add(Title);
             Title = headline6.Text;
             New_Paticle.Add(Title);
+            //Title = url6.Text;
+            //New_Paticle.Add(Title);
 
             Last_Paticle = New_Paticle[0];
             New_Paticle.Reverse();

@@ -25,7 +25,8 @@ class PacketHandler
 		if (room == null)
 			return;
 
-		room.Push(room.StartMinigame, minigamePacket.Player.UserName);
+		Console.WriteLine($"C_StartminigameHandler : {minigamePacket.UserName}");
+		room.Push(room.StartMinigame, minigamePacket.UserName);
 	}
 
 	public static void C_FinishminigameHandler(PacketSession session, IMessage packet)
@@ -45,6 +46,7 @@ class PacketHandler
 		if (room == null)
 			return;
 
+		Console.WriteLine($"C_FinishminigameHandler : {minigamePacket.UserName}");
 		room.Push(room.FinishMinigame, username, score);
 	}
 

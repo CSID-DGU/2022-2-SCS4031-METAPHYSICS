@@ -39,7 +39,7 @@ enum MsgId {
 }
 
 message C_Startminigame {
-  PlayerInfo player = 1;
+  string userName = 1;
 }
 
 message S_Startminigame {

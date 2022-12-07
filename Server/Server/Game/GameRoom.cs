@@ -129,14 +129,11 @@ namespace Server.Game
 			// 만해광장 씬에 있는 나를 제외한 플레이어들에게 패킷 발송
 			foreach (Player p in _players)
 			{
-				if (Username != p.Info.UserName)
+				if (p.Info.Scene == "ManhaeGwangjang")
 				{
-					if (p.Info.Scene == "ManhaeGwangjang")
-					{
-						p.Session.Send(startminigamePacket);
-						minigamePlayerCount++;
-						Console.WriteLine($"startminigamePacket : {p.Info.UserName}");
-					}
+					p.Session.Send(startminigamePacket);
+					minigamePlayerCount++;
+					Console.WriteLine($"startminigamePacket : {p.Info.UserName}");
 				}
 			}
 		}
@@ -157,15 +154,21 @@ namespace Server.Game
 				_scores.RemoveAt(maxIndex);
 				_scoresName.RemoveAt(maxIndex);
 
-				highScore2 = _scores.Max();
-				maxIndex = _scores.IndexOf(highScore2);
-				highScoreName2 = _scoresName[maxIndex];
-				_scores.RemoveAt(maxIndex);
-				_scoresName.RemoveAt(maxIndex);
+				if(_scores.Count() > 0)
+                {
+					highScore2 = _scores.Max();
+					maxIndex = _scores.IndexOf(highScore2);
+					highScoreName2 = _scoresName[maxIndex];
+					_scores.RemoveAt(maxIndex);
+					_scoresName.RemoveAt(maxIndex);
+				}
 
-				highScore3 = _scores.Max();
-				maxIndex = _scores.IndexOf(highScore3);
-				highScoreName3 = _scoresName[maxIndex];
+				if (_scores.Count() > 0)
+				{
+					highScore3 = _scores.Max();
+					maxIndex = _scores.IndexOf(highScore3);
+					highScoreName3 = _scoresName[maxIndex];
+				}
 
 				S_Finishminigame finishminigamePacket = new S_Finishminigame();
 				finishminigamePacket.UserName = highScoreName;
