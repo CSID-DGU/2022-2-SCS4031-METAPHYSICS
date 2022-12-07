@@ -12,12 +12,15 @@ public class NoticeUI : UI_Drag
     GameObject m_DetailButtonPrefab = null;
 
     [SerializeField]
+    GameObject m_MealMenuPrefab = null;
+
+    [SerializeField]
     ScrollRect m_ScrollRect = null;
 
     [SerializeField]
     RectTransform m_RectTransform = null;
 
-    
+    GameObject m_MealMenuObj = null;
 
     void Start()
     {
@@ -42,6 +45,16 @@ public class NoticeUI : UI_Drag
 
     void Update()
     {
-        
+        if (m_MealMenuObj)
+        {
+            if (!m_MealMenuObj.activeInHierarchy)
+                m_MealMenuObj = null;
+        }
+    }
+
+    public void MealButtonCallback()
+    {
+        if(m_MealMenuObj == null)
+            m_MealMenuObj = Instantiate(m_MealMenuPrefab);
     }
 }

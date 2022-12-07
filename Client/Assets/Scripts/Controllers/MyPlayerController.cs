@@ -72,7 +72,7 @@ public class MyPlayerController : UserControllerScript
 
 			if (DestPortal.CurrentScene.ToString() == CurrentSceneName)
             {
-				Vector2 PlayerPos = transform.position;
+				Vector3 PlayerPos = transform.position;
 
 				GameObject[] PortalObjs = GameObject.FindGameObjectsWithTag("SceneLoadCollider");
 				GameObject DestPortalObj = null;

@@ -83,11 +83,11 @@ public class Navigation
 
         while (NavInfoMan.OpenCount > 0)
         {
-            //if (NavInfoMan.OpenCount > 30000)
-            //{
-            //    Debug.LogError("InfiniteLoop A*");
-            //    break;
-            //}
+            if (NavInfoMan.OpenCount > 30000)
+            {
+                Debug.LogError("InfiniteLoop A*");
+                break;
+            }
 
             --NavInfoMan.OpenCount;
             Node = NavInfoMan.OpenList[NavInfoMan.OpenCount];
