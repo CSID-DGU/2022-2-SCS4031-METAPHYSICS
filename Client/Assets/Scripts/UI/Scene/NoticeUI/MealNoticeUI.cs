@@ -31,7 +31,7 @@ public class MealNoticeUI : UI_Drag
         m_TextList[4] = m_FridayMealText;
 
 
-        string Path = System.IO.Path.GetDirectoryName(System.Environment.CurrentDirectory);
+        string Path = Application.dataPath + "\\Resources\\Data";
 
         string CrawlingPath1 = Path + "\\Crawling1.txt";
         string CrawlingPath2 = Path + "\\Crawling2.txt";
