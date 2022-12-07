@@ -12,18 +12,21 @@ public class NoticeUI : UI_Drag
     GameObject m_DetailButtonPrefab = null;
 
     [SerializeField]
+    GameObject m_MealMenuPrefab = null;
+
+    [SerializeField]
     ScrollRect m_ScrollRect = null;
 
     [SerializeField]
     RectTransform m_RectTransform = null;
 
-    
+    GameObject m_MealMenuObj = null;
 
     void Start()
     {
         //크롤링 해서 정보 세팅
 
-        string Path = System.IO.Path.GetDirectoryName(System.Environment.CurrentDirectory);
+        string Path = Application.dataPath + "\\Resources\\Data";
 
         string CrawlingPath1 = Path + "\\Crawling1.txt";
         string CrawlingPath2 = Path + "\\Crawling2.txt";
@@ -42,6 +45,16 @@ public class NoticeUI : UI_Drag
 
     void Update()
     {
-        
+        if (m_MealMenuObj)
+        {
+            if (!m_MealMenuObj.activeInHierarchy)
+                m_MealMenuObj = null;
+        }
+    }
+
+    public void MealButtonCallback()
+    {
+        if(m_MealMenuObj == null)
+            m_MealMenuObj = Instantiate(m_MealMenuPrefab);
     }
 }
